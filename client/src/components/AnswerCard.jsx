@@ -87,9 +87,10 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
             </div>
           ) : (
             <>
-              <div className="prose max-w-none mb-6">
-                <ReactMarkdown>{answer.body}</ReactMarkdown>
-              </div>
+              <div
+                className="prose max-w-none mb-6"
+                dangerouslySetInnerHTML={{ __html: answer.body }}
+              />
 
               <div className="flex items-center justify-between pt-4 border-t-2 border-gray-200">
                 <div className="flex gap-3">

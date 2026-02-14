@@ -189,9 +189,10 @@ const QuestionDetail = () => {
                 <span>{question.answerCount} answers</span>
               </div>
 
-              <div className="prose max-w-none mb-6">
-                <ReactMarkdown>{question.body}</ReactMarkdown>
-              </div>
+              <div
+                className="prose max-w-none mb-6"
+                dangerouslySetInnerHTML={{ __html: question.body }}
+              />
 
               <div className="flex flex-wrap gap-2 mb-6">
                 {question.tags.map((tag) => (
