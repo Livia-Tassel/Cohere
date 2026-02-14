@@ -36,7 +36,7 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
-      className={`card ${isAccepted ? 'border-4 border-green-500 bg-green-50' : ''}`}
+      className={`card ${isAccepted ? 'border-4 border-green-500 bg-green-50 dark:bg-green-900/20' : ''}`}
     >
       {isAccepted && (
         <motion.div
@@ -64,7 +64,7 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
               <textarea
                 value={editBody}
                 onChange={(e) => setEditBody(e.target.value)}
-                className="w-full p-4 border-2 border-gray-300 rounded-lg min-h-[200px] focus:border-[var(--color-primary)] focus:outline-none"
+                className="w-full p-4 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg min-h-[200px] focus:border-[var(--color-primary)] focus:outline-none"
               />
               <div className="mt-4 flex gap-3">
                 <motion.button
@@ -92,7 +92,7 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
                 dangerouslySetInnerHTML={{ __html: answer.body }}
               />
 
-              <div className="flex items-center justify-between pt-4 border-t-2 border-gray-200">
+              <div className="flex items-center justify-between pt-4 border-t-2 border-[var(--border-primary)]">
                 <div className="flex gap-3">
                   {isAuthor && (
                     <>
@@ -112,7 +112,7 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
                             onDelete(answer._id);
                           }
                         }}
-                        className="text-sm font-semibold text-gray-600 hover:text-red-600 transition-colors"
+                        className="text-sm font-semibold text-[var(--text-secondary)] hover:text-red-600 transition-colors"
                       >
                         Delete
                       </motion.button>
@@ -139,13 +139,13 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
                     </div>
                   )}
                   <div>
-                    <div className="font-bold text-[var(--color-dark)]">
+                    <div className="font-bold text-[var(--text-primary)]">
                       {answer.author.username}
                     </div>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-[var(--text-secondary)]">
                       {answer.author.reputation} rep
                     </div>
-                    <div className="text-xs text-gray-500">
+                    <div className="text-xs text-[var(--text-tertiary)]">
                       answered {formatDate(answer.createdAt)}
                     </div>
                   </div>

@@ -68,14 +68,14 @@ const Register = () => {
             <span className="text-4xl font-bold text-white">Q</span>
           </motion.div>
 
-          <h1 className="text-4xl font-bold text-center mb-2">Join DevQuery</h1>
-          <p className="text-center text-gray-600 mb-8">
+          <h1 className="text-4xl font-bold text-center mb-2 text-[var(--text-primary)]">Join DevQuery</h1>
+          <p className="text-center text-[var(--text-secondary)] mb-8">
             Start your developer journey today
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide">
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
                 Username
               </label>
               <input
@@ -83,7 +83,7 @@ const Register = () => {
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
                 minLength={3}
                 maxLength={30}
                 required
@@ -91,7 +91,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide">
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
                 Email
               </label>
               <input
@@ -99,13 +99,13 @@ const Register = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide">
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
                 Password
               </label>
               <input
@@ -113,14 +113,14 @@ const Register = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
                 minLength={6}
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide">
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
                 Confirm Password
               </label>
               <input
@@ -128,7 +128,7 @@ const Register = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
                 minLength={6}
                 required
               />
@@ -152,7 +152,7 @@ const Register = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-gray-600">
+            <p className="text-[var(--text-secondary)]">
               Already have an account?{' '}
               <Link to="/login" className="text-[var(--color-primary)] font-bold hover:underline">
                 Login

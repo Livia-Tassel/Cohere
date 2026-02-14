@@ -140,8 +140,8 @@ const QuestionDetail = () => {
           className="card text-center max-w-md"
         >
           <div className="text-6xl mb-4">❓</div>
-          <h2 className="text-3xl font-bold mb-4">Question Not Found</h2>
-          <p className="text-gray-600 mb-6">
+          <h2 className="text-3xl font-bold mb-4 text-[var(--text-primary)]">Question Not Found</h2>
+          <p className="text-[var(--text-secondary)] mb-6">
             This question doesn't exist or has been deleted
           </p>
           <Link to="/">
@@ -179,9 +179,9 @@ const QuestionDetail = () => {
             />
 
             <div className="flex-1">
-              <h1 className="text-4xl font-bold mb-4">{question.title}</h1>
+              <h1 className="text-4xl font-bold mb-4 text-[var(--text-primary)]">{question.title}</h1>
 
-              <div className="flex flex-wrap gap-4 text-sm text-gray-600 mb-6">
+              <div className="flex flex-wrap gap-4 text-sm text-[var(--text-tertiary)] mb-6">
                 <span>Asked {formatDate(question.createdAt)}</span>
                 <span>•</span>
                 <span>{question.views} views</span>
@@ -207,7 +207,7 @@ const QuestionDetail = () => {
                 ))}
               </div>
 
-              <div className="flex items-center justify-between pt-6 border-t-2 border-gray-200">
+              <div className="flex items-center justify-between pt-6 border-t-2 border-[var(--border-primary)]">
                 <div className="flex gap-3">
                   {isQuestionAuthor && (
                     <>
@@ -223,7 +223,7 @@ const QuestionDetail = () => {
                         whileHover={{ scale: 1.05 }}
                         whileTap={{ scale: 0.95 }}
                         onClick={handleDeleteQuestion}
-                        className="text-sm font-semibold text-gray-600 hover:text-red-600 transition-colors"
+                        className="text-sm font-semibold text-[var(--text-secondary)] hover:text-red-600 transition-colors"
                       >
                         Delete
                       </motion.button>
@@ -240,10 +240,10 @@ const QuestionDetail = () => {
                     </div>
                   )}
                   <div>
-                    <div className="font-bold text-[var(--color-dark)]">
+                    <div className="font-bold text-[var(--text-primary)]">
                       {question.author.username}
                     </div>
-                    <div className="text-sm text-gray-600">
+                    <div className="text-sm text-[var(--text-secondary)]">
                       {question.author.reputation} rep
                     </div>
                   </div>
@@ -260,7 +260,7 @@ const QuestionDetail = () => {
           transition={{ delay: 0.1 }}
           className="mb-6"
         >
-          <h2 className="text-3xl font-bold mb-6">
+          <h2 className="text-3xl font-bold mb-6 text-[var(--text-primary)]">
             {answers.length} {answers.length === 1 ? 'Answer' : 'Answers'}
           </h2>
           <div className="space-y-4">
@@ -287,7 +287,7 @@ const QuestionDetail = () => {
         >
           {user ? (
             <>
-              <h3 className="text-2xl font-bold mb-6">Your Answer</h3>
+              <h3 className="text-2xl font-bold mb-6 text-[var(--text-primary)]">Your Answer</h3>
               <form onSubmit={handleSubmitAnswer}>
                 <RichTextEditor
                   content={answerBody}
@@ -315,8 +315,8 @@ const QuestionDetail = () => {
           ) : (
             <div className="text-center py-12">
               <div className="text-6xl mb-4">🔒</div>
-              <h3 className="text-2xl font-bold mb-4">Login to Answer</h3>
-              <p className="text-gray-600 mb-6">
+              <h3 className="text-2xl font-bold mb-4 text-[var(--text-primary)]">Login to Answer</h3>
+              <p className="text-[var(--text-secondary)] mb-6">
                 You need to be logged in to post an answer
               </p>
               <Link to="/login">

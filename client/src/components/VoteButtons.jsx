@@ -53,7 +53,7 @@ const VoteButtons = ({ targetType, targetId, initialVotes, userVote, onVoteChang
         className={`p-2 rounded-full transition-all ${
           currentVote === 1
             ? 'bg-[var(--color-primary)] text-white shadow-lg'
-            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            : 'bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--border-primary)]'
         }`}
       >
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
@@ -65,7 +65,7 @@ const VoteButtons = ({ targetType, targetId, initialVotes, userVote, onVoteChang
         key={votes}
         initial={{ scale: 1.2 }}
         animate={{ scale: 1 }}
-        className="text-2xl font-bold text-[var(--color-dark)]"
+        className="text-2xl font-bold text-[var(--text-primary)]"
       >
         {votes}
       </motion.span>
@@ -78,7 +78,7 @@ const VoteButtons = ({ targetType, targetId, initialVotes, userVote, onVoteChang
         className={`p-2 rounded-full transition-all ${
           currentVote === -1
             ? 'bg-red-500 text-white shadow-lg'
-            : 'bg-gray-100 text-gray-600 hover:bg-gray-200'
+            : 'bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--border-primary)]'
         }`}
       >
         <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">

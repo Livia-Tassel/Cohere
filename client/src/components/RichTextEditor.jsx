@@ -46,7 +46,7 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...' })
       className={`p-2 rounded transition-colors ${
         active
           ? 'bg-[var(--color-primary)] text-white'
-          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+          : 'bg-[var(--bg-tertiary)] text-[var(--text-primary)] hover:bg-[var(--border-primary)]'
       }`}
       title={title}
     >
@@ -55,9 +55,9 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...' })
   );
 
   return (
-    <div className="border-2 border-gray-300 rounded-lg overflow-hidden focus-within:border-[var(--color-primary)] transition-colors">
+    <div className="border-2 border-[var(--border-primary)] rounded-lg overflow-hidden focus-within:border-[var(--color-primary)] transition-colors">
       {/* Toolbar */}
-      <div className="bg-gray-50 border-b-2 border-gray-300 p-2 flex flex-wrap gap-2">
+      <div className="bg-[var(--bg-tertiary)] border-b-2 border-[var(--border-primary)] p-2 flex flex-wrap gap-2">
         <MenuButton
           onClick={() => editor.chain().focus().toggleBold().run()}
           active={editor.isActive('bold')}
@@ -82,7 +82,7 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...' })
           {'</>'}
         </MenuButton>
 
-        <div className="w-px bg-gray-300" />
+        <div className="w-px bg-[var(--border-primary)]" />
 
         <MenuButton
           onClick={() => editor.chain().focus().toggleHeading({ level: 1 }).run()}
@@ -108,7 +108,7 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...' })
           H3
         </MenuButton>
 
-        <div className="w-px bg-gray-300" />
+        <div className="w-px bg-[var(--border-primary)]" />
 
         <MenuButton
           onClick={() => editor.chain().focus().toggleBulletList().run()}
@@ -142,7 +142,7 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...' })
           "
         </MenuButton>
 
-        <div className="w-px bg-gray-300" />
+        <div className="w-px bg-[var(--border-primary)]" />
 
         <MenuButton
           onClick={() => setShowImageDialog(true)}
@@ -182,7 +182,7 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...' })
               value={imageUrl}
               onChange={(e) => setImageUrl(e.target.value)}
               placeholder="Enter image URL..."
-              className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[var(--color-primary)] focus:outline-none mb-4"
+              className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none mb-4"
               autoFocus
             />
             <div className="flex gap-3">

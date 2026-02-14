@@ -30,8 +30,8 @@ const AskQuestion = () => {
           className="card text-center max-w-md"
         >
           <div className="text-6xl mb-4">🔒</div>
-          <h2 className="text-3xl font-bold mb-4">Login Required</h2>
-          <p className="text-gray-600 mb-6">
+          <h2 className="text-3xl font-bold mb-4 text-[var(--text-primary)]">Login Required</h2>
+          <p className="text-[var(--text-secondary)] mb-6">
             Please login to ask a question
           </p>
           <motion.button
@@ -101,8 +101,8 @@ const AskQuestion = () => {
           animate={{ opacity: 1, y: 0 }}
         >
           <div className="mb-8">
-            <h1 className="text-5xl font-bold mb-4">Ask a Question</h1>
-            <p className="text-xl text-gray-600">
+            <h1 className="text-5xl font-bold mb-4 text-[var(--text-primary)]">Ask a Question</h1>
+            <p className="text-xl text-[var(--text-secondary)]">
               Get help from our community of developers
             </p>
           </div>
@@ -111,11 +111,11 @@ const AskQuestion = () => {
             <form onSubmit={handleSubmit} className="space-y-8">
               {/* Title */}
               <div>
-                <label className="block text-lg font-bold mb-3 uppercase tracking-wide">
+                <label className="block text-lg font-bold mb-3 uppercase tracking-wide text-[var(--text-primary)]">
                   Question Title
                   <span className="text-[var(--color-primary)]"> *</span>
                 </label>
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-[var(--text-secondary)] mb-3">
                   Be specific and imagine you're asking a question to another person
                 </p>
                 <input
@@ -123,23 +123,23 @@ const AskQuestion = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g., How do I center a div in CSS?"
-                  className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors text-lg"
+                  className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors text-lg"
                   minLength={10}
                   maxLength={200}
                   required
                 />
-                <div className="mt-2 text-sm text-gray-500">
+                <div className="mt-2 text-sm text-[var(--text-tertiary)]">
                   {title.length}/200 characters
                 </div>
               </div>
 
               {/* Body */}
               <div>
-                <label className="block text-lg font-bold mb-3 uppercase tracking-wide">
+                <label className="block text-lg font-bold mb-3 uppercase tracking-wide text-[var(--text-primary)]">
                   Detailed Description
                   <span className="text-[var(--color-primary)]"> *</span>
                 </label>
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-[var(--text-secondary)] mb-3">
                   Include all the information someone would need to answer your question. You can use rich formatting and add images.
                 </p>
                 <RichTextEditor
@@ -147,18 +147,18 @@ const AskQuestion = () => {
                   onChange={setBody}
                   placeholder="Describe your problem in detail. Include what you've tried and what you expect to happen..."
                 />
-                <div className="mt-2 text-sm text-gray-500">
+                <div className="mt-2 text-sm text-[var(--text-tertiary)]">
                   Minimum 20 characters required
                 </div>
               </div>
 
               {/* Tags */}
               <div>
-                <label className="block text-lg font-bold mb-3 uppercase tracking-wide">
+                <label className="block text-lg font-bold mb-3 uppercase tracking-wide text-[var(--text-primary)]">
                   Tags
                   <span className="text-[var(--color-primary)]"> *</span>
                 </label>
-                <p className="text-sm text-gray-600 mb-3">
+                <p className="text-sm text-[var(--text-secondary)] mb-3">
                   Add up to 5 tags to describe what your question is about
                 </p>
                 <div className="flex flex-wrap gap-2 mb-4">
@@ -172,7 +172,7 @@ const AskQuestion = () => {
                       className={`px-4 py-2 rounded-lg font-semibold transition-all ${
                         selectedTags.includes(tag)
                           ? 'bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-secondary)] text-white shadow-lg'
-                          : 'bg-gray-100 text-gray-700 hover:bg-gray-200'
+                          : 'bg-[var(--bg-tertiary)] text-[var(--text-primary)] hover:bg-[var(--border-primary)]'
                       }`}
                     >
                       {tag}
@@ -229,10 +229,10 @@ const AskQuestion = () => {
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ delay: 0.2 }}
-            className="card mt-6 bg-gradient-to-br from-blue-50 to-purple-50"
+            className="card mt-6 bg-gradient-to-br from-blue-50 to-purple-50 dark:from-blue-900/20 dark:to-purple-900/20"
           >
-            <h3 className="text-xl font-bold mb-4">💡 Tips for a Great Question</h3>
-            <ul className="space-y-2 text-gray-700">
+            <h3 className="text-xl font-bold mb-4 text-[var(--text-primary)]">💡 Tips for a Great Question</h3>
+            <ul className="space-y-2 text-[var(--text-secondary)]">
               <li className="flex items-start">
                 <span className="text-[var(--color-primary)] mr-2">•</span>
                 <span>Make your title specific and descriptive</span>

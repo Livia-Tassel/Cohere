@@ -1,6 +1,7 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
+import ThemeToggle from './ThemeToggle';
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
@@ -9,7 +10,7 @@ const Navbar = () => {
     <motion.nav
       initial={{ y: -100 }}
       animate={{ y: 0 }}
-      className="sticky top-0 z-50 bg-white/95 backdrop-blur-md border-b-2 border-gray-200 shadow-sm"
+      className="sticky top-0 z-navbar bg-[var(--bg-secondary)]/95 backdrop-blur-md border-b-2 border-[var(--border-primary)] shadow-sm"
     >
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex justify-between items-center h-20">
@@ -29,16 +30,18 @@ const Navbar = () => {
           <div className="flex items-center space-x-6">
             <Link
               to="/"
-              className="text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors font-semibold hidden sm:block"
+              className="text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors font-semibold hidden sm:block"
             >
               Questions
             </Link>
             <Link
               to="/tags"
-              className="text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors font-semibold hidden sm:block"
+              className="text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors font-semibold hidden sm:block"
             >
               Tags
             </Link>
+
+            <ThemeToggle />
 
             {user ? (
               <div className="flex items-center space-x-4">
@@ -61,8 +64,8 @@ const Navbar = () => {
                     </div>
                   )}
                   <div className="hidden md:block">
-                    <div className="font-semibold text-sm">{user.username}</div>
-                    <div className="text-xs text-gray-600">{user.reputation} rep</div>
+                    <div className="font-semibold text-sm text-[var(--text-primary)]">{user.username}</div>
+                    <div className="text-xs text-[var(--text-secondary)]">{user.reputation} rep</div>
                   </div>
                 </Link>
 
@@ -70,7 +73,7 @@ const Navbar = () => {
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
                   onClick={logoutUser}
-                  className="text-[var(--color-dark)] hover:text-red-600 transition-colors font-semibold hidden sm:block"
+                  className="text-[var(--text-primary)] hover:text-red-600 transition-colors font-semibold hidden sm:block"
                 >
                   Logout
                 </motion.button>
@@ -81,7 +84,7 @@ const Navbar = () => {
                   <motion.button
                     whileHover={{ scale: 1.05 }}
                     whileTap={{ scale: 0.95 }}
-                    className="text-[var(--color-dark)] hover:text-[var(--color-primary)] transition-colors font-semibold"
+                    className="text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors font-semibold"
                   >
                     Login
                   </motion.button>

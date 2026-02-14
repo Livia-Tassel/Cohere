@@ -121,10 +121,10 @@ const Home = () => {
           <div className="lg:col-span-3">
             <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
               <div>
-                <h2 className="text-3xl font-bold mb-2">
+                <h2 className="text-3xl font-bold mb-2 text-[var(--text-primary)]">
                   {search ? `Results for "${search}"` : 'All Questions'}
                 </h2>
-                <p className="text-gray-600 text-lg">
+                <p className="text-[var(--text-secondary)] text-lg">
                   {pagination.total || 0} questions
                 </p>
               </div>
@@ -150,7 +150,7 @@ const Home = () => {
                   className={`px-6 py-3 rounded-xl font-semibold uppercase tracking-wide transition-all whitespace-nowrap ${
                     sort === sortOption
                       ? 'bg-[var(--color-primary)] text-white shadow-lg'
-                      : 'bg-white text-[var(--color-dark)] hover:bg-gray-50 border-2 border-gray-200'
+                      : 'bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] border-2 border-[var(--border-primary)]'
                   }`}
                 >
                   {sortOption}
@@ -167,11 +167,11 @@ const Home = () => {
               <motion.div
                 initial={{ opacity: 0, scale: 0.9 }}
                 animate={{ opacity: 1, scale: 1 }}
-                className="bg-white rounded-xl border-2 border-gray-200 text-center py-20 px-6"
+                className="bg-[var(--bg-secondary)] rounded-xl border-2 border-[var(--border-primary)] text-center py-20 px-6"
               >
                 <div className="text-6xl mb-4">🤔</div>
-                <h3 className="text-2xl font-bold mb-2">No questions found</h3>
-                <p className="text-gray-600 mb-6">Be the first to ask a question!</p>
+                <h3 className="text-2xl font-bold mb-2 text-[var(--text-primary)]">No questions found</h3>
+                <p className="text-[var(--text-secondary)] mb-6">Be the first to ask a question!</p>
                 <Link to="/ask">
                   <motion.button
                     whileHover={{ scale: 1.05 }}
@@ -206,7 +206,7 @@ const Home = () => {
                         className={`w-12 h-12 rounded-xl font-bold transition-all ${
                           pageNum === parseInt(pagination.currentPage)
                             ? 'bg-[var(--color-primary)] text-white shadow-lg'
-                            : 'bg-white text-[var(--color-dark)] hover:bg-gray-50 border-2 border-gray-200'
+                            : 'bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] border-2 border-[var(--border-primary)]'
                         }`}
                       >
                         {pageNum}
@@ -232,18 +232,18 @@ const Home = () => {
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ delay: 0.4 }}
-                className="bg-white rounded-xl border-2 border-gray-200 p-6 mt-6"
+                className="bg-[var(--bg-secondary)] rounded-xl border-2 border-[var(--border-primary)] p-6 mt-6"
               >
-                <h3 className="text-xl font-bold mb-6">Community Stats</h3>
+                <h3 className="text-xl font-bold mb-6 text-[var(--text-primary)]">Community Stats</h3>
                 <div className="space-y-4">
-                  <div className="flex justify-between items-center pb-4 border-b border-gray-100">
-                    <span className="text-gray-600 font-medium">Questions</span>
+                  <div className="flex justify-between items-center pb-4 border-b border-[var(--border-primary)]">
+                    <span className="text-[var(--text-secondary)] font-medium">Questions</span>
                     <span className="text-2xl font-bold text-[var(--color-primary)]">
                       {pagination.total || 0}
                     </span>
                   </div>
                   <div className="flex justify-between items-center">
-                    <span className="text-gray-600 font-medium">Tags</span>
+                    <span className="text-[var(--text-secondary)] font-medium">Tags</span>
                     <span className="text-2xl font-bold text-[var(--color-secondary)]">
                       {tags.length}
                     </span>

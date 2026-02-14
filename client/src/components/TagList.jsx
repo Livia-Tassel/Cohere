@@ -3,8 +3,8 @@ import { Link } from 'react-router-dom';
 
 const TagList = ({ tags }) => {
   return (
-    <div className="bg-white rounded-xl border-2 border-gray-200 p-6">
-      <h3 className="text-xl font-bold mb-5">Popular Tags</h3>
+    <div className="bg-[var(--bg-secondary)] rounded-xl border-2 border-[var(--border-primary)] p-6">
+      <h3 className="text-xl font-bold mb-5 text-[var(--text-primary)]">Popular Tags</h3>
       <div className="flex flex-wrap gap-2">
         {tags.map((tag, index) => (
           <motion.div

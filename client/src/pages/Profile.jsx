@@ -54,8 +54,8 @@ const Profile = () => {
           className="card text-center max-w-md"
         >
           <div className="text-6xl mb-4">👤</div>
-          <h2 className="text-3xl font-bold mb-4">User Not Found</h2>
-          <p className="text-gray-600 mb-6">
+          <h2 className="text-3xl font-bold mb-4 text-[var(--text-primary)]">User Not Found</h2>
+          <p className="text-[var(--text-secondary)] mb-6">
             This user doesn't exist
           </p>
           <Link to="/">
@@ -155,7 +155,7 @@ const Profile = () => {
           transition={{ delay: 0.2 }}
           className="card"
         >
-          <div className="flex border-b-2 border-gray-200 mb-6">
+          <div className="flex border-b-2 border-[var(--border-primary)] mb-6">
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
@@ -163,7 +163,7 @@ const Profile = () => {
               className={`px-6 py-3 font-bold uppercase tracking-wide transition-all ${
                 activeTab === 'questions'
                   ? 'text-[var(--color-primary)] border-b-4 border-[var(--color-primary)] -mb-0.5'
-                  : 'text-gray-600 hover:text-[var(--color-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--color-primary)]'
               }`}
             >
               Questions ({questions.length})
@@ -175,7 +175,7 @@ const Profile = () => {
               className={`px-6 py-3 font-bold uppercase tracking-wide transition-all ${
                 activeTab === 'answers'
                   ? 'text-[var(--color-primary)] border-b-4 border-[var(--color-primary)] -mb-0.5'
-                  : 'text-gray-600 hover:text-[var(--color-primary)]'
+                  : 'text-[var(--text-secondary)] hover:text-[var(--color-primary)]'
               }`}
             >
               Answers ({answers.length})
@@ -187,7 +187,7 @@ const Profile = () => {
               questions.length === 0 ? (
                 <div className="text-center py-16">
                   <div className="text-6xl mb-4">📝</div>
-                  <p className="text-gray-600 text-lg">No questions yet</p>
+                  <p className="text-[var(--text-secondary)] text-lg">No questions yet</p>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -200,7 +200,7 @@ const Profile = () => {
               answers.length === 0 ? (
                 <div className="text-center py-16">
                   <div className="text-6xl mb-4">💬</div>
-                  <p className="text-gray-600 text-lg">No answers yet</p>
+                  <p className="text-[var(--text-secondary)] text-lg">No answers yet</p>
                 </div>
               ) : (
                 <div className="space-y-4">
@@ -220,10 +220,10 @@ const Profile = () => {
                           {answer.question.title}
                         </Link>
                       </div>
-                      <div className="text-gray-700 line-clamp-3 mb-3">
+                      <div className="text-[var(--text-secondary)] line-clamp-3 mb-3">
                         {answer.body.substring(0, 200)}...
                       </div>
-                      <div className="flex items-center gap-4 text-sm text-gray-600">
+                      <div className="flex items-center gap-4 text-sm text-[var(--text-tertiary)]">
                         <span className="font-semibold text-[var(--color-primary)]">
                           {answer.votes} votes
                         </span>

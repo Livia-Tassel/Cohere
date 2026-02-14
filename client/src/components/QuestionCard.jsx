@@ -19,7 +19,7 @@ const QuestionCard = ({ question, index = 0 }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="bg-white rounded-xl border-2 border-gray-200 hover:border-[var(--color-primary)] transition-all duration-300 hover:shadow-xl group overflow-hidden"
+      className="bg-[var(--bg-secondary)] rounded-xl border-2 border-[var(--border-primary)] hover:border-[var(--color-primary)] transition-all duration-300 hover:shadow-xl group overflow-hidden"
     >
       <div className="p-6">
         {/* Title */}
@@ -46,30 +46,30 @@ const QuestionCard = ({ question, index = 0 }) => {
         </div>
 
         {/* Stats and Author Row */}
-        <div className="flex items-center justify-between pt-4 border-t border-gray-100">
+        <div className="flex items-center justify-between pt-4 border-t border-[var(--border-primary)]">
           {/* Stats */}
           <div className="flex items-center gap-6">
             <div className="flex items-center gap-1.5">
-              <div className={`text-lg font-bold ${question.votes > 0 ? 'text-green-600' : question.votes < 0 ? 'text-red-600' : 'text-gray-500'}`}>
+              <div className={`text-lg font-bold ${question.votes > 0 ? 'text-green-600' : question.votes < 0 ? 'text-red-600' : 'text-[var(--text-secondary)]'}`}>
                 {question.votes}
               </div>
-              <div className="text-xs text-gray-500 font-medium">votes</div>
+              <div className="text-xs text-[var(--text-tertiary)] font-medium">votes</div>
             </div>
 
             <div className="flex items-center gap-1.5">
-              <div className={`text-lg font-bold ${question.acceptedAnswer ? 'text-green-600' : 'text-gray-700'}`}>
+              <div className={`text-lg font-bold ${question.acceptedAnswer ? 'text-green-600' : 'text-[var(--text-primary)]'}`}>
                 {question.answerCount}
               </div>
-              <div className="text-xs text-gray-500 font-medium">
+              <div className="text-xs text-[var(--text-tertiary)] font-medium">
                 {question.acceptedAnswer ? '✓ answers' : 'answers'}
               </div>
             </div>
 
             <div className="flex items-center gap-1.5">
-              <div className="text-lg font-bold text-gray-500">
+              <div className="text-lg font-bold text-[var(--text-secondary)]">
                 {question.views}
               </div>
-              <div className="text-xs text-gray-500 font-medium">views</div>
+              <div className="text-xs text-[var(--text-tertiary)] font-medium">views</div>
             </div>
           </div>
 
@@ -86,10 +86,10 @@ const QuestionCard = ({ question, index = 0 }) => {
               </div>
             )}
             <div className="text-right">
-              <div className="text-sm font-semibold text-[var(--color-dark)]">
+              <div className="text-sm font-semibold text-[var(--text-primary)]">
                 {question.author.username}
               </div>
-              <div className="text-xs text-gray-500">
+              <div className="text-xs text-[var(--text-tertiary)]">
                 {formatDate(question.createdAt)}
               </div>
             </div>

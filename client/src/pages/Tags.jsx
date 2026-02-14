@@ -42,8 +42,8 @@ const Tags = () => {
           animate={{ opacity: 1, y: 0 }}
           className="mb-8"
         >
-          <h1 className="text-5xl font-bold mb-4">Explore Tags</h1>
-          <p className="text-xl text-gray-600">
+          <h1 className="text-5xl font-bold mb-4 text-[var(--text-primary)]">Explore Tags</h1>
+          <p className="text-xl text-[var(--text-secondary)]">
             Browse questions by technology and topic
           </p>
         </motion.div>
@@ -70,10 +70,10 @@ const Tags = () => {
                       {tag.name.charAt(0).toUpperCase()}
                     </div>
                   </div>
-                  <div className="text-3xl font-bold text-[var(--color-dark)] mb-2">
+                  <div className="text-3xl font-bold text-[var(--text-primary)] mb-2">
                     {tag.count}
                   </div>
-                  <div className="text-sm text-gray-600 uppercase tracking-wide">
+                  <div className="text-sm text-[var(--text-tertiary)] uppercase tracking-wide">
                     Questions
                   </div>
                 </motion.div>
@@ -89,8 +89,8 @@ const Tags = () => {
             className="card text-center py-16"
           >
             <div className="text-6xl mb-4">🏷️</div>
-            <h3 className="text-2xl font-bold mb-2">No tags yet</h3>
-            <p className="text-gray-600">Tags will appear as questions are posted</p>
+            <h3 className="text-2xl font-bold mb-2 text-[var(--text-primary)]">No tags yet</h3>
+            <p className="text-[var(--text-secondary)]">Tags will appear as questions are posted</p>
           </motion.div>
         )}
       </div>

@@ -56,14 +56,14 @@ const Login = () => {
             <span className="text-4xl font-bold text-white">Q</span>
           </motion.div>
 
-          <h1 className="text-4xl font-bold text-center mb-2">Welcome Back</h1>
-          <p className="text-center text-gray-600 mb-8">
+          <h1 className="text-4xl font-bold text-center mb-2 text-[var(--text-primary)]">Welcome Back</h1>
+          <p className="text-center text-[var(--text-secondary)] mb-8">
             Login to continue your journey
           </p>
 
           <form onSubmit={handleSubmit} className="space-y-6">
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide">
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
                 Email
               </label>
               <input
@@ -71,13 +71,13 @@ const Login = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide">
+              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
                 Password
               </label>
               <input
@@ -85,7 +85,7 @@ const Login = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-gray-300 rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
                 required
               />
             </div>
@@ -108,7 +108,7 @@ const Login = () => {
           </form>
 
           <div className="mt-6 text-center">
-            <p className="text-gray-600">
+            <p className="text-[var(--text-secondary)]">
               Don't have an account?{' '}
               <Link to="/register" className="text-[var(--color-primary)] font-bold hover:underline">
                 Sign up
