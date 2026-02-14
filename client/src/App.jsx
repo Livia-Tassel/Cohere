@@ -13,6 +13,8 @@ import QuestionDetail from './pages/QuestionDetail';
 import Profile from './pages/Profile';
 import TagPage from './pages/TagPage';
 import Tags from './pages/Tags';
+import Bookmarks from './pages/Bookmarks';
+import Leaderboard from './pages/Leaderboard';
 
 function App() {
   return (
@@ -59,6 +61,8 @@ function App() {
                 <Route path="/profile/:id" element={<Profile />} />
                 <Route path="/tags" element={<Tags />} />
                 <Route path="/tags/:name" element={<TagPage />} />
+                <Route path="/bookmarks" element={<Bookmarks />} />
+                <Route path="/leaderboard" element={<Leaderboard />} />
               </Routes>
             </SidebarLayout>
           </div>

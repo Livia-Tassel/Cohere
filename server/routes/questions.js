@@ -7,6 +7,29 @@ const User = require('../models/User');
 const auth = require('../middleware/auth');
 const validate = require('../middleware/validation');
 
+// @route   GET /api/questions/trending
+// @desc    Get trending questions
+// @access  Public
+router.get('/trending', async (req, res) => {
+  try {
+    const { period = 'week' } = req.query;
+    const daysAgo = period === 'day' ? 1 : 7;
+    const dateThreshold = new Date(Date.now() - daysAgo * 24 * 60 * 60 * 1000);
+
+    const questions = await Question.find({
+      createdAt: { $gte: dateThreshold }
+    })
+      .populate('author', 'username avatar reputation')
+      .sort({ views: -1, votes: -1 })
+      .limit(20);
+
+    res.json(questions);
+  } catch (error) {
+    console.error('Error fetching trending questions:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // Get all questions with filters
 router.get('/', async (req, res) => {
   try {
@@ -192,6 +215,31 @@ router.post('/:id/accept/:answerId', auth, async (req, res) => {
     res.json({ message: 'Answer accepted' });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+// @route   GET /api/questions/:id/related
+// @desc    Get related questions based on tags
+// @access  Public
+router.get('/:id/related', async (req, res) => {
+  try {
+    const question = await Question.findById(req.params.id);
+    if (!question) {
+      return res.status(404).json({ message: 'Question not found' });
+    }
+
+    const related = await Question.find({
+      _id: { $ne: question._id },
+      tags: { $in: question.tags }
+    })
+      .populate('author', 'username avatar reputation')
+      .sort({ votes: -1, views: -1 })
+      .limit(5);
+
+    res.json(related);
+  } catch (error) {
+    console.error('Error fetching related questions:', error);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

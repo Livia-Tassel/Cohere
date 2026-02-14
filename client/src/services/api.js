@@ -30,6 +30,8 @@ export const updateQuestion = (id, data) => api.put(`/questions/${id}`, data);
 export const deleteQuestion = (id) => api.delete(`/questions/${id}`);
 export const acceptAnswer = (questionId, answerId) =>
   api.post(`/questions/${questionId}/accept/${answerId}`);
+export const getTrendingQuestions = (params) => api.get('/questions/trending', { params });
+export const getRelatedQuestions = (id) => api.get(`/questions/${id}/related`);
 
 // Answers
 export const getAnswers = (questionId) => api.get(`/answers/question/${questionId}`);
@@ -45,9 +47,16 @@ export const checkVotes = (targets) => api.post('/vote/check', { targets });
 export const getUser = (id) => api.get(`/users/${id}`);
 export const getUserQuestions = (id, params) => api.get(`/users/${id}/questions`, { params });
 export const getUserAnswers = (id, params) => api.get(`/users/${id}/answers`, { params });
+export const getLeaderboard = (params) => api.get('/users/leaderboard', { params });
 
 // Tags
 export const getTags = () => api.get('/tags');
 export const getTagQuestions = (name, params) => api.get(`/tags/${name}`, { params });
+
+// Bookmarks
+export const createBookmark = (questionId) => api.post('/bookmarks', { questionId });
+export const getBookmarks = (params) => api.get('/bookmarks', { params });
+export const deleteBookmark = (questionId) => api.delete(`/bookmarks/${questionId}`);
+export const checkBookmarks = (questionIds) => api.post('/bookmarks/check', { questionIds });
 
 export default api;

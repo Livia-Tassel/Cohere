@@ -4,6 +4,32 @@ const User = require('../models/User');
 const Question = require('../models/Question');
 const Answer = require('../models/Answer');
 
+// @route   GET /api/users/leaderboard
+// @desc    Get top users by reputation
+// @access  Public
+router.get('/leaderboard', async (req, res) => {
+  try {
+    const { limit = 50, period = 'all' } = req.query;
+
+    let dateFilter = {};
+    if (period === 'week') {
+      dateFilter = { createdAt: { $gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } };
+    } else if (period === 'month') {
+      dateFilter = { createdAt: { $gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) } };
+    }
+
+    const users = await User.find(dateFilter)
+      .sort({ reputation: -1 })
+      .limit(parseInt(limit))
+      .select('username avatar reputation createdAt');
+
+    res.json(users);
+  } catch (error) {
+    console.error('Error fetching leaderboard:', error);
+    res.status(500).json({ message: 'Server error' });
+  }
+});
+
 // Get user profile
 router.get('/:id', async (req, res) => {
   try {
@@ -67,6 +93,32 @@ router.get('/:id/answers', async (req, res) => {
     });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
+// @route   GET /api/users/leaderboard
+// @desc    Get top users by reputation
+// @access  Public
+router.get('/leaderboard', async (req, res) => {
+  try {
+    const { limit = 50, period = 'all' } = req.query;
+
+    let dateFilter = {};
+    if (period === 'week') {
+      dateFilter = { createdAt: { $gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } };
+    } else if (period === 'month') {
+      dateFilter = { createdAt: { $gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) } };
+    }
+
+    const users = await User.find(dateFilter)
+      .sort({ reputation: -1 })
+      .limit(parseInt(limit))
+      .select('username avatar reputation createdAt');
+
+    res.json(users);
+  } catch (error) {
+    console.error('Error fetching leaderboard:', error);
+    res.status(500).json({ message: 'Server error' });
   }
 });
 

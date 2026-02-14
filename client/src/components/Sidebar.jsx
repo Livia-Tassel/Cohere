@@ -9,7 +9,9 @@ const Sidebar = ({ isOpen, onToggle, isMobile }) => {
   const navItems = [
     { path: '/', icon: '🏠', label: 'Home' },
     { path: '/tags', icon: '🏷️', label: 'Tags' },
+    { path: '/leaderboard', icon: '🏆', label: 'Leaderboard' },
     ...(user ? [
+      { path: '/bookmarks', icon: '🔖', label: 'Bookmarks' },
       { path: '/ask', icon: '✍️', label: 'Ask Question' },
       { path: `/profile/${user.id}`, icon: '👤', label: 'Profile' },
     ] : []),

@@ -7,6 +7,8 @@ import { useAuth } from '../context/AuthContext';
 import AnswerCard from '../components/AnswerCard';
 import VoteButtons from '../components/VoteButtons';
 import RichTextEditor from '../components/RichTextEditor';
+import RelatedQuestions from '../components/RelatedQuestions';
+import BookmarkButton from '../components/BookmarkButton';
 import toast, { Toaster } from 'react-hot-toast';
 
 const QuestionDetail = () => {
@@ -164,22 +166,28 @@ const QuestionDetail = () => {
     <div className="min-h-screen bg-pattern py-8">
       <Toaster position="top-right" />
 
-      <div className="max-w-5xl mx-auto px-4">
-        {/* Question */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          className="card mb-6"
-        >
-          <div className="flex gap-6">
-            <VoteButtons
-              targetType="question"
-              targetId={question._id}
-              initialVotes={question.votes}
-            />
+      <div className="max-w-7xl mx-auto px-4">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Main Content */}
+          <div className="lg:col-span-2">
+            {/* Question */}
+            <motion.div
+              initial={{ opacity: 0, y: 20 }}
+              animate={{ opacity: 1, y: 0 }}
+              className="card mb-6"
+            >
+              <div className="flex gap-6">
+                <VoteButtons
+                  targetType="question"
+                  targetId={question._id}
+                  initialVotes={question.votes}
+                />
 
-            <div className="flex-1">
-              <h1 className="text-4xl font-bold mb-4 text-[var(--text-primary)]">{question.title}</h1>
+                <div className="flex-1">
+                  <div className="flex items-start justify-between gap-4 mb-4">
+                    <h1 className="text-4xl font-bold text-[var(--text-primary)] flex-1">{question.title}</h1>
+                    <BookmarkButton questionId={question._id} size="md" />
+                  </div>
 
               <div className="flex flex-wrap gap-4 text-sm text-[var(--text-tertiary)] mb-6">
                 <span>Asked {formatDate(question.createdAt)}</span>
@@ -332,6 +340,13 @@ const QuestionDetail = () => {
           )}
         </motion.div>
       </div>
+      </div>
+
+      {/* Sidebar */}
+      <div className="lg:col-span-1 space-y-6">
+        <RelatedQuestions questionId={id} />
+      </div>
+    </div>
     </div>
   );
 };

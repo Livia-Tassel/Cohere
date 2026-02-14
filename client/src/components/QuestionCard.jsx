@@ -1,5 +1,6 @@
 import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
+import BookmarkButton from './BookmarkButton';
 
 const QuestionCard = ({ question, index = 0 }) => {
   const formatDate = (date) => {
@@ -48,7 +49,7 @@ const QuestionCard = ({ question, index = 0 }) => {
         {/* Stats and Author Row */}
         <div className="flex items-center justify-between pt-4 border-t border-[var(--border-primary)]">
           {/* Stats */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-4">
             <div className="flex items-center gap-1.5">
               <div className={`text-lg font-bold ${question.votes > 0 ? 'text-green-600' : question.votes < 0 ? 'text-red-600' : 'text-[var(--text-secondary)]'}`}>
                 {question.votes}
@@ -71,6 +72,9 @@ const QuestionCard = ({ question, index = 0 }) => {
               </div>
               <div className="text-xs text-[var(--text-tertiary)] font-medium">views</div>
             </div>
+
+            {/* Bookmark Button */}
+            <BookmarkButton questionId={question._id} size="sm" />
           </div>
 
           {/* Author */}

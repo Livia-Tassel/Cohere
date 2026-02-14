@@ -3,8 +3,19 @@ import StarterKit from '@tiptap/starter-kit';
 import Image from '@tiptap/extension-image';
 import Placeholder from '@tiptap/extension-placeholder';
 import { motion } from 'framer-motion';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import toast from 'react-hot-toast';
+import Prism from 'prismjs';
+import 'prismjs/themes/prism-tomorrow.css';
+import 'prismjs/components/prism-javascript';
+import 'prismjs/components/prism-typescript';
+import 'prismjs/components/prism-python';
+import 'prismjs/components/prism-java';
+import 'prismjs/components/prism-jsx';
+import 'prismjs/components/prism-tsx';
+import 'prismjs/components/prism-css';
+import 'prismjs/components/prism-json';
+import 'prismjs/components/prism-bash';
 
 const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...' }) => {
   const [imageUrl, setImageUrl] = useState('');
@@ -23,6 +34,13 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...' })
       onChange(editor.getHTML());
     },
   });
+
+  // Apply Prism syntax highlighting after content updates
+  useEffect(() => {
+    if (editor) {
+      Prism.highlightAll();
+    }
+  }, [editor?.state.doc]);
 
   const addImage = () => {
     if (imageUrl) {

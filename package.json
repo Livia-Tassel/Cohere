@@ -32,5 +32,8 @@
   "bugs": {
     "url": "https://github.com/Livia-Tassel/Cohere/issues"
   },
-  "homepage": "https://github.com/Livia-Tassel/Cohere#readme"
+  "homepage": "https://github.com/Livia-Tassel/Cohere#readme",
+  "dependencies": {
+    "concurrently": "^9.2.1"
+  }
 }

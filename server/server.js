@@ -23,6 +23,7 @@ app.use('/api/answers', require('./routes/answers'));
 app.use('/api/vote', require('./routes/votes'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/tags', require('./routes/tags'));
+app.use('/api/bookmarks', require('./routes/bookmarks'));
 
 // Health check
 app.get('/api/health', (req, res) => {
