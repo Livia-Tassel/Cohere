@@ -30,6 +30,7 @@ app.use('/api/tags', require('./routes/tags'));
 app.use('/api/bookmarks', require('./routes/bookmarks'));
 app.use('/api/comments', require('./routes/comments'));
 app.use('/api/badges', require('./routes/badges'));
+app.use('/api/notifications', require('./routes/notifications'));
 
 // Health check
 app.get('/api/health', (req, res) => {

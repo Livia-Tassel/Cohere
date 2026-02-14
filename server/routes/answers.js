@@ -6,6 +6,7 @@ const Question = require('../models/Question');
 const auth = require('../middleware/auth');
 const validate = require('../middleware/validation');
 const { checkAndAwardBadges } = require('../services/badgeService');
+const { createAnswerNotification } = require('../services/notificationService');
 
 // Get answers for a question
 router.get('/question/:questionId', async (req, res) => {
@@ -49,6 +50,9 @@ router.post('/', [
 
     // Check and award badges
     checkAndAwardBadges(req.userId);
+
+    // Create notification
+    createAnswerNotification(question, answer);
 
     res.status(201).json(answer);
   } catch (error) {

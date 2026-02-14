@@ -2,6 +2,7 @@ import { motion } from 'framer-motion';
 import { Link } from 'react-router-dom';
 import { useAuth } from '../context/AuthContext';
 import ThemeToggle from './ThemeToggle';
+import NotificationBell from './NotificationBell';
 
 const Navbar = () => {
   const { user, logoutUser } = useAuth();
@@ -45,6 +46,8 @@ const Navbar = () => {
 
             {user ? (
               <div className="flex items-center space-x-4">
+                <NotificationBell />
+
                 <Link to="/ask">
                   <motion.button
                     whileHover={{ scale: 1.05 }}

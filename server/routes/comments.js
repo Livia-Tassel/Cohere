@@ -6,6 +6,7 @@ const Question = require('../models/Question');
 const Answer = require('../models/Answer');
 const auth = require('../middleware/auth');
 const validate = require('../middleware/validation');
+const { createCommentNotification } = require('../services/notificationService');
 
 // @route   POST /api/comments
 // @desc    Create a comment
@@ -36,6 +37,9 @@ router.post('/', [
 
     await comment.save();
     await comment.populate('author', 'username avatar reputation');
+
+    // Create notification
+    createCommentNotification(target, comment, targetType);
 
     res.status(201).json(comment);
   } catch (error) {

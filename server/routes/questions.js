@@ -7,6 +7,7 @@ const User = require('../models/User');
 const auth = require('../middleware/auth');
 const validate = require('../middleware/validation');
 const { checkAndAwardBadges } = require('../services/badgeService');
+const { createAcceptedAnswerNotification } = require('../services/notificationService');
 
 // @route   GET /api/questions/trending
 // @desc    Get trending questions
@@ -215,6 +216,9 @@ router.post('/:id/accept/:answerId', auth, async (req, res) => {
     await answer.save();
 
     await User.findByIdAndUpdate(answer.author, { $inc: { reputation: 15 } });
+
+    // Create notification
+    createAcceptedAnswerNotification(answer, question);
 
     res.json({ message: 'Answer accepted' });
   } catch (error) {

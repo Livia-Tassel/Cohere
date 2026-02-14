@@ -15,6 +15,7 @@ import TagPage from './pages/TagPage';
 import Tags from './pages/Tags';
 import Bookmarks from './pages/Bookmarks';
 import Leaderboard from './pages/Leaderboard';
+import Notifications from './pages/Notifications';
 
 function App() {
   return (
@@ -63,6 +64,7 @@ function App() {
                 <Route path="/tags/:name" element={<TagPage />} />
                 <Route path="/bookmarks" element={<Bookmarks />} />
                 <Route path="/leaderboard" element={<Leaderboard />} />
+                <Route path="/notifications" element={<Notifications />} />
               </Routes>
             </SidebarLayout>
           </div>
