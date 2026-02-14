@@ -3,6 +3,7 @@ import { useState } from 'react';
 import ReactMarkdown from 'react-markdown';
 import { useAuth } from '../context/AuthContext';
 import VoteButtons from './VoteButtons';
+import CommentList from './CommentList';
 import toast from 'react-hot-toast';
 
 const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAccepted }) => {
@@ -151,6 +152,9 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
                   </div>
                 </div>
               </div>
+
+              {/* Answer Comments */}
+              <CommentList targetType="Answer" targetId={answer._id} />
             </>
           )}
         </div>

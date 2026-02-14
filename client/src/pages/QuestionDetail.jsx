@@ -9,6 +9,7 @@ import VoteButtons from '../components/VoteButtons';
 import RichTextEditor from '../components/RichTextEditor';
 import RelatedQuestions from '../components/RelatedQuestions';
 import BookmarkButton from '../components/BookmarkButton';
+import CommentList from '../components/CommentList';
 import toast, { Toaster } from 'react-hot-toast';
 
 const QuestionDetail = () => {
@@ -257,6 +258,9 @@ const QuestionDetail = () => {
                   </div>
                 </Link>
               </div>
+
+              {/* Question Comments */}
+              <CommentList targetType="Question" targetId={question._id} />
             </div>
           </div>
         </motion.div>

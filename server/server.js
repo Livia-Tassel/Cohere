@@ -24,6 +24,7 @@ app.use('/api/vote', require('./routes/votes'));
 app.use('/api/users', require('./routes/users'));
 app.use('/api/tags', require('./routes/tags'));
 app.use('/api/bookmarks', require('./routes/bookmarks'));
+app.use('/api/comments', require('./routes/comments'));
 
 // Health check
 app.get('/api/health', (req, res) => {

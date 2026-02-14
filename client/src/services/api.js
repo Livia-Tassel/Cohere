@@ -59,4 +59,11 @@ export const getBookmarks = (params) => api.get('/bookmarks', { params });
 export const deleteBookmark = (questionId) => api.delete(`/bookmarks/${questionId}`);
 export const checkBookmarks = (questionIds) => api.post('/bookmarks/check', { questionIds });
 
+// Comments
+export const createComment = (data) => api.post('/comments', data);
+export const getComments = (targetType, targetId, params) => api.get(`/comments/${targetType}/${targetId}`, { params });
+export const updateComment = (id, data) => api.put(`/comments/${id}`, data);
+export const deleteComment = (id) => api.delete(`/comments/${id}`);
+export const voteComment = (id) => api.post(`/comments/${id}/vote`);
+
 export default api;
