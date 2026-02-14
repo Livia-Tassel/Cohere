@@ -6,6 +6,7 @@ const Answer = require('../models/Answer');
 const User = require('../models/User');
 const auth = require('../middleware/auth');
 const validate = require('../middleware/validation');
+const { checkAndAwardBadges } = require('../services/badgeService');
 
 // @route   GET /api/questions/trending
 // @desc    Get trending questions
@@ -119,6 +120,9 @@ router.post('/', [
 
     await question.save();
     await question.populate('author', 'username reputation');
+
+    // Check and award badges
+    checkAndAwardBadges(req.userId);
 
     res.status(201).json(question);
   } catch (error) {

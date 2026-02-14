@@ -3,6 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getUser, getUserQuestions, getUserAnswers } from '../services/api';
 import QuestionCard from '../components/QuestionCard';
+import UserBadges from '../components/UserBadges';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Profile = () => {
@@ -146,6 +147,16 @@ const Profile = () => {
             </div>
             <div className="text-gray-600 uppercase tracking-wide">Reputation</div>
           </div>
+        </motion.div>
+
+        {/* Badges Section */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.15 }}
+          className="card mb-6"
+        >
+          <UserBadges userId={id} />
         </motion.div>
 
         {/* Activity Tabs */}

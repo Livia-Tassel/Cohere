@@ -66,4 +66,9 @@ export const updateComment = (id, data) => api.put(`/comments/${id}`, data);
 export const deleteComment = (id) => api.delete(`/comments/${id}`);
 export const voteComment = (id) => api.post(`/comments/${id}/vote`);
 
+// Badges
+export const getBadges = () => api.get('/badges');
+export const getUserBadges = (userId) => api.get(`/badges/user/${userId}`);
+export const getBadgeStats = (userId) => api.get(`/badges/stats/${userId}`);
+
 export default api;

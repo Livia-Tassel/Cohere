@@ -5,6 +5,7 @@ const Answer = require('../models/Answer');
 const Question = require('../models/Question');
 const auth = require('../middleware/auth');
 const validate = require('../middleware/validation');
+const { checkAndAwardBadges } = require('../services/badgeService');
 
 // Get answers for a question
 router.get('/question/:questionId', async (req, res) => {
@@ -45,6 +46,9 @@ router.post('/', [
     await answer.populate('author', 'username reputation avatar');
 
     await Question.findByIdAndUpdate(questionId, { $inc: { answerCount: 1 } });
+
+    // Check and award badges
+    checkAndAwardBadges(req.userId);
 
     res.status(201).json(answer);
   } catch (error) {

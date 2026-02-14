@@ -2,11 +2,15 @@ require('dotenv').config();
 const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
+const { initializeBadges } = require('./services/badgeService');
 
 const app = express();
 
 // Connect to MongoDB
 connectDB();
+
+// Initialize badges
+initializeBadges();
 
 // Middleware
 app.use(cors({
@@ -25,6 +29,7 @@ app.use('/api/users', require('./routes/users'));
 app.use('/api/tags', require('./routes/tags'));
 app.use('/api/bookmarks', require('./routes/bookmarks'));
 app.use('/api/comments', require('./routes/comments'));
+app.use('/api/badges', require('./routes/badges'));
 
 // Health check
 app.get('/api/health', (req, res) => {
