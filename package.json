@@ -1,0 +1,33 @@
+{
+  "name": "qa-community",
+  "version": "1.0.0",
+  "description": "A full-stack Q&A community platform similar to Stack Overflow",
+  "main": "index.js",
+  "scripts": {
+    "install:all": "cd server && npm install && cd ../client && npm install",
+    "dev": "concurrently \"cd server && npm run dev\" \"cd client && npm run dev\"",
+    "seed": "cd server && npm run seed",
+    "health": "./health-check.sh",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [
+    "qa",
+    "community",
+    "stackoverflow",
+    "react",
+    "nodejs",
+    "mongodb",
+    "express",
+    "fullstack"
+  ],
+  "author": "",
+  "license": "MIT",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/qa-community.git"
+  },
+  "bugs": {
+    "url": "https://github.com/yourusername/qa-community/issues"
+  },
+  "homepage": "https://github.com/yourusername/qa-community#readme"
+}
