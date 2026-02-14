@@ -1,4 +1,4 @@
-# 📋 Complete Feature List - DevQuery Platform
+# 📋 Complete Feature List - Cohere Platform
 
 ## 🎉 Fully Implemented Features
 
@@ -562,7 +562,7 @@
 
 ## 🎯 Feature Highlights
 
-### What Makes DevQuery Special
+### What Makes Cohere Special
 
 1. **Rich Text Editing** - Full WYSIWYG editor with images
 2. **Smooth Animations** - Framer Motion throughout
@@ -581,4 +581,4 @@
 **Version**: 1.0.0
 **Last Updated**: 2024-02-14
 
-**DevQuery is production-ready with 200+ features implemented!** 🚀
+**Cohere is production-ready with 200+ features implemented!** 🚀

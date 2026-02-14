@@ -4,7 +4,7 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Project Overview
 
-DevQuery is a full-stack Q&A community platform (similar to Stack Overflow) built with the MERN stack. It features a distinctive Neo-Brutalist design with modern animations and a rich text editor.
+Cohere is a full-stack Q&A community platform (similar to Stack Overflow) built with the MERN stack. It features a distinctive Neo-Brutalist design with modern animations and a rich text editor.
 
 **Tech Stack:**
 - Frontend: React 18 + Vite + Tailwind CSS + Framer Motion + Tiptap

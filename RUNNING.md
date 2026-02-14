@@ -1,4 +1,4 @@
-# DevQuery - Quick Reference
+# Cohere - Quick Reference
 
 ## 🚀 Application URLs
 

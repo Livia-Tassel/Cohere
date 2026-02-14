@@ -1,7 +1,7 @@
 {
-  "name": "qa-community",
+  "name": "cohere",
   "version": "1.0.0",
-  "description": "A full-stack Q&A community platform similar to Stack Overflow",
+  "description": "Cohere - A modern Q&A community platform for developers",
   "main": "index.js",
   "scripts": {
     "install:all": "cd server && npm install && cd ../client && npm install",
@@ -11,23 +11,26 @@
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "keywords": [
+    "cohere",
     "qa",
     "community",
-    "stackoverflow",
+    "developer",
+    "questions",
+    "answers",
     "react",
     "nodejs",
     "mongodb",
     "express",
     "fullstack"
   ],
-  "author": "",
+  "author": "Livia Tassel",
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/yourusername/qa-community.git"
+    "url": "https://github.com/Livia-Tassel/Cohere.git"
   },
   "bugs": {
-    "url": "https://github.com/yourusername/qa-community/issues"
+    "url": "https://github.com/Livia-Tassel/Cohere/issues"
   },
-  "homepage": "https://github.com/yourusername/qa-community#readme"
+  "homepage": "https://github.com/Livia-Tassel/Cohere#readme"
 }

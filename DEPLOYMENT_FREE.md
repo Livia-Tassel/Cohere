@@ -21,7 +21,7 @@
 2. 选择 **FREE** 计划（M0 Sandbox - 512MB 免费）
 3. 选择云服务商：AWS
 4. 选择区域：Singapore（新加坡，离中国最近）
-5. 集群名称：保持默认或改为 `devquery-cluster`
+5. 集群名称：保持默认或改为 `cohere-cluster`
 6. 点击 **Create Cluster**（等待 3-5 分钟）
 
 ### 2. 配置数据库访问
@@ -30,7 +30,7 @@
 1. 左侧菜单 → **Database Access**
 2. 点击 **Add New Database User**
 3. 选择 **Password** 认证
-4. 用户名：`devquery-admin`
+4. 用户名：`cohere-admin`
 5. 密码：点击 **Autogenerate Secure Password**（复制保存！）
 6. 权限：选择 **Read and write to any database**
 7. 点击 **Add User**
@@ -49,12 +49,12 @@
 4. Driver: **Node.js**，Version: **5.5 or later**
 5. 复制连接字符串，格式如下：
    ```
-   mongodb+srv://devquery-admin:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
+   mongodb+srv://cohere-admin:<password>@cluster0.xxxxx.mongodb.net/?retryWrites=true&w=majority
    ```
 6. 将 `<password>` 替换为刚才保存的密码
-7. 在末尾添加数据库名：`/devquery`
+7. 在末尾添加数据库名：`/cohere`
    ```
-   mongodb+srv://devquery-admin:你的密码@cluster0.xxxxx.mongodb.net/devquery?retryWrites=true&w=majority
+   mongodb+srv://cohere-admin:你的密码@cluster0.xxxxx.mongodb.net/cohere?retryWrites=true&w=majority
    ```
 
 **保存这个连接字符串！后面会用到。**
@@ -78,10 +78,10 @@ git init
 git add .
 
 # 提交
-git commit -m "Initial commit - DevQuery platform"
+git commit -m "Initial commit - Cohere platform"
 
 # 在 GitHub 创建仓库后，添加远程仓库
-git remote add origin https://github.com/你的用户名/devquery.git
+git remote add origin https://github.com/你的用户名/cohere.git
 
 # 推送代码
 git push -u origin main
@@ -94,12 +94,12 @@ git push -u origin main
 1. 注册账户（可以用 GitHub 账户登录）
 2. 点击 **New +** → **Web Service**
 3. 连接你的 GitHub 仓库
-4. 选择 `devquery` 仓库
+4. 选择 `cohere` 仓库
 
 #### 配置服务
 
 **Basic Settings:**
-- Name: `devquery-backend`
+- Name: `cohere-backend`
 - Region: Singapore（或 Oregon）
 - Branch: `main`
 - Root Directory: `server`
@@ -132,14 +132,14 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 6. 等待部署完成（5-10 分钟）
 7. 部署成功后，会得到一个 URL，如：
    ```
-   https://devquery-backend.onrender.com
+   https://cohere-backend.onrender.com
    ```
 
 **保存这个 URL！**
 
 ### 3. 测试后端
 
-访问：`https://devquery-backend.onrender.com/api/health`
+访问：`https://cohere-backend.onrender.com/api/health`
 
 应该看到：
 ```json
@@ -155,7 +155,7 @@ node -e "console.log(require('crypto').randomBytes(32).toString('hex'))"
 编辑 `client/.env`：
 
 ```env
-VITE_API_URL=https://devquery-backend.onrender.com/api
+VITE_API_URL=https://cohere-backend.onrender.com/api
 ```
 
 提交更改：
@@ -171,7 +171,7 @@ git push
 
 1. 注册账户（用 GitHub 账户登录）
 2. 点击 **Add New...** → **Project**
-3. 导入你的 GitHub 仓库 `devquery`
+3. 导入你的 GitHub 仓库 `cohere`
 4. 配置项目：
 
 **Framework Preset:** Vite
@@ -181,13 +181,13 @@ git push
 
 **Environment Variables:**
 - Key: `VITE_API_URL`
-- Value: `https://devquery-backend.onrender.com/api`
+- Value: `https://cohere-backend.onrender.com/api`
 
 5. 点击 **Deploy**
 6. 等待部署完成（2-3 分钟）
 7. 部署成功后，会得到一个 URL，如：
    ```
-   https://devquery.vercel.app
+   https://cohere.vercel.app
    ```
 
 ### 3. 更新后端 CORS 配置
@@ -197,7 +197,7 @@ git push
 1. 进入你的 Web Service
 2. 左侧菜单 → **Environment**
 3. 找到 `CORS_ORIGIN`
-4. 修改为：`https://devquery.vercel.app`
+4. 修改为：`https://cohere.vercel.app`
 5. 点击 **Save Changes**
 6. 服务会自动重启
 
@@ -233,7 +233,7 @@ npm run seed
 
 ## 第五步：测试网站
 
-访问你的 Vercel URL：`https://devquery.vercel.app`
+访问你的 Vercel URL：`https://cohere.vercel.app`
 
 ### 测试流程
 
@@ -361,7 +361,7 @@ git push
 2. 注册免费账户
 3. 添加监控：
    - Monitor Type: HTTP(s)
-   - URL: `https://devquery-backend.onrender.com/api/health`
+   - URL: `https://cohere-backend.onrender.com/api/health`
    - Monitoring Interval: 5 minutes
 4. 这样每 5 分钟会自动访问一次，保持服务唤醒
 
@@ -371,7 +371,7 @@ git push
 
 #### Vercel
 1. Dashboard → 你的项目 → Settings → Domains
-2. 添加你的域名（如 `devquery.com`）
+2. 添加你的域名（如 `cohere.com`）
 3. 按照提示配置 DNS
 
 #### Render

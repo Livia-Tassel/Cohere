@@ -47,7 +47,7 @@
 2. **更新环境变量**
    编辑 `server/.env`：
    ```env
-   MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/qa-community
+   MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/cohere
    ```
 
 3. **启动服务**

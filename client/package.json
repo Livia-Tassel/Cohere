@@ -1,7 +1,7 @@
 {
-  "name": "client",
+  "name": "cohere-client",
   "version": "1.0.0",
-  "description": "",
+  "description": "Cohere - Frontend application",
   "main": "index.js",
   "scripts": {
     "dev": "vite",

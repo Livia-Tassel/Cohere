@@ -1,4 +1,4 @@
-# 🚀 Final Launch Checklist - DevQuery Platform
+# 🚀 Final Launch Checklist - Cohere Platform
 
 ## ✅ Platform Status: READY TO LAUNCH
 
@@ -196,7 +196,7 @@
 #### Backend (.env)
 ```env
 PORT=5000
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/devquery
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/cohere
 JWT_SECRET=your-super-secret-jwt-key-change-this
 NODE_ENV=production
 CORS_ORIGIN=https://your-frontend-domain.com
@@ -439,9 +439,9 @@ Accent:    #F7B801
 ## 🎉 Launch Announcement Template
 
 ```markdown
-🚀 Introducing DevQuery - A Modern Q&A Platform for Developers
+🚀 Introducing Cohere - A Modern Q&A Platform for Developers
 
-We're excited to launch DevQuery, a fresh take on developer Q&A platforms!
+We're excited to launch Cohere, a fresh take on developer Q&A platforms!
 
 ✨ What makes it different:
 • Beautiful, distinctive design (not another Stack Overflow clone)
@@ -468,7 +468,7 @@ We're excited to launch DevQuery, a fresh take on developer Q&A platforms!
 Try it now: [Your URL]
 GitHub: [Your Repo]
 
-#DevQuery #OpenSource #WebDev #React #NodeJS
+#Cohere #OpenSource #WebDev #React #NodeJS
 ```
 
 ---
@@ -556,7 +556,7 @@ The platform is:
 **Confidence Level**: 100%
 **Risk Level**: Low
 
-**Let's launch DevQuery and help developers help each other! 🚀**
+**Let's launch Cohere and help developers help each other! 🚀**
 
 ---
 

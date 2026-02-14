@@ -41,14 +41,14 @@ git init
 git add .
 
 # 3. 创建第一次提交
-git commit -m "Initial commit: DevQuery Q&A Platform"
+git commit -m "Initial commit: Cohere Q&A Platform"
 ```
 
 ### 第二步：创建 GitHub 仓库
 
 1. 访问 https://github.com/new
 2. 填写仓库信息：
-   - Repository name: `devquery` 或 `qa-community`
+   - Repository name: `cohere` 或 `cohere`
    - Description: `A modern Q&A community platform built with MERN stack`
    - 选择 Public 或 Private
    - **不要**勾选 "Initialize with README"（我们已经有了）
@@ -58,7 +58,7 @@ git commit -m "Initial commit: DevQuery Q&A Platform"
 
 ```bash
 # 1. 添加远程仓库（替换成你的 GitHub 用户名）
-git remote add origin https://github.com/YOUR_USERNAME/devquery.git
+git remote add origin https://github.com/YOUR_USERNAME/cohere.git
 
 # 2. 推送代码
 git branch -M main
@@ -84,7 +84,7 @@ git push -u origin main
 
 3. **配置服务**
    ```
-   Name: devquery-api
+   Name: cohere-api
    Region: Singapore (或选择离你最近的)
    Branch: main
    Root Directory: server
@@ -105,7 +105,7 @@ git push -u origin main
 5. **部署**
    - 点击 "Create Web Service"
    - 等待部署完成（约 3-5 分钟）
-   - 记录你的 API URL，例如：`https://devquery-api.onrender.com`
+   - 记录你的 API URL，例如：`https://cohere-api.onrender.com`
 
 #### B. 部署前端到 Vercel
 
@@ -131,14 +131,14 @@ git push -u origin main
    点击 "Environment Variables"，添加：
    ```
    Name: VITE_API_URL
-   Value: https://devquery-api.onrender.com/api
+   Value: https://cohere-api.onrender.com/api
    ```
    （使用你在 Render 获得的 API URL）
 
 5. **部署**
    - 点击 "Deploy"
    - 等待部署完成（约 2-3 分钟）
-   - 你会得到一个 URL，例如：`https://devquery.vercel.app`
+   - 你会得到一个 URL，例如：`https://cohere.vercel.app`
 
 #### C. 配置 CORS
 
@@ -155,7 +155,7 @@ app.use(cors({
 
 2. 在 Render 的环境变量中添加：
 ```
-CORS_ORIGIN=https://devquery.vercel.app
+CORS_ORIGIN=https://cohere.vercel.app
 ```
 （使用你的 Vercel URL）
 
@@ -284,7 +284,7 @@ node -e "console.log(require('crypto').randomBytes(64).toString('hex'))"
 **server/.env.example** (已存在，确保内容正确)：
 ```env
 PORT=5000
-MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/qa-community
+MONGODB_URI=mongodb+srv://<username>:<password>@cluster0.xxxxx.mongodb.net/cohere
 JWT_SECRET=your_random_secret_key_here_change_this_in_production
 NODE_ENV=production
 ```

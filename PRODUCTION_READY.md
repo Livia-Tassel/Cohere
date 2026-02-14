@@ -2,7 +2,7 @@
 
 ## ✅ Platform Status: PRODUCTION READY
 
-**DevQuery** is now a fully functional, production-ready Q&A community platform with modern UI/UX and all core features implemented.
+**Cohere** is now a fully functional, production-ready Q&A community platform with modern UI/UX and all core features implemented.
 
 ---
 
@@ -372,7 +372,7 @@ Light:     #F8F9FA (Off White)
 
 ## 🎉 Summary
 
-**DevQuery is 100% production-ready!**
+**Cohere is 100% production-ready!**
 
 ✅ Modern, distinctive UI/UX
 ✅ Rich text editing with images

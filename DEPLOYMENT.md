@@ -73,7 +73,7 @@ vercel --prod
 3. 点击 "New +" → "Web Service"
 4. 连接 GitHub 仓库
 5. 配置：
-   - Name: qa-community-api
+   - Name: cohere-api
    - Environment: Node
    - Region: 选择最近的区域
    - Branch: main
@@ -93,7 +93,7 @@ vercel --prod
 
 部署完成后，Render 会提供一个 URL，例如：
 ```
-https://qa-community-api.onrender.com
+https://cohere-api.onrender.com
 ```
 
 将此 URL 更新到前端的环境变量中。
@@ -215,7 +215,7 @@ services:
       - "5000:5000"
     environment:
       PORT: 5000
-      MONGODB_URI: mongodb://admin:password123@mongodb:27017/qa-community?authSource=admin
+      MONGODB_URI: mongodb://admin:password123@mongodb:27017/cohere?authSource=admin
       JWT_SECRET: your_random_secret_key
       NODE_ENV: production
     depends_on:
@@ -291,7 +291,7 @@ sudo apt install nginx
 brew install nginx
 ```
 
-配置 Nginx (`/etc/nginx/sites-available/qa-community`):
+配置 Nginx (`/etc/nginx/sites-available/cohere`):
 
 ```nginx
 server {
@@ -318,7 +318,7 @@ server {
 
 启用配置：
 ```bash
-sudo ln -s /etc/nginx/sites-available/qa-community /etc/nginx/sites-enabled/
+sudo ln -s /etc/nginx/sites-available/cohere /etc/nginx/sites-enabled/
 sudo nginx -t
 sudo systemctl restart nginx
 ```
@@ -372,7 +372,7 @@ sudo certbot renew --dry-run
 **后端 (.env.production)**
 ```env
 PORT=5000
-MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/qa-community
+MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/cohere
 JWT_SECRET=very_long_random_secret_key_for_production
 NODE_ENV=production
 CORS_ORIGIN=https://your-frontend-domain.com
@@ -425,10 +425,10 @@ MongoDB Atlas 免费版提供自动备份功能。
 
 ```bash
 # 导出数据
-mongodump --uri="mongodb+srv://username:password@cluster.mongodb.net/qa-community" --out=/backup/$(date +%Y%m%d)
+mongodump --uri="mongodb+srv://username:password@cluster.mongodb.net/cohere" --out=/backup/$(date +%Y%m%d)
 
 # 导入数据
-mongorestore --uri="mongodb+srv://username:password@cluster.mongodb.net/qa-community" /backup/20240213
+mongorestore --uri="mongodb+srv://username:password@cluster.mongodb.net/cohere" /backup/20240213
 ```
 
 ---

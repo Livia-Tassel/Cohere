@@ -1,8 +1,8 @@
-# DevQuery - Modern Q&A Community Platform
+# Cohere - Modern Q&A Community Platform
 
 <div align="center">
 
-![DevQuery](https://img.shields.io/badge/DevQuery-Q%26A%20Platform-FF6B35?style=for-the-badge)
+![Cohere](https://img.shields.io/badge/Cohere-Q%26A%20Platform-FF6B35?style=for-the-badge)
 ![React](https://img.shields.io/badge/React-18-61DAFB?style=for-the-badge&logo=react)
 ![Node.js](https://img.shields.io/badge/Node.js-Express-339933?style=for-the-badge&logo=node.js)
 ![MongoDB](https://img.shields.io/badge/MongoDB-Atlas-47A248?style=for-the-badge&logo=mongodb)
@@ -315,9 +315,9 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 ## 📞 Support
 
-- 📧 Email: support@devquery.com
+- 📧 Email: support@cohere.dev
 - 💬 Discord: [Join our community](#)
-- 🐛 Issues: [GitHub Issues](#)
+- 🐛 Issues: [GitHub Issues](https://github.com/Livia-Tassel/Cohere/issues)
 - 📖 Docs: [Full Documentation](./INDEX.md)
 
 ---
@@ -346,8 +346,8 @@ This project is licensed under the MIT License - see the [LICENSE](./LICENSE) fi
 
 <div align="center">
 
-**Built with ❤️ by the DevQuery Team**
+**Built with ❤️ by Livia Tassel**
 
-[⬆ Back to Top](#devquery---modern-qa-community-platform)
+[⬆ Back to Top](#cohere---modern-qa-community-platform)
 
 </div>
