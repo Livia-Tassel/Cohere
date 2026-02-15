@@ -10,7 +10,7 @@ const ThemeToggle = () => {
       whileTap={{ scale: 0.95 }}
       onClick={toggleTheme}
       aria-label={`Switch to ${theme === 'dark' ? 'light' : 'dark'} mode`}
-      className="relative p-2.5 rounded-lg bg-[var(--bg-tertiary)] hover:bg-[var(--bg-elevated)] border border-[var(--border-primary)] hover:border-[var(--color-primary)] transition-all group"
+      className="relative p-2.5 rounded-[var(--radius-lg)] bg-[var(--bg-tertiary)] hover:bg-[var(--bg-elevated)] border border-[var(--border-primary)] hover:border-[var(--color-primary)] transition-all duration-[var(--transition-base)] group shadow-[var(--shadow-1)] hover:shadow-[var(--shadow-2)]"
     >
       <motion.div
         initial={false}
@@ -19,7 +19,7 @@ const ThemeToggle = () => {
       >
         {theme === 'dark' ? (
           <svg
-            className="w-5 h-5 text-[var(--text-secondary)] group-hover:text-[var(--color-primary)]"
+            className="w-5 h-5 text-[var(--text-secondary)] group-hover:text-[var(--color-primary)] transition-colors duration-[var(--transition-fast)]"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
@@ -33,7 +33,7 @@ const ThemeToggle = () => {
           </svg>
         ) : (
           <svg
-            className="w-5 h-5 text-[var(--text-secondary)] group-hover:text-[var(--color-primary)]"
+            className="w-5 h-5 text-[var(--text-secondary)] group-hover:text-[var(--color-primary)] transition-colors duration-[var(--transition-fast)]"
             fill="none"
             viewBox="0 0 24 24"
             stroke="currentColor"
