@@ -119,7 +119,6 @@ const QuestionCard = ({ question, index = 0 }) => {
             </div>
           </div>
         </div>
-      </div>
     </motion.div>
   );
 };
