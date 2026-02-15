@@ -76,15 +76,15 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
   };
 
   return (
-    <div className="flex gap-2 py-2 border-b border-[var(--border-primary)] last:border-0">
+    <div className="flex gap-[var(--space-1)] py-[var(--space-1)] border-b border-[var(--border-primary)] last:border-0">
       {/* Vote Button */}
       <div className="flex-shrink-0">
         <button
           onClick={handleVote}
           disabled={hasVoted || isAuthor}
-          className={`w-6 h-6 rounded flex items-center justify-center text-xs font-medium transition-all ${
+          className={`w-6 h-6 rounded-[var(--radius-sm)] flex items-center justify-center text-xs font-medium transition-all duration-[var(--transition-fast)] ${
             hasVoted
-              ? 'bg-[var(--color-primary)] text-white'
+              ? 'bg-[var(--color-primary)] text-white shadow-[var(--shadow-1)]'
               : 'bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--color-primary)] hover:text-white'
           } ${(hasVoted || isAuthor) ? 'opacity-50 cursor-not-allowed' : ''}`}
           title={isAuthor ? 'Cannot vote on own comment' : hasVoted ? 'Already voted' : 'Upvote'}
@@ -96,19 +96,19 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
       {/* Comment Content */}
       <div className="flex-1 min-w-0">
         {isEditing ? (
-          <div className="space-y-2">
+          <div className="space-y-[var(--space-1)]">
             <textarea
               value={editBody}
               onChange={(e) => setEditBody(e.target.value)}
               maxLength={500}
-              className="w-full px-2 py-1.5 text-xs border border-[var(--border-primary)] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_2px_var(--glow-primary)] transition-all resize-none"
+              className="w-full px-2 py-1.5 text-xs border border-[var(--border-primary)] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_2px_var(--glow-primary)] transition-all duration-[var(--transition-fast)] resize-none"
               rows={2}
               autoFocus
             />
-            <div className="flex gap-1.5">
+            <div className="flex gap-[var(--space-1)]">
               <button
                 onClick={handleEdit}
-                className="px-2 py-1 bg-[var(--color-primary)] text-white rounded text-xs font-medium"
+                className="px-2 py-1 bg-[var(--color-primary)] text-white rounded-[var(--radius-sm)] text-xs font-medium hover:bg-[var(--color-primary-dark)] transition-colors duration-[var(--transition-fast)] shadow-[var(--shadow-1)]"
               >
                 Save
               </button>
@@ -117,7 +117,7 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
                   setIsEditing(false);
                   setEditBody(comment.body);
                 }}
-                className="px-2 py-1 bg-[var(--bg-tertiary)] text-[var(--text-primary)] rounded text-xs font-medium"
+                className="px-2 py-1 bg-[var(--bg-tertiary)] text-[var(--text-primary)] rounded-[var(--radius-sm)] text-xs font-medium hover:bg-[var(--border-primary)] transition-colors duration-[var(--transition-fast)]"
               >
                 Cancel
               </button>
@@ -125,13 +125,13 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
           </div>
         ) : (
           <>
-            <p className="text-[var(--text-primary)] text-xs mb-1 break-words leading-relaxed">
+            <p className="text-[var(--text-primary)] text-xs mb-[var(--space-1)] break-words leading-relaxed">
               {comment.body}
             </p>
-            <div className="flex items-center gap-2 text-[10px] text-[var(--text-tertiary)]">
+            <div className="flex items-center gap-[var(--space-1)] text-[10px] text-[var(--text-tertiary)]">
               <Link
                 to={`/profile/${comment.author._id}`}
-                className="font-medium text-[var(--color-primary)] hover:underline"
+                className="font-medium text-[var(--color-primary)] hover:underline transition-all duration-[var(--transition-fast)]"
               >
                 {comment.author.username}
               </Link>
@@ -143,13 +143,13 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
                   <span>•</span>
                   <button
                     onClick={() => setIsEditing(true)}
-                    className="text-[var(--color-secondary)] hover:underline"
+                    className="text-[var(--color-secondary)] hover:underline transition-all duration-[var(--transition-fast)]"
                   >
                     edit
                   </button>
                   <button
                     onClick={handleDelete}
-                    className="text-red-600 hover:underline"
+                    className="text-red-600 hover:underline transition-all duration-[var(--transition-fast)]"
                   >
                     delete
                   </button>
