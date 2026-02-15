@@ -4,6 +4,7 @@ import { useParams, Link } from 'react-router-dom';
 import { getUser, getUserQuestions, getUserAnswers } from '../services/api';
 import QuestionCard from '../components/QuestionCard';
 import UserBadges from '../components/UserBadges';
+import FriendButton from '../components/FriendButton';
 import toast, { Toaster } from 'react-hot-toast';
 
 const Profile = () => {
@@ -118,6 +119,9 @@ const Profile = () => {
                   })}
                 </div>
               </div>
+            </div>
+            <div>
+              <FriendButton userId={user._id} username={user.username} />
             </div>
           </div>
         </motion.div>

@@ -16,6 +16,8 @@ import Tags from './pages/Tags';
 import Bookmarks from './pages/Bookmarks';
 import Leaderboard from './pages/Leaderboard';
 import Notifications from './pages/Notifications';
+import Friends from './pages/Friends';
+import Chat from './pages/Chat';
 
 function App() {
   return (
@@ -65,6 +67,8 @@ function App() {
                 <Route path="/bookmarks" element={<Bookmarks />} />
                 <Route path="/leaderboard" element={<Leaderboard />} />
                 <Route path="/notifications" element={<Notifications />} />
+                <Route path="/friends" element={<Friends />} />
+                <Route path="/messages/:friendId" element={<Chat />} />
               </Routes>
             </SidebarLayout>
           </div>

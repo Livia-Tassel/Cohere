@@ -31,6 +31,8 @@ app.use('/api/bookmarks', require('./routes/bookmarks'));
 app.use('/api/comments', require('./routes/comments'));
 app.use('/api/badges', require('./routes/badges'));
 app.use('/api/notifications', require('./routes/notifications'));
+app.use('/api/friends', require('./routes/friends'));
+app.use('/api/messages', require('./routes/messages'));
 
 // Health check
 app.get('/api/health', (req, res) => {

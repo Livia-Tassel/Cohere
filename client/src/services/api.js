@@ -79,4 +79,24 @@ export const markAllNotificationsRead = () => api.put('/notifications/read-all')
 export const deleteNotification = (id) => api.delete(`/notifications/${id}`);
 export const deleteReadNotifications = () => api.delete('/notifications');
 
+// Friends
+export const sendFriendRequest = (recipientId) => api.post('/friends', { recipientId });
+export const getFriends = (params) => api.get('/friends/friends', { params });
+export const getReceivedFriendRequests = () => api.get('/friends/requests/received');
+export const getSentFriendRequests = () => api.get('/friends/requests/sent');
+export const acceptFriendRequest = (friendshipId) => api.put(`/friends/${friendshipId}/accept`);
+export const rejectFriendRequest = (friendshipId) => api.put(`/friends/${friendshipId}/reject`);
+export const removeFriend = (friendshipId) => api.delete(`/friends/${friendshipId}`);
+export const getFriendshipStatus = (userId) => api.get(`/friends/status/${userId}`);
+export const getFriendCount = () => api.get('/friends/count');
+
+// Messages
+export const sendMessage = (data) => api.post('/messages', data);
+export const getConversation = (friendId, params) => api.get(`/messages/conversation/${friendId}`, { params });
+export const getConversations = () => api.get('/messages/conversations');
+export const getUnreadMessageCount = () => api.get('/messages/unread-count');
+export const markConversationRead = (friendId) => api.put(`/messages/conversation/${friendId}/read`);
+export const deleteMessage = (messageId) => api.delete(`/messages/${messageId}`);
+export const deleteConversation = (friendId) => api.delete(`/messages/conversation/${friendId}`);
+
 export default api;

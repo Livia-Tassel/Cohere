@@ -11,6 +11,7 @@ const Sidebar = ({ isOpen, onToggle, isMobile }) => {
     { path: '/tags', icon: '🏷️', label: 'Tags' },
     { path: '/leaderboard', icon: '🏆', label: 'Leaderboard' },
     ...(user ? [
+      { path: '/friends', icon: '👥', label: 'Friends' },
       { path: '/bookmarks', icon: '🔖', label: 'Bookmarks' },
       { path: '/ask', icon: '✍️', label: 'Ask Question' },
       { path: `/profile/${user.id}`, icon: '👤', label: 'Profile' },

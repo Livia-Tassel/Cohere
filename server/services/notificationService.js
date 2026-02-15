@@ -109,10 +109,27 @@ const createAcceptedAnswerNotification = async (answer, question) => {
   }
 };
 
+// Generic create notification function
+const createNotification = async ({ recipient, type, actor, targetType, targetId, message }) => {
+  try {
+    await Notification.create({
+      recipient,
+      type,
+      actor,
+      targetType,
+      targetId,
+      message
+    });
+  } catch (error) {
+    console.error('Error creating notification:', error);
+  }
+};
+
 module.exports = {
   createAnswerNotification,
   createCommentNotification,
   createVoteNotification,
   createBadgeNotification,
-  createAcceptedAnswerNotification
+  createAcceptedAnswerNotification,
+  createNotification
 };
