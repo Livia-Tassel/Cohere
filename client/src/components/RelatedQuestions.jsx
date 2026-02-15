@@ -26,21 +26,21 @@ const RelatedQuestions = ({ questionId }) => {
 
   return (
     <div className="card">
-      <h3 className="text-sm font-semibold mb-3 text-[var(--text-primary)] flex items-center gap-1.5">
+      <h3 className="text-sm font-semibold mb-[var(--space-2)] text-[var(--text-primary)] flex items-center gap-[var(--space-1)]">
         <span className="text-base">🔗</span>
         Related Questions
       </h3>
-      <div className="space-y-2">
+      <div className="space-y-[var(--space-1)]">
         {related.map((q) => (
           <Link
             key={q._id}
             to={`/questions/${q._id}`}
-            className="block p-2 rounded hover:bg-[var(--bg-tertiary)] border border-transparent hover:border-[var(--color-primary)] transition-all"
+            className="block p-[var(--space-1)] rounded-[var(--radius-md)] hover:bg-[var(--bg-tertiary)] border border-transparent hover:border-[var(--color-primary)] transition-all duration-[var(--transition-fast)]"
           >
-            <div className="text-xs font-medium text-[var(--text-primary)] mb-1 line-clamp-2 leading-snug">
+            <div className="text-xs font-medium text-[var(--text-primary)] mb-[var(--space-1)] line-clamp-2 leading-snug">
               {q.title}
             </div>
-            <div className="flex items-center gap-2 text-[10px] text-[var(--text-tertiary)]">
+            <div className="flex items-center gap-[var(--space-1)] text-[10px] text-[var(--text-tertiary)]">
               <span className={`font-medium ${q.votes > 0 ? 'text-green-600' : 'text-[var(--text-secondary)]'}`}>
                 {q.votes} votes
               </span>
