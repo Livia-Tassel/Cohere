@@ -101,7 +101,7 @@ const NotificationBell = () => {
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
         onClick={() => setIsOpen(!isOpen)}
-        className="relative p-2 rounded-full bg-[var(--bg-tertiary)] hover:bg-[var(--bg-elevated)] transition-colors"
+        className="relative p-2 rounded-full bg-[var(--bg-tertiary)] hover:bg-[var(--bg-elevated)] transition-all duration-[var(--transition-fast)] shadow-[var(--shadow-1)] hover:shadow-[var(--shadow-2)]"
         aria-label="Notifications"
       >
         <svg
@@ -123,7 +123,7 @@ const NotificationBell = () => {
           <motion.div
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
-            className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center"
+            className="absolute -top-1 -right-1 w-5 h-5 bg-red-500 text-white text-xs font-bold rounded-full flex items-center justify-center shadow-[var(--shadow-2)]"
           >
             {unreadCount > 9 ? '9+' : unreadCount}
           </motion.div>
@@ -145,17 +145,17 @@ const NotificationBell = () => {
               initial={{ opacity: 0, y: -10, scale: 0.95 }}
               animate={{ opacity: 1, y: 0, scale: 1 }}
               exit={{ opacity: 0, y: -10, scale: 0.95 }}
-              className="absolute right-0 mt-2 w-96 bg-[var(--bg-elevated)] border border-[var(--border-primary)] rounded-xl shadow-2xl z-50 overflow-hidden"
+              className="absolute right-0 mt-[var(--space-1)] w-96 bg-[var(--bg-elevated)] border border-[var(--border-primary)] rounded-[var(--radius-xl)] shadow-[var(--shadow-5)] z-50 overflow-hidden"
             >
               {/* Header */}
-              <div className="flex items-center justify-between p-4 border-b border-[var(--border-primary)]">
+              <div className="flex items-center justify-between p-[var(--space-3)] border-b border-[var(--border-primary)]">
                 <h3 className="text-lg font-bold text-[var(--text-primary)]">
                   Notifications
                 </h3>
                 {unreadCount > 0 && (
                   <button
                     onClick={handleMarkAllRead}
-                    className="text-sm text-[var(--color-primary)] hover:underline font-semibold"
+                    className="text-sm text-[var(--color-primary)] hover:underline font-semibold transition-all duration-[var(--transition-fast)]"
                   >
                     Mark all read
                   </button>
@@ -170,7 +170,7 @@ const NotificationBell = () => {
                   </div>
                 ) : notifications.length === 0 ? (
                   <div className="text-center py-8 text-[var(--text-tertiary)]">
-                    <p className="text-3xl mb-2">🔔</p>
+                    <p className="text-3xl mb-[var(--space-1)]">🔔</p>
                     <p className="text-sm">No notifications yet</p>
                   </div>
                 ) : (
@@ -187,11 +187,11 @@ const NotificationBell = () => {
                     >
                       <motion.div
                         whileHover={{ backgroundColor: 'var(--bg-tertiary)' }}
-                        className={`p-4 border-b border-[var(--border-primary)] cursor-pointer transition-colors ${
+                        className={`p-[var(--space-3)] border-b border-[var(--border-primary)] cursor-pointer transition-all duration-[var(--transition-fast)] ${
                           !notification.read ? 'bg-[var(--color-primary)]/5' : ''
                         }`}
                       >
-                        <div className="flex gap-3">
+                        <div className="flex gap-[var(--space-2)]">
                           {/* Actor Avatar */}
                           {notification.actor && (
                             <div className="flex-shrink-0">
