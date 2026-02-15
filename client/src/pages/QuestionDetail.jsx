@@ -12,6 +12,9 @@ import CommentList from '../components/CommentList';
 import QuestionStats from '../components/QuestionStats';
 import TopContributors from '../components/TopContributors';
 import AskQuestionWidget from '../components/AskQuestionWidget';
+import PopularTags from '../components/PopularTags';
+import HelpfulTips from '../components/HelpfulTips';
+import CommunityStats from '../components/CommunityStats';
 import TagList from '../components/TagList';
 import toast, { Toaster } from 'react-hot-toast';
 import { highlightAllCode } from '../utils/highlightCode';
@@ -340,6 +343,9 @@ const QuestionDetail = () => {
             <QuestionStats question={question} />
             <RelatedQuestions questionId={id} />
             <TopContributors />
+            <PopularTags />
+            <CommunityStats />
+            <HelpfulTips />
             <AskQuestionWidget />
           </div>
         </div>
