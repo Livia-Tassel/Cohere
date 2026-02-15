@@ -259,85 +259,86 @@ const QuestionDetail = () => {
 
               {/* Question Comments */}
               <CommentList targetType="Question" targetId={question._id} />
+                </div>
+              </div>
+            </div>
+
+            {/* Answers */}
+            <div className="mb-4">
+              <h2 className="text-lg font-semibold mb-3 text-[var(--text-primary)]">
+                {answers.length} {answers.length === 1 ? 'Answer' : 'Answers'}
+              </h2>
+              <div className="space-y-3">
+                {answers.map((answer) => (
+                  <AnswerCard
+                    key={answer._id}
+                    answer={answer}
+                    onDelete={handleDeleteAnswer}
+                    onEdit={handleEditAnswer}
+                    onAccept={handleAcceptAnswer}
+                    isQuestionAuthor={isQuestionAuthor}
+                    isAccepted={answer._id === question.acceptedAnswer}
+                  />
+                ))}
+              </div>
+            </div>
+
+            {/* Answer Form */}
+            <div className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)] p-4">
+              {user ? (
+                <>
+                  <h3 className="text-lg font-semibold mb-3 text-[var(--text-primary)]">Your Answer</h3>
+                  <form onSubmit={handleSubmitAnswer}>
+                    <RichTextEditor
+                      content={answerBody}
+                      onChange={setAnswerBody}
+                      placeholder="Write your answer here. Use the toolbar to format your text and add images..."
+                    />
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      type="submit"
+                      disabled={submitting}
+                      className="mt-4 btn-primary text-sm px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
+                    >
+                      {submitting ? (
+                        <div className="flex items-center justify-center">
+                          <div className="spinner w-4 h-4 border-2"></div>
+                          <span className="ml-2">Posting...</span>
+                        </div>
+                      ) : (
+                        'Post Your Answer'
+                      )}
+                    </motion.button>
+                  </form>
+                </>
+              ) : (
+                <div className="text-center py-8">
+                  <div className="text-4xl mb-3">🔒</div>
+                  <h3 className="text-lg font-semibold mb-2 text-[var(--text-primary)]">Login to Answer</h3>
+                  <p className="text-sm text-[var(--text-secondary)] mb-4">
+                    You need to be logged in to post an answer
+                  </p>
+                  <Link to="/login">
+                    <motion.button
+                      whileHover={{ scale: 1.02 }}
+                      whileTap={{ scale: 0.98 }}
+                      className="btn-primary text-sm px-4 py-2"
+                    >
+                      Login
+                    </motion.button>
+                  </Link>
+                </div>
+              )}
             </div>
           </div>
-        </div>
 
-        {/* Answers */}
-        <div className="mb-4">
-          <h2 className="text-lg font-semibold mb-3 text-[var(--text-primary)]">
-            {answers.length} {answers.length === 1 ? 'Answer' : 'Answers'}
-          </h2>
-          <div className="space-y-3">
-            {answers.map((answer) => (
-              <AnswerCard
-                key={answer._id}
-                answer={answer}
-                onDelete={handleDeleteAnswer}
-                onEdit={handleEditAnswer}
-                onAccept={handleAcceptAnswer}
-                isQuestionAuthor={isQuestionAuthor}
-                isAccepted={answer._id === question.acceptedAnswer}
-              />
-            ))}
+          {/* Sidebar */}
+          <div className="lg:col-span-1 space-y-4">
+            <RelatedQuestions questionId={id} />
           </div>
         </div>
-
-        {/* Answer Form */}
-        <div className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)] p-4">
-          {user ? (
-            <>
-              <h3 className="text-lg font-semibold mb-3 text-[var(--text-primary)]">Your Answer</h3>
-              <form onSubmit={handleSubmitAnswer}>
-                <RichTextEditor
-                  content={answerBody}
-                  onChange={setAnswerBody}
-                  placeholder="Write your answer here. Use the toolbar to format your text and add images..."
-                />
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  type="submit"
-                  disabled={submitting}
-                  className="mt-4 btn-primary text-sm px-4 py-2 disabled:opacity-50 disabled:cursor-not-allowed"
-                >
-                  {submitting ? (
-                    <div className="flex items-center justify-center">
-                      <div className="spinner w-4 h-4 border-2"></div>
-                      <span className="ml-2">Posting...</span>
-                    </div>
-                  ) : (
-                    'Post Your Answer'
-                  )}
-                </motion.button>
-              </form>
-            </>
-          ) : (
-            <div className="text-center py-8">
-              <div className="text-4xl mb-3">🔒</div>
-              <h3 className="text-lg font-semibold mb-2 text-[var(--text-primary)]">Login to Answer</h3>
-              <p className="text-sm text-[var(--text-secondary)] mb-4">
-                You need to be logged in to post an answer
-              </p>
-              <Link to="/login">
-                <motion.button
-                  whileHover={{ scale: 1.02 }}
-                  whileTap={{ scale: 0.98 }}
-                  className="btn-primary text-sm px-4 py-2"
-                >
-                  Login
-                </motion.button>
-              </Link>
-            </div>
-          )}
-        </div>
       </div>
-
-      {/* Sidebar */}
-      <div className="lg:col-span-1 space-y-4">
-        <RelatedQuestions questionId={id} />
-      </div>
-    </div>
     </div>
   );
 };
