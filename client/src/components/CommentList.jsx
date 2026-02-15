@@ -75,9 +75,9 @@ const CommentList = ({ targetType, targetId }) => {
   const displayedComments = showAll ? comments : comments.slice(0, 3);
 
   return (
-    <div className="mt-4 pt-4 border-t border-[var(--border-primary)]">
+    <div className="mt-[var(--space-3)] pt-[var(--space-3)] border-t border-[var(--border-primary)]">
       {/* Header */}
-      <div className="flex items-center justify-between mb-3">
+      <div className="flex items-center justify-between mb-[var(--space-2)]">
         <h4 className="text-sm font-semibold text-[var(--text-primary)]">
           Comments ({comments.length})
         </h4>
@@ -85,7 +85,7 @@ const CommentList = ({ targetType, targetId }) => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-2 py-1 text-xs border border-[var(--border-primary)] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_2px_var(--glow-primary)] transition-all"
+            className="px-2 py-1 text-xs border border-[var(--border-primary)] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_2px_var(--glow-primary)] transition-all duration-[var(--transition-fast)]"
           >
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
@@ -96,25 +96,25 @@ const CommentList = ({ targetType, targetId }) => {
 
       {/* Comment Form */}
       {user && (
-        <form onSubmit={handleSubmit} className="mb-3">
+        <form onSubmit={handleSubmit} className="mb-[var(--space-2)]">
           <div className="relative">
             <textarea
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               placeholder="Add a comment..."
               maxLength={500}
-              className="w-full px-3 py-2 text-sm border border-[var(--border-primary)] rounded-[var(--radius-lg)] bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all resize-none"
+              className="w-full px-3 py-2 text-sm border border-[var(--border-primary)] rounded-[var(--radius-lg)] bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all duration-[var(--transition-fast)] resize-none"
               rows={2}
             />
             <div className="absolute bottom-1.5 right-2 text-[10px] text-[var(--text-tertiary)]">
               {newComment.length}/500
             </div>
           </div>
-          <div className="flex items-center justify-end mt-2">
+          <div className="flex items-center justify-end mt-[var(--space-1)]">
             <button
               type="submit"
               disabled={submitting || newComment.trim().length === 0}
-              className="px-3 py-1 bg-[var(--color-primary)] text-white rounded text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[var(--color-primary-dark)] transition-colors"
+              className="px-3 py-1.5 bg-[var(--color-primary)] text-white rounded-[var(--radius-md)] text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[var(--color-primary-dark)] transition-all duration-[var(--transition-fast)] shadow-[var(--shadow-1)] hover:shadow-[var(--shadow-2)]"
             >
               {submitting ? 'Posting...' : 'Add Comment'}
             </button>
@@ -149,7 +149,7 @@ const CommentList = ({ targetType, targetId }) => {
           {comments.length > 3 && (
             <button
               onClick={() => setShowAll(!showAll)}
-              className="mt-2 w-full py-1.5 text-xs font-medium text-[var(--color-primary)] hover:bg-[var(--bg-tertiary)] rounded transition-colors"
+              className="mt-[var(--space-1)] w-full py-1.5 text-xs font-medium text-[var(--color-primary)] hover:bg-[var(--bg-tertiary)] rounded-[var(--radius-md)] transition-all duration-[var(--transition-fast)]"
             >
               {showAll ? 'Show Less' : `Show ${comments.length - 3} More`}
             </button>

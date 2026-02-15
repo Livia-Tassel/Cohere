@@ -30,10 +30,9 @@ const QuestionCard = ({ question, index = 0 }) => {
       transition={{ delay: index * 0.1 }}
       className="card group"
     >
-      <div className="p-4">
-        {/* Stats Column - Left Side */}
-        <div className="flex gap-4">
-          <div className="flex flex-col gap-[var(--space-2)] text-center min-w-[60px]">
+      {/* Stats Column - Left Side */}
+      <div className="flex gap-[var(--space-4)]">
+        <div className="flex flex-col gap-[var(--space-2)] text-center min-w-[60px]">
             <div className="flex flex-col">
               <div className={`text-base font-bold ${question.votes > 0 ? 'text-green-600' : question.votes < 0 ? 'text-red-600' : 'text-[var(--text-secondary)]'}`}>
                 {question.votes}

@@ -44,15 +44,15 @@ const VoteButtons = ({ targetType, targetId, initialVotes, userVote, onVoteChang
   };
 
   return (
-    <div className="flex flex-col items-center gap-1">
+    <div className="flex flex-col items-center gap-[var(--space-1)]">
       <motion.button
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.95 }}
         onClick={() => handleVote(1)}
         disabled={loading}
-        className={`p-1.5 rounded-[var(--radius-md)] transition-all ${
+        className={`w-10 h-10 flex items-center justify-center rounded-[var(--radius-md)] transition-all duration-[var(--transition-fast)] ${
           currentVote === 1
-            ? 'text-[var(--color-primary)] bg-[var(--color-primary)]/10'
+            ? 'text-[var(--color-primary)] bg-[var(--color-primary)]/10 shadow-[var(--shadow-2)]'
             : 'text-[var(--text-tertiary)] hover:text-[var(--color-primary)] hover:bg-[var(--bg-tertiary)]'
         }`}
       >
@@ -61,7 +61,7 @@ const VoteButtons = ({ targetType, targetId, initialVotes, userVote, onVoteChang
         </svg>
       </motion.button>
 
-      <span className={`text-base font-semibold ${
+      <span className={`text-base font-semibold transition-colors duration-[var(--transition-fast)] ${
         votes > 0 ? 'text-green-600' : votes < 0 ? 'text-red-600' : 'text-[var(--text-secondary)]'
       }`}>
         {votes}
@@ -72,9 +72,9 @@ const VoteButtons = ({ targetType, targetId, initialVotes, userVote, onVoteChang
         whileTap={{ scale: 0.95 }}
         onClick={() => handleVote(-1)}
         disabled={loading}
-        className={`p-1.5 rounded-[var(--radius-md)] transition-all ${
+        className={`w-10 h-10 flex items-center justify-center rounded-[var(--radius-md)] transition-all duration-[var(--transition-fast)] ${
           currentVote === -1
-            ? 'text-red-500 bg-red-500/10'
+            ? 'text-red-500 bg-red-500/10 shadow-[var(--shadow-2)]'
             : 'text-[var(--text-tertiary)] hover:text-red-500 hover:bg-[var(--bg-tertiary)]'
         }`}
       >

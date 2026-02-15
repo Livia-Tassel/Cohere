@@ -57,14 +57,14 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...' })
 
   const MenuButton = ({ onClick, active, children, title }) => (
     <motion.button
-      whileHover={{ scale: 1.1 }}
-      whileTap={{ scale: 0.9 }}
+      whileHover={{ scale: 1.05 }}
+      whileTap={{ scale: 0.95 }}
       onClick={onClick}
       type="button"
-      className={`p-2 rounded transition-colors ${
+      className={`p-2 rounded-[var(--radius-md)] transition-all duration-[var(--transition-fast)] ${
         active
-          ? 'bg-[var(--color-primary)] text-white'
-          : 'bg-[var(--bg-tertiary)] text-[var(--text-primary)] hover:bg-[var(--border-primary)]'
+          ? 'bg-[var(--color-primary)] text-white shadow-[var(--shadow-2)]'
+          : 'bg-[var(--bg-tertiary)] text-[var(--text-primary)] hover:bg-[var(--border-primary)] hover:text-[var(--color-primary)]'
       }`}
       title={title}
     >
@@ -73,9 +73,9 @@ const RichTextEditor = ({ content, onChange, placeholder = 'Start writing...' })
   );
 
   return (
-    <div className="border-2 border-[var(--border-primary)] rounded-lg overflow-hidden focus-within:border-[var(--color-primary)] transition-colors">
+    <div className="border-2 border-[var(--border-primary)] rounded-[var(--radius-lg)] overflow-hidden focus-within:border-[var(--border-focus)] focus-within:shadow-[0_0_0_3px_var(--glow-primary)] transition-all duration-[var(--transition-fast)]">
       {/* Toolbar */}
-      <div className="bg-[var(--bg-tertiary)] border-b-2 border-[var(--border-primary)] p-2 flex flex-wrap gap-2">
+      <div className="bg-[var(--bg-tertiary)] border-b-2 border-[var(--border-primary)] p-[var(--space-2)] flex flex-wrap gap-[var(--space-1)]">
         <MenuButton
           onClick={() => editor.chain().focus().toggleBold().run()}
           active={editor.isActive('bold')}

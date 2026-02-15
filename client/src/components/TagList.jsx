@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 const TagList = ({ tags }) => {
   return (
     <div className="card">
-      <h3 className="text-sm font-semibold mb-3 text-[var(--text-primary)]">Popular Tags</h3>
-      <div className="flex flex-wrap gap-1.5">
+      <h3 className="text-sm font-semibold mb-[var(--space-2)] text-[var(--text-primary)]">Popular Tags</h3>
+      <div className="flex flex-wrap gap-[var(--space-1)]">
         {tags.map((tag) => (
           <Link
             key={tag.name}

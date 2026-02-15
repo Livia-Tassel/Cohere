@@ -52,7 +52,7 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
         </div>
       )}
 
-      <div className="flex gap-4">
+      <div className="flex gap-[var(--space-4)]">
         <VoteButtons
           targetType="answer"
           targetId={answer._id}

@@ -58,24 +58,26 @@ const BookmarkButton = ({ questionId, size = 'md' }) => {
 
   const sizeClasses = {
     sm: 'w-6 h-6 text-xs',
-    md: 'w-7 h-7 text-sm',
-    lg: 'w-8 h-8 text-base'
+    md: 'w-8 h-8 text-sm',
+    lg: 'w-10 h-10 text-base'
   };
 
   return (
-    <button
+    <motion.button
+      whileHover={{ scale: 1.1 }}
+      whileTap={{ scale: 0.95 }}
       onClick={handleToggleBookmark}
       disabled={loading}
-      className={`${sizeClasses[size]} flex items-center justify-center rounded transition-all ${
+      className={`${sizeClasses[size]} flex items-center justify-center rounded-[var(--radius-md)] transition-all duration-[var(--transition-fast)] ${
         isBookmarked
-          ? 'bg-[var(--color-accent)] text-white'
-          : 'bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--bg-elevated)] hover:text-[var(--color-accent)]'
+          ? 'bg-[var(--color-accent)] text-white shadow-[var(--shadow-2)]'
+          : 'bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--bg-elevated)] hover:text-[var(--color-accent)] border border-[var(--border-primary)]'
       } ${loading ? 'opacity-50 cursor-not-allowed' : 'cursor-pointer'}`}
       aria-label={isBookmarked ? 'Remove bookmark' : 'Bookmark question'}
       title={isBookmarked ? 'Remove bookmark' : 'Bookmark question'}
     >
       {isBookmarked ? '🔖' : '📑'}
-    </button>
+    </motion.button>
   );
 };
 
