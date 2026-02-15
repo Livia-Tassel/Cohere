@@ -19,6 +19,7 @@ import Notifications from './pages/Notifications';
 import Friends from './pages/Friends';
 import Chat from './pages/Chat';
 import GamificationDashboard from './pages/GamificationDashboard';
+import ForYou from './pages/ForYou';
 
 function App() {
   return (
@@ -71,6 +72,7 @@ function App() {
                 <Route path="/friends" element={<Friends />} />
                 <Route path="/messages/:friendId" element={<Chat />} />
                 <Route path="/progress" element={<GamificationDashboard />} />
+                <Route path="/for-you" element={<ForYou />} />
               </Routes>
             </SidebarLayout>
           </div>

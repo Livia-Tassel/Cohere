@@ -8,6 +8,9 @@ const Sidebar = ({ isOpen, onToggle, isMobile }) => {
 
   const navItems = [
     { path: '/', icon: '🏠', label: 'Home' },
+    ...(user ? [
+      { path: '/for-you', icon: '🎯', label: 'For You' },
+    ] : []),
     { path: '/tags', icon: '🏷️', label: 'Tags' },
     { path: '/leaderboard', icon: '🏆', label: 'Leaderboard' },
     ...(user ? [

@@ -38,6 +38,7 @@ app.use('/api/messages', require('./routes/messages'));
 app.use('/api/gamification', require('./routes/gamification'));
 app.use('/api/daily-tasks', require('./routes/dailyTasks'));
 app.use('/api/achievements', require('./routes/achievements'));
+app.use('/api/social', require('./routes/social'));
 
 // Health check
 app.get('/api/health', (req, res) => {

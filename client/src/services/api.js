@@ -113,4 +113,17 @@ export const getAllAchievements = () => api.get('/achievements');
 export const getUserAchievements = (userId) => api.get(`/achievements/user/${userId}`);
 export const getAchievementProgress = () => api.get('/achievements/progress');
 
+// Social Features
+export const followUser = (userId) => api.post(`/social/follow/${userId}`);
+export const unfollowUser = (userId) => api.delete(`/social/follow/${userId}`);
+export const getFollowing = () => api.get('/social/following');
+export const getFollowers = () => api.get('/social/followers');
+export const checkFollowing = (userId) => api.get(`/social/following/${userId}`);
+export const followTag = (tag) => api.post('/social/tags/follow', { tag });
+export const unfollowTag = (tag) => api.delete(`/social/tags/follow/${tag}`);
+export const getFollowedTags = () => api.get('/social/tags/following');
+export const updateInterests = (interests) => api.put('/social/interests', { interests });
+export const getPersonalizedFeed = (params) => api.get('/social/feed', { params });
+export const getActivityFeed = (params) => api.get('/social/activity', { params });
+
 export default api;
