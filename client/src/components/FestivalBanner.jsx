@@ -42,13 +42,13 @@ const FestivalBanner = () => {
             {/* Decorative overlay */}
             <div className="absolute inset-0 bg-black/5"></div>
 
-            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3">
-              <div className="flex items-center justify-between gap-4">
+            <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-[var(--space-2)]">
+              <div className="flex items-center justify-between gap-[var(--space-3)]">
                 <motion.div
                   initial={{ x: -20, opacity: 0 }}
                   animate={{ x: 0, opacity: 1 }}
                   transition={{ delay: 0.1, duration: 0.4 }}
-                  className="flex items-center gap-3 flex-1 min-w-0"
+                  className="flex items-center gap-[var(--space-2)] flex-1 min-w-0"
                 >
                   <motion.span
                     animate={{
@@ -82,7 +82,7 @@ const FestivalBanner = () => {
                   whileHover={{ scale: 1.1, rotate: 90 }}
                   whileTap={{ scale: 0.9 }}
                   onClick={handleDismiss}
-                  className="flex-shrink-0 p-2 rounded-lg bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all"
+                  className="flex-shrink-0 p-2 rounded-[var(--radius-lg)] bg-white/10 hover:bg-white/20 backdrop-blur-sm transition-all duration-[var(--transition-fast)]"
                   aria-label="Dismiss banner"
                 >
                   <svg
