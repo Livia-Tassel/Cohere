@@ -25,44 +25,34 @@ const RelatedQuestions = ({ questionId }) => {
   if (loading || related.length === 0) return null;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      transition={{ delay: 0.3 }}
-      className="card"
-    >
-      <h3 className="text-xl font-bold mb-4 text-[var(--text-primary)] flex items-center gap-2">
-        <span>🔗</span>
+    <div className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)] p-4">
+      <h3 className="text-sm font-semibold mb-3 text-[var(--text-primary)] flex items-center gap-1.5">
+        <span className="text-base">🔗</span>
         Related Questions
       </h3>
-      <div className="space-y-3">
+      <div className="space-y-2">
         {related.map((q) => (
           <Link
             key={q._id}
             to={`/questions/${q._id}`}
-            className="block"
+            className="block p-2 rounded hover:bg-[var(--bg-tertiary)] border border-transparent hover:border-[var(--color-primary)] transition-all"
           >
-            <motion.div
-              whileHover={{ x: 4 }}
-              className="p-3 rounded-lg bg-[var(--bg-tertiary)] hover:bg-[var(--bg-elevated)] border border-[var(--border-primary)] hover:border-[var(--color-primary)] transition-all"
-            >
-              <div className="font-medium text-[var(--text-primary)] mb-2 line-clamp-2">
-                {q.title}
-              </div>
-              <div className="flex items-center gap-4 text-xs text-[var(--text-tertiary)]">
-                <span className={`font-semibold ${q.votes > 0 ? 'text-green-600' : 'text-[var(--text-secondary)]'}`}>
-                  {q.votes} votes
-                </span>
-                <span className={q.acceptedAnswer ? 'text-green-600 font-semibold' : ''}>
-                  {q.answerCount} answers
-                </span>
-                <span>{q.views} views</span>
-              </div>
-            </motion.div>
+            <div className="text-xs font-medium text-[var(--text-primary)] mb-1 line-clamp-2 leading-snug">
+              {q.title}
+            </div>
+            <div className="flex items-center gap-2 text-[10px] text-[var(--text-tertiary)]">
+              <span className={`font-medium ${q.votes > 0 ? 'text-green-600' : 'text-[var(--text-secondary)]'}`}>
+                {q.votes} votes
+              </span>
+              <span className={q.acceptedAnswer ? 'text-green-600 font-medium' : ''}>
+                {q.answerCount} ans
+              </span>
+              <span>{q.views} views</span>
+            </div>
           </Link>
         ))}
       </div>
-    </motion.div>
+    </div>
   );
 };
 
