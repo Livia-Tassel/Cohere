@@ -38,7 +38,7 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen bg-pattern flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-pattern flex items-center justify-center px-4 py-[var(--space-6)]">
       <Toaster position="top-right" />
 
       <motion.div
@@ -51,19 +51,19 @@ const Login = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring' }}
-            className="w-20 h-20 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] rounded-2xl flex items-center justify-center mx-auto mb-6"
+            className="w-20 h-20 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] rounded-2xl flex items-center justify-center mx-auto mb-[var(--space-4)] shadow-[var(--shadow-3)]"
           >
-            <span className="text-4xl font-bold text-white">Q</span>
+            <span className="text-4xl font-bold text-white">C</span>
           </motion.div>
 
-          <h1 className="text-4xl font-bold text-center mb-2 text-[var(--text-primary)]">Welcome Back</h1>
-          <p className="text-center text-[var(--text-secondary)] mb-8">
+          <h1 className="text-4xl font-bold text-center mb-[var(--space-1)] text-[var(--text-primary)]">Welcome Back</h1>
+          <p className="text-center text-[var(--text-secondary)] mb-[var(--space-4)]">
             Login to continue your journey
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-[var(--space-4)]">
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
+              <label className="block text-sm font-bold mb-[var(--space-1)] uppercase tracking-wide text-[var(--text-primary)]">
                 Email
               </label>
               <input
@@ -71,13 +71,13 @@ const Login = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
+                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all duration-[var(--transition-fast)]"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
+              <label className="block text-sm font-bold mb-[var(--space-1)] uppercase tracking-wide text-[var(--text-primary)]">
                 Password
               </label>
               <input
@@ -85,7 +85,7 @@ const Login = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
+                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all duration-[var(--transition-fast)]"
                 required
               />
             </div>
@@ -107,10 +107,10 @@ const Login = () => {
             </motion.button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-[var(--space-4)] text-center">
             <p className="text-[var(--text-secondary)]">
               Don't have an account?{' '}
-              <Link to="/register" className="text-[var(--color-primary)] font-bold hover:underline">
+              <Link to="/register" className="text-[var(--color-primary)] font-bold hover:underline transition-all duration-[var(--transition-fast)]">
                 Sign up
               </Link>
             </p>

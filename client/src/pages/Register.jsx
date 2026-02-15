@@ -50,7 +50,7 @@ const Register = () => {
   };
 
   return (
-    <div className="min-h-screen bg-pattern flex items-center justify-center px-4 py-12">
+    <div className="min-h-screen bg-pattern flex items-center justify-center px-4 py-[var(--space-6)]">
       <Toaster position="top-right" />
 
       <motion.div
@@ -63,19 +63,19 @@ const Register = () => {
             initial={{ scale: 0 }}
             animate={{ scale: 1 }}
             transition={{ delay: 0.2, type: 'spring' }}
-            className="w-20 h-20 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] rounded-2xl flex items-center justify-center mx-auto mb-6"
+            className="w-20 h-20 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] rounded-2xl flex items-center justify-center mx-auto mb-[var(--space-4)] shadow-[var(--shadow-3)]"
           >
-            <span className="text-4xl font-bold text-white">Q</span>
+            <span className="text-4xl font-bold text-white">C</span>
           </motion.div>
 
-          <h1 className="text-4xl font-bold text-center mb-2 text-[var(--text-primary)]">Join DevQuery</h1>
-          <p className="text-center text-[var(--text-secondary)] mb-8">
+          <h1 className="text-4xl font-bold text-center mb-[var(--space-1)] text-[var(--text-primary)]">Join Cohere</h1>
+          <p className="text-center text-[var(--text-secondary)] mb-[var(--space-4)]">
             Start your developer journey today
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-[var(--space-3)]">
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
+              <label className="block text-sm font-bold mb-[var(--space-1)] uppercase tracking-wide text-[var(--text-primary)]">
                 Username
               </label>
               <input
@@ -83,7 +83,7 @@ const Register = () => {
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
+                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all duration-[var(--transition-fast)]"
                 minLength={3}
                 maxLength={30}
                 required
@@ -91,7 +91,7 @@ const Register = () => {
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
+              <label className="block text-sm font-bold mb-[var(--space-1)] uppercase tracking-wide text-[var(--text-primary)]">
                 Email
               </label>
               <input
@@ -99,13 +99,13 @@ const Register = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
+                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all duration-[var(--transition-fast)]"
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
+              <label className="block text-sm font-bold mb-[var(--space-1)] uppercase tracking-wide text-[var(--text-primary)]">
                 Password
               </label>
               <input
@@ -113,14 +113,14 @@ const Register = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
+                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all duration-[var(--transition-fast)]"
                 minLength={6}
                 required
               />
             </div>
 
             <div>
-              <label className="block text-sm font-bold mb-2 uppercase tracking-wide text-[var(--text-primary)]">
+              <label className="block text-sm font-bold mb-[var(--space-1)] uppercase tracking-wide text-[var(--text-primary)]">
                 Confirm Password
               </label>
               <input
@@ -128,7 +128,7 @@ const Register = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
+                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all duration-[var(--transition-fast)]"
                 minLength={6}
                 required
               />
@@ -151,10 +151,10 @@ const Register = () => {
             </motion.button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-[var(--space-4)] text-center">
             <p className="text-[var(--text-secondary)]">
               Already have an account?{' '}
-              <Link to="/login" className="text-[var(--color-primary)] font-bold hover:underline">
+              <Link to="/login" className="text-[var(--color-primary)] font-bold hover:underline transition-all duration-[var(--transition-fast)]">
                 Login
               </Link>
             </p>
