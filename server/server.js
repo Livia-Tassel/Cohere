@@ -3,14 +3,16 @@ const express = require('express');
 const cors = require('cors');
 const connectDB = require('./config/db');
 const { initializeBadges } = require('./services/badgeService');
+const seedGamification = require('./seedGamification');
 
 const app = express();
 
 // Connect to MongoDB
 connectDB();
 
-// Initialize badges
+// Initialize badges and gamification data
 initializeBadges();
+seedGamification();
 
 // Middleware
 app.use(cors({
@@ -33,6 +35,9 @@ app.use('/api/badges', require('./routes/badges'));
 app.use('/api/notifications', require('./routes/notifications'));
 app.use('/api/friends', require('./routes/friends'));
 app.use('/api/messages', require('./routes/messages'));
+app.use('/api/gamification', require('./routes/gamification'));
+app.use('/api/daily-tasks', require('./routes/dailyTasks'));
+app.use('/api/achievements', require('./routes/achievements'));
 
 // Health check
 app.get('/api/health', (req, res) => {

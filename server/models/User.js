@@ -30,6 +30,39 @@ const userSchema = new mongoose.Schema({
     type: String,
     default: ''
   },
+  // Gamification fields
+  xp: {
+    type: Number,
+    default: 0
+  },
+  level: {
+    type: Number,
+    default: 1
+  },
+  streak: {
+    currentStreak: {
+      type: Number,
+      default: 0
+    },
+    longestStreak: {
+      type: Number,
+      default: 0
+    },
+    lastLoginDate: {
+      type: Date
+    }
+  },
+  // Personalization fields
+  interests: [{
+    type: String
+  }],
+  followedTags: [{
+    type: String
+  }],
+  followedUsers: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'User'
+  }],
   createdAt: {
     type: Date,
     default: Date.now

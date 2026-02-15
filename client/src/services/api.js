@@ -99,4 +99,18 @@ export const markConversationRead = (friendId) => api.put(`/messages/conversatio
 export const deleteMessage = (messageId) => api.delete(`/messages/${messageId}`);
 export const deleteConversation = (friendId) => api.delete(`/messages/conversation/${friendId}`);
 
+// Gamification
+export const getGamificationStats = () => api.get('/gamification/stats');
+export const getUserStreak = () => api.get('/gamification/streak');
+
+// Daily Tasks
+export const getDailyTasks = () => api.get('/daily-tasks');
+export const getDailyTaskProgress = () => api.get('/daily-tasks/progress');
+export const completeTask = (taskId) => api.post(`/daily-tasks/${taskId}/complete`);
+
+// Achievements
+export const getAllAchievements = () => api.get('/achievements');
+export const getUserAchievements = (userId) => api.get(`/achievements/user/${userId}`);
+export const getAchievementProgress = () => api.get('/achievements/progress');
+
 export default api;
