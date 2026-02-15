@@ -28,12 +28,12 @@ const QuestionCard = ({ question, index = 0 }) => {
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)] hover:border-[var(--color-primary)] transition-all duration-200 hover:shadow-lg group"
+      className="card group"
     >
       <div className="p-4">
         {/* Stats Column - Left Side */}
         <div className="flex gap-4">
-          <div className="flex flex-col gap-2 text-center min-w-[60px]">
+          <div className="flex flex-col gap-[var(--space-2)] text-center min-w-[60px]">
             <div className="flex flex-col">
               <div className={`text-base font-bold ${question.votes > 0 ? 'text-green-600' : question.votes < 0 ? 'text-red-600' : 'text-[var(--text-secondary)]'}`}>
                 {question.votes}
@@ -83,7 +83,7 @@ const QuestionCard = ({ question, index = 0 }) => {
                   <Link
                     key={tag}
                     to={`/tags/${tag}`}
-                    className="px-2 py-0.5 bg-[var(--bg-tertiary)] hover:bg-[var(--color-primary)] hover:text-white text-[var(--color-primary)] text-xs font-medium rounded border border-[var(--color-primary)] transition-colors"
+                    className="tag"
                   >
                     {tag}
                   </Link>

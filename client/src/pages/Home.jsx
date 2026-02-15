@@ -96,7 +96,7 @@ const Home = () => {
                   name="search"
                   placeholder="Search questions..."
                   defaultValue={search}
-                  className="flex-1 px-3 py-2 text-sm border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                  className="flex-1 px-4 py-3 text-sm border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
                 />
                 <motion.button
                   whileHover={{ scale: 1.02 }}

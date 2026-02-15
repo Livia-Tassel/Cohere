@@ -9,6 +9,10 @@ import RichTextEditor from '../components/RichTextEditor';
 import RelatedQuestions from '../components/RelatedQuestions';
 import BookmarkButton from '../components/BookmarkButton';
 import CommentList from '../components/CommentList';
+import QuestionStats from '../components/QuestionStats';
+import TopContributors from '../components/TopContributors';
+import AskQuestionWidget from '../components/AskQuestionWidget';
+import TagList from '../components/TagList';
 import toast, { Toaster } from 'react-hot-toast';
 import { highlightAllCode } from '../utils/highlightCode';
 
@@ -180,7 +184,7 @@ const QuestionDetail = () => {
           {/* Main Content */}
           <div className="lg:col-span-2">
             {/* Question */}
-            <div className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)] p-4 mb-4">
+            <div className="card mb-4">
               <div className="flex gap-4">
                 <VoteButtons
                   targetType="question"
@@ -210,10 +214,8 @@ const QuestionDetail = () => {
 
               <div className="flex flex-wrap gap-1.5 mb-4">
                 {question.tags.map((tag) => (
-                  <Link key={tag} to={`/tags/${tag}`}>
-                    <span className="px-2 py-0.5 bg-[var(--bg-tertiary)] hover:bg-[var(--color-primary)] hover:text-white text-[var(--color-primary)] text-xs font-medium rounded border border-[var(--color-primary)] transition-colors">
-                      {tag}
-                    </span>
+                  <Link key={tag} to={`/tags/${tag}`} className="tag">
+                    {tag}
                   </Link>
                 ))}
               </div>
@@ -284,7 +286,7 @@ const QuestionDetail = () => {
             </div>
 
             {/* Answer Form */}
-            <div className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)] p-4">
+            <div className="card">
               {user ? (
                 <>
                   <h3 className="text-lg font-semibold mb-3 text-[var(--text-primary)]">Your Answer</h3>
@@ -335,7 +337,10 @@ const QuestionDetail = () => {
 
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-4">
+            <QuestionStats question={question} />
             <RelatedQuestions questionId={id} />
+            <TopContributors />
+            <AskQuestionWidget />
           </div>
         </div>
       </div>

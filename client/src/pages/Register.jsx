@@ -83,7 +83,7 @@ const Register = () => {
                 name="username"
                 value={formData.username}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
                 minLength={3}
                 maxLength={30}
                 required
@@ -99,7 +99,7 @@ const Register = () => {
                 name="email"
                 value={formData.email}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
                 required
               />
             </div>
@@ -113,7 +113,7 @@ const Register = () => {
                 name="password"
                 value={formData.password}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
                 minLength={6}
                 required
               />
@@ -128,7 +128,7 @@ const Register = () => {
                 name="confirmPassword"
                 value={formData.confirmPassword}
                 onChange={handleChange}
-                className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors"
+                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
                 minLength={6}
                 required
               />

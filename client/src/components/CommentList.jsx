@@ -85,7 +85,7 @@ const CommentList = ({ targetType, targetId }) => {
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-2 py-1 text-xs border border-[var(--border-primary)] rounded bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
+            className="px-2 py-1 text-xs border border-[var(--border-primary)] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_2px_var(--glow-primary)] transition-all"
           >
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
@@ -103,7 +103,7 @@ const CommentList = ({ targetType, targetId }) => {
               onChange={(e) => setNewComment(e.target.value)}
               placeholder="Add a comment..."
               maxLength={500}
-              className="w-full px-3 py-2 text-sm border border-[var(--border-primary)] rounded-lg bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] resize-none"
+              className="w-full px-3 py-2 text-sm border border-[var(--border-primary)] rounded-[var(--radius-lg)] bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all resize-none"
               rows={2}
             />
             <div className="absolute bottom-1.5 right-2 text-[10px] text-[var(--text-tertiary)]">

@@ -25,7 +25,7 @@ const RelatedQuestions = ({ questionId }) => {
   if (loading || related.length === 0) return null;
 
   return (
-    <div className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)] p-4">
+    <div className="card">
       <h3 className="text-sm font-semibold mb-3 text-[var(--text-primary)] flex items-center gap-1.5">
         <span className="text-base">🔗</span>
         Related Questions

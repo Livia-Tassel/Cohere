@@ -42,7 +42,7 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
   };
 
   return (
-    <div className={`bg-[var(--bg-secondary)] rounded-lg border p-4 ${isAccepted ? 'border-green-500 bg-green-50 dark:bg-green-900/10' : 'border-[var(--border-primary)]'}`}>
+    <div className={`card ${isAccepted ? 'border-[var(--color-success)] bg-[var(--color-success)]/5' : ''}`}>
       {isAccepted && (
         <div className="mb-3 flex items-center gap-2 text-green-600 font-semibold text-sm">
           <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
@@ -65,7 +65,7 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
               <textarea
                 value={editBody}
                 onChange={(e) => setEditBody(e.target.value)}
-                className="w-full p-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg min-h-[150px] text-sm focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] min-h-[150px] text-sm focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all"
               />
               <div className="mt-3 flex gap-2">
                 <button

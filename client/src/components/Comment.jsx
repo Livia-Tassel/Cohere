@@ -101,7 +101,7 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
               value={editBody}
               onChange={(e) => setEditBody(e.target.value)}
               maxLength={500}
-              className="w-full px-2 py-1.5 text-xs border border-[var(--border-primary)] rounded bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] resize-none"
+              className="w-full px-2 py-1.5 text-xs border border-[var(--border-primary)] rounded-[var(--radius-md)] bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_2px_var(--glow-primary)] transition-all resize-none"
               rows={2}
               autoFocus
             />

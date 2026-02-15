@@ -52,9 +52,9 @@ const Sidebar = ({ isOpen, onToggle, isMobile }) => {
             <motion.div
               whileHover={{ x: 4 }}
               whileTap={{ scale: 0.98 }}
-              className={`flex items-center space-x-3 px-4 py-3 rounded-lg transition-all ${
+              className={`flex items-center space-x-3 px-[var(--space-3)] py-[var(--space-2)] rounded-[var(--radius-lg)] transition-all ${
                 isActive(item.path)
-                  ? 'bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white shadow-lg'
+                  ? 'bg-gradient-to-r from-[var(--color-primary)] to-[var(--color-primary-dark)] text-white shadow-[var(--shadow-2)]'
                   : 'text-[var(--text-secondary)] hover:bg-[var(--bg-tertiary)] hover:text-[var(--text-primary)]'
               }`}
             >
@@ -83,7 +83,7 @@ const Sidebar = ({ isOpen, onToggle, isMobile }) => {
           animate={{ opacity: 1, y: 0 }}
           className="p-4 border-t border-[var(--border-primary)]"
         >
-          <div className="p-3 rounded-lg bg-[var(--bg-tertiary)] border border-[var(--border-primary)]">
+          <div className="p-[var(--space-3)] rounded-[var(--radius-lg)] bg-[var(--bg-tertiary)] border border-[var(--border-primary)]">
             <div className="flex items-center gap-3">
               {user.avatar ? (
                 <img

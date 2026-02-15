@@ -45,19 +45,21 @@ const VoteButtons = ({ targetType, targetId, initialVotes, userVote, onVoteChang
 
   return (
     <div className="flex flex-col items-center gap-1">
-      <button
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => handleVote(1)}
         disabled={loading}
-        className={`p-1 rounded transition-all ${
+        className={`p-1.5 rounded-[var(--radius-md)] transition-all ${
           currentVote === 1
-            ? 'text-[var(--color-primary)]'
-            : 'text-[var(--text-tertiary)] hover:text-[var(--color-primary)]'
+            ? 'text-[var(--color-primary)] bg-[var(--color-primary)]/10'
+            : 'text-[var(--text-tertiary)] hover:text-[var(--color-primary)] hover:bg-[var(--bg-tertiary)]'
         }`}
       >
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 3l7 7h-4v7H7v-7H3l7-7z" />
         </svg>
-      </button>
+      </motion.button>
 
       <span className={`text-base font-semibold ${
         votes > 0 ? 'text-green-600' : votes < 0 ? 'text-red-600' : 'text-[var(--text-secondary)]'
@@ -65,19 +67,21 @@ const VoteButtons = ({ targetType, targetId, initialVotes, userVote, onVoteChang
         {votes}
       </span>
 
-      <button
+      <motion.button
+        whileHover={{ scale: 1.1 }}
+        whileTap={{ scale: 0.95 }}
         onClick={() => handleVote(-1)}
         disabled={loading}
-        className={`p-1 rounded transition-all ${
+        className={`p-1.5 rounded-[var(--radius-md)] transition-all ${
           currentVote === -1
-            ? 'text-red-500'
-            : 'text-[var(--text-tertiary)] hover:text-red-500'
+            ? 'text-red-500 bg-red-500/10'
+            : 'text-[var(--text-tertiary)] hover:text-red-500 hover:bg-[var(--bg-tertiary)]'
         }`}
       >
         <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 17l-7-7h4V3h6v7h4l-7 7z" />
         </svg>
-      </button>
+      </motion.button>
     </div>
   );
 };

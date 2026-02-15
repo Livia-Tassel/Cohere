@@ -123,7 +123,7 @@ const AskQuestion = () => {
                   value={title}
                   onChange={(e) => setTitle(e.target.value)}
                   placeholder="e.g., How do I center a div in CSS?"
-                  className="w-full px-4 py-3 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none transition-colors text-lg"
+                  className="w-full px-4 py-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-[var(--radius-lg)] focus:border-[var(--border-focus)] focus:outline-none focus:shadow-[0_0_0_3px_var(--glow-primary)] transition-all text-lg"
                   minLength={10}
                   maxLength={200}
                   required
