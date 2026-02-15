@@ -75,17 +75,17 @@ const CommentList = ({ targetType, targetId }) => {
   const displayedComments = showAll ? comments : comments.slice(0, 3);
 
   return (
-    <div className="mt-6 pt-6 border-t-2 border-[var(--border-primary)]">
+    <div className="mt-4 pt-4 border-t border-[var(--border-primary)]">
       {/* Header */}
-      <div className="flex items-center justify-between mb-4">
-        <h4 className="text-lg font-bold text-[var(--text-primary)]">
+      <div className="flex items-center justify-between mb-3">
+        <h4 className="text-sm font-semibold text-[var(--text-primary)]">
           Comments ({comments.length})
         </h4>
         {comments.length > 0 && (
           <select
             value={sortBy}
             onChange={(e) => setSortBy(e.target.value)}
-            className="px-3 py-1 text-sm border border-[var(--border-primary)] rounded-lg bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
+            className="px-2 py-1 text-xs border border-[var(--border-primary)] rounded bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none"
           >
             <option value="newest">Newest</option>
             <option value="oldest">Oldest</option>
@@ -96,72 +96,63 @@ const CommentList = ({ targetType, targetId }) => {
 
       {/* Comment Form */}
       {user && (
-        <form onSubmit={handleSubmit} className="mb-4">
+        <form onSubmit={handleSubmit} className="mb-3">
           <div className="relative">
             <textarea
               value={newComment}
               onChange={(e) => setNewComment(e.target.value)}
               placeholder="Add a comment..."
               maxLength={500}
-              className="w-full px-4 py-3 border-2 border-[var(--border-primary)] rounded-lg bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none resize-none"
+              className="w-full px-3 py-2 text-sm border border-[var(--border-primary)] rounded-lg bg-[var(--bg-secondary)] text-[var(--text-primary)] focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)] resize-none"
               rows={2}
             />
-            <div className="absolute bottom-2 right-2 text-xs text-[var(--text-tertiary)]">
+            <div className="absolute bottom-1.5 right-2 text-[10px] text-[var(--text-tertiary)]">
               {newComment.length}/500
             </div>
           </div>
-          <div className="flex items-center justify-between mt-2">
-            <span className="text-xs text-[var(--text-tertiary)]">
-              Be respectful and constructive
-            </span>
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
+          <div className="flex items-center justify-end mt-2">
+            <button
               type="submit"
               disabled={submitting || newComment.trim().length === 0}
-              className="px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg font-semibold text-sm disabled:opacity-50 disabled:cursor-not-allowed"
+              className="px-3 py-1 bg-[var(--color-primary)] text-white rounded text-xs font-medium disabled:opacity-50 disabled:cursor-not-allowed hover:bg-[var(--color-primary-dark)] transition-colors"
             >
               {submitting ? 'Posting...' : 'Add Comment'}
-            </motion.button>
+            </button>
           </div>
         </form>
       )}
 
       {/* Comments List */}
       {loading ? (
-        <div className="flex justify-center py-8">
-          <div className="spinner"></div>
+        <div className="flex justify-center py-4">
+          <div className="spinner w-5 h-5"></div>
         </div>
       ) : comments.length === 0 ? (
-        <div className="text-center py-8 text-[var(--text-tertiary)]">
-          <p className="text-2xl mb-2">💬</p>
-          <p>No comments yet. Be the first to comment!</p>
+        <div className="text-center py-4 text-[var(--text-tertiary)] text-xs">
+          <p className="text-lg mb-1">💬</p>
+          <p>No comments yet</p>
         </div>
       ) : (
         <>
           <div className="space-y-0">
-            <AnimatePresence>
-              {displayedComments.map((comment) => (
-                <Comment
-                  key={comment._id}
-                  comment={comment}
-                  onDelete={handleDelete}
-                  onUpdate={handleUpdate}
-                />
-              ))}
-            </AnimatePresence>
+            {displayedComments.map((comment) => (
+              <Comment
+                key={comment._id}
+                comment={comment}
+                onDelete={handleDelete}
+                onUpdate={handleUpdate}
+              />
+            ))}
           </div>
 
           {/* Show More/Less Button */}
           {comments.length > 3 && (
-            <motion.button
-              whileHover={{ scale: 1.02 }}
-              whileTap={{ scale: 0.98 }}
+            <button
               onClick={() => setShowAll(!showAll)}
-              className="mt-4 w-full py-2 text-sm font-semibold text-[var(--color-primary)] hover:bg-[var(--bg-tertiary)] rounded-lg transition-colors"
+              className="mt-2 w-full py-1.5 text-xs font-medium text-[var(--color-primary)] hover:bg-[var(--bg-tertiary)] rounded transition-colors"
             >
-              {showAll ? 'Show Less' : `Show ${comments.length - 3} More Comments`}
-            </motion.button>
+              {showAll ? 'Show Less' : `Show ${comments.length - 3} More`}
+            </button>
           )}
         </>
       )}

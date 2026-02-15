@@ -1,17 +1,25 @@
 import { motion } from 'framer-motion';
-import { useState } from 'react';
-import ReactMarkdown from 'react-markdown';
+import { useState, useEffect, useRef } from 'react';
 import { useAuth } from '../context/AuthContext';
 import VoteButtons from './VoteButtons';
 import CommentList from './CommentList';
 import toast from 'react-hot-toast';
+import { highlightAllCode } from '../utils/highlightCode';
 
 const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAccepted }) => {
   const { user } = useAuth();
   const [isEditing, setIsEditing] = useState(false);
   const [editBody, setEditBody] = useState(answer.body);
+  const answerBodyRef = useRef(null);
 
   const isAuthor = user && user.id === answer.author._id;
+
+  // Apply syntax highlighting after answer loads
+  useEffect(() => {
+    if (answerBodyRef.current) {
+      highlightAllCode();
+    }
+  }, [answer.body]);
 
   const handleEdit = async () => {
     try {
@@ -34,116 +42,99 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
   };
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 20 }}
-      animate={{ opacity: 1, y: 0 }}
-      className={`card ${isAccepted ? 'border-4 border-green-500 bg-green-50 dark:bg-green-900/20' : ''}`}
-    >
+    <div className={`bg-[var(--bg-secondary)] rounded-lg border p-4 ${isAccepted ? 'border-green-500 bg-green-50 dark:bg-green-900/10' : 'border-[var(--border-primary)]'}`}>
       {isAccepted && (
-        <motion.div
-          initial={{ scale: 0 }}
-          animate={{ scale: 1 }}
-          className="mb-4 flex items-center gap-2 text-green-600 font-bold text-lg"
-        >
-          <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+        <div className="mb-3 flex items-center gap-2 text-green-600 font-semibold text-sm">
+          <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
             <path fillRule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clipRule="evenodd" />
           </svg>
           Accepted Answer
-        </motion.div>
+        </div>
       )}
 
-      <div className="flex gap-6">
+      <div className="flex gap-4">
         <VoteButtons
           targetType="answer"
           targetId={answer._id}
           initialVotes={answer.votes}
         />
 
-        <div className="flex-1">
+        <div className="flex-1 min-w-0">
           {isEditing ? (
             <div>
               <textarea
                 value={editBody}
                 onChange={(e) => setEditBody(e.target.value)}
-                className="w-full p-4 border-2 border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg min-h-[200px] focus:border-[var(--color-primary)] focus:outline-none"
+                className="w-full p-3 border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg min-h-[150px] text-sm focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
               />
-              <div className="mt-4 flex gap-3">
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+              <div className="mt-3 flex gap-2">
+                <button
                   onClick={handleEdit}
-                  className="btn-primary"
+                  className="btn-primary text-sm px-3 py-1.5"
                 >
                   Save Changes
-                </motion.button>
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                </button>
+                <button
                   onClick={() => setIsEditing(false)}
-                  className="btn-secondary"
+                  className="btn-secondary text-sm px-3 py-1.5"
                 >
                   Cancel
-                </motion.button>
+                </button>
               </div>
             </div>
           ) : (
             <>
               <div
-                className="prose max-w-none mb-6"
+                ref={answerBodyRef}
+                className="prose max-w-none mb-4 text-sm"
                 dangerouslySetInnerHTML={{ __html: answer.body }}
               />
 
-              <div className="flex items-center justify-between pt-4 border-t-2 border-[var(--border-primary)]">
-                <div className="flex gap-3">
+              <div className="flex items-center justify-between pt-3 border-t border-[var(--border-primary)]">
+                <div className="flex gap-2">
                   {isAuthor && (
                     <>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                      <button
                         onClick={() => setIsEditing(true)}
-                        className="text-sm font-semibold text-[var(--color-secondary)] hover:text-[var(--color-primary)] transition-colors"
+                        className="text-xs font-medium text-[var(--color-secondary)] hover:text-[var(--color-primary)] transition-colors"
                       >
                         Edit
-                      </motion.button>
-                      <motion.button
-                        whileHover={{ scale: 1.05 }}
-                        whileTap={{ scale: 0.95 }}
+                      </button>
+                      <button
                         onClick={() => {
                           if (window.confirm('Delete this answer?')) {
                             onDelete(answer._id);
                           }
                         }}
-                        className="text-sm font-semibold text-[var(--text-secondary)] hover:text-red-600 transition-colors"
+                        className="text-xs font-medium text-[var(--text-secondary)] hover:text-red-600 transition-colors"
                       >
                         Delete
-                      </motion.button>
+                      </button>
                     </>
                   )}
                   {isQuestionAuthor && !isAccepted && (
-                    <motion.button
-                      whileHover={{ scale: 1.05 }}
-                      whileTap={{ scale: 0.95 }}
+                    <button
                       onClick={() => onAccept(answer._id)}
-                      className="px-4 py-2 bg-green-500 text-white rounded-lg font-semibold hover:bg-green-600 transition-colors"
+                      className="px-3 py-1 bg-green-500 text-white rounded text-xs font-semibold hover:bg-green-600 transition-colors"
                     >
                       ✓ Accept Answer
-                    </motion.button>
+                    </button>
                   )}
                 </div>
 
-                <div className="flex items-center gap-3">
+                <div className="flex items-center gap-2">
                   {answer.author.avatar ? (
-                    <img src={answer.author.avatar} alt={answer.author.username} className="avatar" />
+                    <img src={answer.author.avatar} alt={answer.author.username} className="w-8 h-8 rounded-full" />
                   ) : (
-                    <div className="avatar bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] flex items-center justify-center text-white font-bold">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] flex items-center justify-center text-white text-xs font-bold">
                       {answer.author.username.charAt(0).toUpperCase()}
                     </div>
                   )}
                   <div>
-                    <div className="font-bold text-[var(--text-primary)]">
+                    <div className="text-sm font-semibold text-[var(--text-primary)]">
                       {answer.author.username}
                     </div>
-                    <div className="text-sm text-[var(--text-secondary)]">
+                    <div className="text-xs text-[var(--text-secondary)]">
                       {answer.author.reputation} rep
                     </div>
                     <div className="text-xs text-[var(--text-tertiary)]">
@@ -159,7 +150,7 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
           )}
         </div>
       </div>
-    </motion.div>
+    </div>
   );
 };
 

@@ -44,47 +44,40 @@ const VoteButtons = ({ targetType, targetId, initialVotes, userVote, onVoteChang
   };
 
   return (
-    <div className="flex flex-col items-center space-y-2">
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+    <div className="flex flex-col items-center gap-1">
+      <button
         onClick={() => handleVote(1)}
         disabled={loading}
-        className={`p-2 rounded-full transition-all ${
+        className={`p-1 rounded transition-all ${
           currentVote === 1
-            ? 'bg-[var(--color-primary)] text-white shadow-lg'
-            : 'bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--border-primary)]'
+            ? 'text-[var(--color-primary)]'
+            : 'text-[var(--text-tertiary)] hover:text-[var(--color-primary)]'
         }`}
       >
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 3l7 7h-4v7H7v-7H3l7-7z" />
         </svg>
-      </motion.button>
+      </button>
 
-      <motion.span
-        key={votes}
-        initial={{ scale: 1.2 }}
-        animate={{ scale: 1 }}
-        className="text-2xl font-bold text-[var(--text-primary)]"
-      >
+      <span className={`text-base font-semibold ${
+        votes > 0 ? 'text-green-600' : votes < 0 ? 'text-red-600' : 'text-[var(--text-secondary)]'
+      }`}>
         {votes}
-      </motion.span>
+      </span>
 
-      <motion.button
-        whileHover={{ scale: 1.1 }}
-        whileTap={{ scale: 0.9 }}
+      <button
         onClick={() => handleVote(-1)}
         disabled={loading}
-        className={`p-2 rounded-full transition-all ${
+        className={`p-1 rounded transition-all ${
           currentVote === -1
-            ? 'bg-red-500 text-white shadow-lg'
-            : 'bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:bg-[var(--border-primary)]'
+            ? 'text-red-500'
+            : 'text-[var(--text-tertiary)] hover:text-red-500'
         }`}
       >
-        <svg className="w-6 h-6" fill="currentColor" viewBox="0 0 20 20">
+        <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
           <path d="M10 17l-7-7h4V3h6v7h4l-7 7z" />
         </svg>
-      </motion.button>
+      </button>
     </div>
   );
 };

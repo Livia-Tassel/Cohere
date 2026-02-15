@@ -8,36 +8,28 @@ const Navbar = () => {
   const { user, logoutUser } = useAuth();
 
   return (
-    <motion.nav
-      initial={{ y: -100 }}
-      animate={{ y: 0 }}
-      className="sticky top-0 z-navbar bg-[var(--bg-secondary)]/95 backdrop-blur-md border-b-2 border-[var(--border-primary)] shadow-sm"
-    >
+    <nav className="sticky top-0 z-navbar bg-[var(--bg-secondary)]/95 backdrop-blur-md border-b border-[var(--border-primary)] shadow-sm">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-20">
-          <Link to="/" className="flex items-center space-x-3 group">
-            <motion.div
-              whileHover={{ rotate: 360 }}
-              transition={{ duration: 0.6 }}
-              className="w-12 h-12 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] rounded-xl flex items-center justify-center shadow-lg"
-            >
-              <span className="text-2xl font-bold text-white">C</span>
-            </motion.div>
-            <span className="text-2xl font-bold text-gradient hidden sm:block">
+        <div className="flex justify-between items-center h-14">
+          <Link to="/" className="flex items-center gap-2 group">
+            <div className="w-8 h-8 bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] rounded-lg flex items-center justify-center">
+              <span className="text-lg font-bold text-white">C</span>
+            </div>
+            <span className="text-lg font-bold text-gradient hidden sm:block">
               Cohere
             </span>
           </Link>
 
-          <div className="flex items-center space-x-6">
+          <div className="flex items-center gap-4">
             <Link
               to="/"
-              className="text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors font-semibold hidden sm:block"
+              className="text-sm text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors font-medium hidden sm:block"
             >
               Questions
             </Link>
             <Link
               to="/tags"
-              className="text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors font-semibold hidden sm:block"
+              className="text-sm text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors font-medium hidden sm:block"
             >
               Tags
             </Link>
@@ -45,68 +37,54 @@ const Navbar = () => {
             <ThemeToggle />
 
             {user ? (
-              <div className="flex items-center space-x-4">
+              <div className="flex items-center gap-3">
                 <NotificationBell />
 
                 <Link to="/ask">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="btn-primary"
-                  >
+                  <button className="btn-primary text-sm px-3 py-1.5">
                     Ask Question
-                  </motion.button>
+                  </button>
                 </Link>
 
-                <Link to={`/profile/${user.id}`} className="flex items-center space-x-2 hover:opacity-80 transition-opacity">
+                <Link to={`/profile/${user.id}`} className="flex items-center gap-2 hover:opacity-80 transition-opacity">
                   {user.avatar ? (
-                    <img src={user.avatar} alt={user.username} className="w-10 h-10 rounded-full border-2 border-[var(--color-primary)] shadow-sm" />
+                    <img src={user.avatar} alt={user.username} className="w-8 h-8 rounded-full border-2 border-[var(--color-primary)]" />
                   ) : (
-                    <div className="w-10 h-10 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] flex items-center justify-center text-white font-bold shadow-sm">
+                    <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] flex items-center justify-center text-white text-xs font-bold">
                       {user.username.charAt(0).toUpperCase()}
                     </div>
                   )}
                   <div className="hidden md:block">
-                    <div className="font-semibold text-sm text-[var(--text-primary)]">{user.username}</div>
-                    <div className="text-xs text-[var(--text-secondary)]">{user.reputation} rep</div>
+                    <div className="font-medium text-xs text-[var(--text-primary)]">{user.username}</div>
+                    <div className="text-[10px] text-[var(--text-secondary)]">{user.reputation} rep</div>
                   </div>
                 </Link>
 
-                <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
+                <button
                   onClick={logoutUser}
-                  className="text-[var(--text-primary)] hover:text-red-600 transition-colors font-semibold hidden sm:block"
+                  className="text-sm text-[var(--text-primary)] hover:text-red-600 transition-colors font-medium hidden sm:block"
                 >
                   Logout
-                </motion.button>
+                </button>
               </div>
             ) : (
-              <div className="flex items-center space-x-3">
+              <div className="flex items-center gap-2">
                 <Link to="/login">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors font-semibold"
-                  >
+                  <button className="text-sm text-[var(--text-primary)] hover:text-[var(--color-primary)] transition-colors font-medium">
                     Login
-                  </motion.button>
+                  </button>
                 </Link>
                 <Link to="/register">
-                  <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="btn-primary"
-                  >
+                  <button className="btn-primary text-sm px-3 py-1.5">
                     Sign Up
-                  </motion.button>
+                  </button>
                 </Link>
               </div>
             )}
           </div>
         </div>
       </div>
-    </motion.nav>
+    </nav>
   );
 };
 

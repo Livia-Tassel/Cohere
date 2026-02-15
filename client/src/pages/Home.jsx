@@ -60,131 +60,95 @@ const Home = () => {
   };
 
   return (
-    <div className="min-h-screen bg-pattern">
+    <div className="min-h-screen bg-[var(--bg-primary)]">
       <Toaster position="top-right" />
 
-      {/* Hero Section */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        className="bg-gradient-to-br from-[var(--color-primary)] via-[var(--color-secondary)] to-[var(--color-dark)] text-white py-20"
-      >
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <motion.h1
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.2 }}
-            className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6 leading-tight"
-          >
-            Every Developer
-            <br />
-            <span className="text-[var(--color-accent)]">Has Questions</span>
-          </motion.h1>
-          <motion.p
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.3 }}
-            className="text-lg md:text-xl mb-10 opacity-90 max-w-2xl"
-          >
-            Join our community of developers helping each other grow
-          </motion.p>
-
-          <motion.form
-            initial={{ y: 20, opacity: 0 }}
-            animate={{ y: 0, opacity: 1 }}
-            transition={{ delay: 0.4 }}
-            onSubmit={handleSearch}
-            className="flex flex-col sm:flex-row gap-3 max-w-3xl"
-          >
-            <input
-              type="text"
-              name="search"
-              placeholder="Search questions..."
-              defaultValue={search}
-              className="flex-1 px-6 py-4 rounded-xl text-[var(--color-dark)] text-base focus:outline-none focus:ring-4 focus:ring-[var(--color-accent)] shadow-lg"
-            />
-            <motion.button
-              whileHover={{ scale: 1.05 }}
-              whileTap={{ scale: 0.95 }}
-              type="submit"
-              className="px-8 py-4 bg-[var(--color-accent)] text-[var(--color-dark)] rounded-xl font-bold text-base hover:bg-white transition-colors shadow-lg"
-            >
-              Search
-            </motion.button>
-          </motion.form>
-        </div>
-      </motion.div>
-
-      <div className="max-w-7xl mx-auto px-4 py-12 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 lg:grid-cols-4 gap-8">
+      <div className="max-w-7xl mx-auto px-4 py-6 sm:px-6 lg:px-8">
+        <div className="grid grid-cols-1 lg:grid-cols-4 gap-6">
           {/* Main Content */}
           <div className="lg:col-span-3">
-            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-8 gap-4">
+            {/* Header */}
+            <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-4 gap-3">
               <div>
-                <h2 className="text-3xl font-bold mb-2 text-[var(--text-primary)]">
-                  {search ? `Results for "${search}"` : 'All Questions'}
-                </h2>
-                <p className="text-[var(--text-secondary)] text-lg">
+                <h1 className="text-2xl font-semibold text-[var(--text-primary)]">
+                  {search ? `Search Results` : 'All Questions'}
+                </h1>
+                <p className="text-sm text-[var(--text-secondary)] mt-0.5">
                   {pagination.total || 0} questions
                 </p>
               </div>
               <Link to="/ask">
                 <motion.button
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
-                  className="btn-primary whitespace-nowrap"
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  className="btn-primary text-sm px-4 py-2"
                 >
                   Ask Question
                 </motion.button>
               </Link>
             </div>
 
-            {/* Sort Buttons */}
-            <div className="flex gap-3 mb-8 overflow-x-auto pb-2">
-              {['newest', 'votes', 'unanswered'].map((sortOption) => (
+            {/* Search Bar */}
+            <form onSubmit={handleSearch} className="mb-4">
+              <div className="flex gap-2">
+                <input
+                  type="text"
+                  name="search"
+                  placeholder="Search questions..."
+                  defaultValue={search}
+                  className="flex-1 px-3 py-2 text-sm border border-[var(--border-primary)] bg-[var(--bg-secondary)] text-[var(--text-primary)] rounded-lg focus:border-[var(--color-primary)] focus:outline-none focus:ring-1 focus:ring-[var(--color-primary)]"
+                />
                 <motion.button
+                  whileHover={{ scale: 1.02 }}
+                  whileTap={{ scale: 0.98 }}
+                  type="submit"
+                  className="px-4 py-2 bg-[var(--color-primary)] text-white rounded-lg font-medium text-sm hover:bg-[var(--color-primary-dark)] transition-colors"
+                >
+                  Search
+                </motion.button>
+              </div>
+            </form>
+
+            {/* Sort Tabs */}
+            <div className="flex gap-1 mb-4 border-b border-[var(--border-primary)]">
+              {['newest', 'votes', 'unanswered'].map((sortOption) => (
+                <button
                   key={sortOption}
-                  whileHover={{ scale: 1.05 }}
-                  whileTap={{ scale: 0.95 }}
                   onClick={() => handleSortChange(sortOption)}
-                  className={`px-6 py-3 rounded-xl font-semibold uppercase tracking-wide transition-all whitespace-nowrap ${
+                  className={`px-4 py-2 text-sm font-medium capitalize transition-colors relative ${
                     sort === sortOption
-                      ? 'bg-[var(--color-primary)] text-white shadow-lg'
-                      : 'bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] border-2 border-[var(--border-primary)]'
+                      ? 'text-[var(--color-primary)] border-b-2 border-[var(--color-primary)]'
+                      : 'text-[var(--text-secondary)] hover:text-[var(--text-primary)]'
                   }`}
                 >
                   {sortOption}
-                </motion.button>
+                </button>
               ))}
             </div>
 
             {/* Questions List */}
             {loading ? (
-              <div className="flex justify-center items-center py-20">
+              <div className="flex justify-center items-center py-12">
                 <div className="spinner"></div>
               </div>
             ) : questions.length === 0 ? (
-              <motion.div
-                initial={{ opacity: 0, scale: 0.9 }}
-                animate={{ opacity: 1, scale: 1 }}
-                className="bg-[var(--bg-secondary)] rounded-xl border-2 border-[var(--border-primary)] text-center py-20 px-6"
-              >
-                <div className="text-6xl mb-4">🤔</div>
-                <h3 className="text-2xl font-bold mb-2 text-[var(--text-primary)]">No questions found</h3>
-                <p className="text-[var(--text-secondary)] mb-6">Be the first to ask a question!</p>
+              <div className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)] text-center py-12 px-6">
+                <div className="text-4xl mb-3">🤔</div>
+                <h3 className="text-lg font-semibold mb-2 text-[var(--text-primary)]">No questions found</h3>
+                <p className="text-sm text-[var(--text-secondary)] mb-4">Be the first to ask a question!</p>
                 <Link to="/ask">
                   <motion.button
-                    whileHover={{ scale: 1.05 }}
-                    whileTap={{ scale: 0.95 }}
-                    className="btn-primary"
+                    whileHover={{ scale: 1.02 }}
+                    whileTap={{ scale: 0.98 }}
+                    className="btn-primary text-sm px-4 py-2"
                   >
                     Ask Question
                   </motion.button>
                 </Link>
-              </motion.div>
+              </div>
             ) : (
               <>
-                <div className="space-y-5">
+                <div className="space-y-3">
                   {questions.map((question, index) => (
                     <QuestionCard key={question._id} question={question} index={index} />
                   ))}
@@ -192,65 +156,49 @@ const Home = () => {
 
                 {/* Pagination */}
                 {pagination.totalPages > 1 && (
-                  <motion.div
-                    initial={{ opacity: 0 }}
-                    animate={{ opacity: 1 }}
-                    className="mt-10 flex justify-center gap-2 flex-wrap"
-                  >
+                  <div className="mt-6 flex justify-center gap-1 flex-wrap">
                     {Array.from({ length: pagination.totalPages }, (_, i) => i + 1).map((pageNum) => (
-                      <motion.button
+                      <button
                         key={pageNum}
-                        whileHover={{ scale: 1.1 }}
-                        whileTap={{ scale: 0.9 }}
                         onClick={() => setSearchParams({ sort, search, page: pageNum })}
-                        className={`w-12 h-12 rounded-xl font-bold transition-all ${
+                        className={`w-8 h-8 rounded text-sm font-medium transition-colors ${
                           pageNum === parseInt(pagination.currentPage)
-                            ? 'bg-[var(--color-primary)] text-white shadow-lg'
-                            : 'bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] border-2 border-[var(--border-primary)]'
+                            ? 'bg-[var(--color-primary)] text-white'
+                            : 'bg-[var(--bg-secondary)] text-[var(--text-primary)] hover:bg-[var(--bg-tertiary)] border border-[var(--border-primary)]'
                         }`}
                       >
                         {pageNum}
-                      </motion.button>
+                      </button>
                     ))}
-                  </motion.div>
+                  </div>
                 )}
               </>
             )}
           </div>
 
           {/* Sidebar */}
-          <div className="lg:col-span-1">
-            <motion.div
-              initial={{ opacity: 0, x: 20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: 0.3 }}
-            >
-              <TagList tags={tags} />
-
-              {/* Stats Card */}
-              <motion.div
-                initial={{ opacity: 0, y: 20 }}
-                animate={{ opacity: 1, y: 0 }}
-                transition={{ delay: 0.4 }}
-                className="bg-[var(--bg-secondary)] rounded-xl border-2 border-[var(--border-primary)] p-6 mt-6"
-              >
-                <h3 className="text-xl font-bold mb-6 text-[var(--text-primary)]">Community Stats</h3>
-                <div className="space-y-4">
-                  <div className="flex justify-between items-center pb-4 border-b border-[var(--border-primary)]">
-                    <span className="text-[var(--text-secondary)] font-medium">Questions</span>
-                    <span className="text-2xl font-bold text-[var(--color-primary)]">
-                      {pagination.total || 0}
-                    </span>
-                  </div>
-                  <div className="flex justify-between items-center">
-                    <span className="text-[var(--text-secondary)] font-medium">Tags</span>
-                    <span className="text-2xl font-bold text-[var(--color-secondary)]">
-                      {tags.length}
-                    </span>
-                  </div>
+          <div className="lg:col-span-1 space-y-4">
+            {/* Stats Card */}
+            <div className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)] p-4">
+              <h3 className="text-sm font-semibold mb-3 text-[var(--text-primary)]">Community Stats</h3>
+              <div className="space-y-2">
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-[var(--text-secondary)]">Questions</span>
+                  <span className="text-lg font-bold text-[var(--color-primary)]">
+                    {pagination.total || 0}
+                  </span>
                 </div>
-              </motion.div>
-            </motion.div>
+                <div className="flex justify-between items-center">
+                  <span className="text-xs text-[var(--text-secondary)]">Tags</span>
+                  <span className="text-lg font-bold text-[var(--color-secondary)]">
+                    {tags.length}
+                  </span>
+                </div>
+              </div>
+            </div>
+
+            {/* Tags */}
+            <TagList tags={tags} />
           </div>
         </div>
       </div>

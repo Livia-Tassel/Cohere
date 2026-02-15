@@ -15,89 +15,110 @@ const QuestionCard = ({ question, index = 0 }) => {
     return questionDate.toLocaleDateString();
   };
 
+  // Extract plain text from HTML for preview
+  const getTextPreview = (html, maxLength = 200) => {
+    const div = document.createElement('div');
+    div.innerHTML = html;
+    const text = div.textContent || div.innerText || '';
+    return text.length > maxLength ? text.substring(0, maxLength) + '...' : text;
+  };
+
   return (
     <motion.div
       initial={{ opacity: 0, y: 20 }}
       animate={{ opacity: 1, y: 0 }}
       transition={{ delay: index * 0.1 }}
-      className="bg-[var(--bg-secondary)] rounded-xl border-2 border-[var(--border-primary)] hover:border-[var(--color-primary)] transition-all duration-300 hover:shadow-xl group overflow-hidden"
+      className="bg-[var(--bg-secondary)] rounded-lg border border-[var(--border-primary)] hover:border-[var(--color-primary)] transition-all duration-200 hover:shadow-lg group"
     >
-      <div className="p-6">
-        {/* Title */}
-        <Link
-          to={`/questions/${question._id}`}
-          className="block mb-4 group-hover:text-[var(--color-primary)] transition-colors"
-        >
-          <h3 className="text-xl font-bold leading-tight line-clamp-2">
-            {question.title}
-          </h3>
-        </Link>
-
-        {/* Tags */}
-        <div className="flex flex-wrap gap-2 mb-5">
-          {question.tags.map((tag) => (
-            <Link
-              key={tag}
-              to={`/tags/${tag}`}
-              className="px-3 py-1 bg-gradient-to-r from-[var(--color-secondary)] to-[var(--color-primary)] text-white text-xs font-semibold rounded-full hover:opacity-90 transition-opacity"
-            >
-              {tag}
-            </Link>
-          ))}
-        </div>
-
-        {/* Stats and Author Row */}
-        <div className="flex items-center justify-between pt-4 border-t border-[var(--border-primary)]">
-          {/* Stats */}
-          <div className="flex items-center gap-4">
-            <div className="flex items-center gap-1.5">
-              <div className={`text-lg font-bold ${question.votes > 0 ? 'text-green-600' : question.votes < 0 ? 'text-red-600' : 'text-[var(--text-secondary)]'}`}>
+      <div className="p-4">
+        {/* Stats Column - Left Side */}
+        <div className="flex gap-4">
+          <div className="flex flex-col gap-2 text-center min-w-[60px]">
+            <div className="flex flex-col">
+              <div className={`text-base font-bold ${question.votes > 0 ? 'text-green-600' : question.votes < 0 ? 'text-red-600' : 'text-[var(--text-secondary)]'}`}>
                 {question.votes}
               </div>
-              <div className="text-xs text-[var(--text-tertiary)] font-medium">votes</div>
+              <div className="text-xs text-[var(--text-tertiary)]">votes</div>
             </div>
 
-            <div className="flex items-center gap-1.5">
-              <div className={`text-lg font-bold ${question.acceptedAnswer ? 'text-green-600' : 'text-[var(--text-primary)]'}`}>
+            <div className={`flex flex-col px-2 py-1 rounded ${question.acceptedAnswer ? 'bg-green-100 dark:bg-green-900/30' : 'bg-[var(--bg-tertiary)]'}`}>
+              <div className={`text-base font-bold ${question.acceptedAnswer ? 'text-green-600' : 'text-[var(--text-primary)]'}`}>
                 {question.answerCount}
               </div>
-              <div className="text-xs text-[var(--text-tertiary)] font-medium">
-                {question.acceptedAnswer ? '✓ answers' : 'answers'}
+              <div className="text-xs text-[var(--text-tertiary)]">
+                {question.acceptedAnswer ? '✓' : 'ans'}
               </div>
             </div>
 
-            <div className="flex items-center gap-1.5">
-              <div className="text-lg font-bold text-[var(--text-secondary)]">
+            <div className="flex flex-col">
+              <div className="text-sm text-[var(--text-secondary)]">
                 {question.views}
               </div>
-              <div className="text-xs text-[var(--text-tertiary)] font-medium">views</div>
+              <div className="text-xs text-[var(--text-tertiary)]">views</div>
             </div>
-
-            {/* Bookmark Button */}
-            <BookmarkButton questionId={question._id} size="sm" />
           </div>
 
-          {/* Author */}
-          <Link
-            to={`/profile/${question.author._id}`}
-            className="flex items-center gap-2 hover:opacity-80 transition-opacity"
-          >
-            {question.author.avatar ? (
-              <img src={question.author.avatar} alt={question.author.username} className="w-8 h-8 rounded-full border-2 border-[var(--color-primary)]" />
-            ) : (
-              <div className="w-8 h-8 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] flex items-center justify-center text-white text-xs font-bold border-2 border-white shadow-sm">
-                {question.author.username.charAt(0).toUpperCase()}
+          {/* Content Column - Right Side */}
+          <div className="flex-1 min-w-0">
+            {/* Title */}
+            <Link
+              to={`/questions/${question._id}`}
+              className="block mb-2 group-hover:text-[var(--color-primary)] transition-colors"
+            >
+              <h3 className="text-base font-semibold leading-snug line-clamp-2">
+                {question.title}
+              </h3>
+            </Link>
+
+            {/* Body Preview */}
+            <p className="text-sm text-[var(--text-secondary)] mb-3 line-clamp-2 leading-relaxed">
+              {getTextPreview(question.body)}
+            </p>
+
+            {/* Tags and Meta Row */}
+            <div className="flex items-center justify-between gap-3 flex-wrap">
+              {/* Tags */}
+              <div className="flex flex-wrap gap-1.5">
+                {question.tags.slice(0, 3).map((tag) => (
+                  <Link
+                    key={tag}
+                    to={`/tags/${tag}`}
+                    className="px-2 py-0.5 bg-[var(--bg-tertiary)] hover:bg-[var(--color-primary)] hover:text-white text-[var(--color-primary)] text-xs font-medium rounded border border-[var(--color-primary)] transition-colors"
+                  >
+                    {tag}
+                  </Link>
+                ))}
+                {question.tags.length > 3 && (
+                  <span className="px-2 py-0.5 text-xs text-[var(--text-tertiary)]">
+                    +{question.tags.length - 3}
+                  </span>
+                )}
               </div>
-            )}
-            <div className="text-right">
-              <div className="text-sm font-semibold text-[var(--text-primary)]">
-                {question.author.username}
-              </div>
-              <div className="text-xs text-[var(--text-tertiary)]">
-                {formatDate(question.createdAt)}
+
+              {/* Author and Time */}
+              <div className="flex items-center gap-2">
+                <Link
+                  to={`/profile/${question.author._id}`}
+                  className="flex items-center gap-1.5 hover:opacity-80 transition-opacity"
+                >
+                  {question.author.avatar ? (
+                    <img src={question.author.avatar} alt={question.author.username} className="w-5 h-5 rounded-full" />
+                  ) : (
+                    <div className="w-5 h-5 rounded-full bg-gradient-to-br from-[var(--color-primary)] to-[var(--color-secondary)] flex items-center justify-center text-white text-[10px] font-bold">
+                      {question.author.username.charAt(0).toUpperCase()}
+                    </div>
+                  )}
+                  <span className="text-xs font-medium text-[var(--color-primary)]">
+                    {question.author.username}
+                  </span>
+                </Link>
+                <span className="text-xs text-[var(--text-tertiary)]">
+                  {formatDate(question.createdAt)}
+                </span>
+                <BookmarkButton questionId={question._id} size="sm" />
               </div>
             </div>
-          </Link>
+          </div>
         </div>
       </div>
     </motion.div>
