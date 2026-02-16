@@ -1,5 +1,5 @@
-const Achievement = require('../models/Achievement');
-const DailyTask = require('../models/DailyTask');
+const Achievement = require('./models/Achievement');
+const DailyTask = require('./models/DailyTask');
 
 async function seedGamificationData() {
   try {
