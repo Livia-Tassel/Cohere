@@ -347,6 +347,7 @@ a:hover {
   background: var(--color-primary-dark);
   opacity: 0;
   transition: opacity var(--transition-base);
+  pointer-events: none;
 }
 
 .btn-primary:hover::before {
@@ -410,6 +411,7 @@ a:hover {
   mask-composite: exclude;
   opacity: 0;
   transition: opacity var(--transition-base);
+  pointer-events: none;
 }
 
 .card:hover {
