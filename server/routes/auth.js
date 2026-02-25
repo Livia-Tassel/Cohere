@@ -29,7 +29,7 @@ router.post('/register', [
     res.status(201).json({
       token,
       user: {
-        id: user._id,
+        _id: user._id,
         username: user.username,
         email: user.email,
         reputation: user.reputation
@@ -64,7 +64,7 @@ router.post('/login', [
     res.json({
       token,
       user: {
-        id: user._id,
+        _id: user._id,
         username: user.username,
         email: user.email,
         reputation: user.reputation
@@ -79,7 +79,7 @@ router.post('/login', [
 router.get('/me', auth, async (req, res) => {
   try {
     res.json({
-      id: req.user._id,
+      _id: req.user._id,
       username: req.user.username,
       email: req.user.email,
       reputation: req.user.reputation,
