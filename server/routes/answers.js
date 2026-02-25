@@ -103,6 +103,12 @@ router.delete('/:id', auth, async (req, res) => {
     }
 
     await Question.findByIdAndUpdate(answer.question, { $inc: { answerCount: -1 } });
+
+    // Clear acceptedAnswer reference if this answer was accepted
+    if (answer.isAccepted) {
+      await Question.findByIdAndUpdate(answer.question, { acceptedAnswer: null, status: 'open' });
+    }
+
     await answer.deleteOne();
 
     res.json({ message: 'Answer deleted' });

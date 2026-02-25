@@ -1,11 +1,102 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
-import { getUser, getUserQuestions, getUserAnswers } from '../services/api';
+import { getUser, getUserQuestions, getUserAnswers, getUserActivity } from '../services/api';
 import QuestionCard from '../components/QuestionCard';
 import UserBadges from '../components/UserBadges';
 import FriendButton from '../components/FriendButton';
 import toast, { Toaster } from 'react-hot-toast';
+
+const ActivityHeatmap = ({ userId }) => {
+  const [activity, setActivity] = useState({});
+  const [loading, setLoading] = useState(true);
+
+  useEffect(() => {
+    const loadActivity = async () => {
+      try {
+        const response = await getUserActivity(userId);
+        setActivity(response.data);
+      } catch (error) {
+        console.error('Failed to load activity', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+    loadActivity();
+  }, [userId]);
+
+  if (loading) return null;
+
+  // Generate last 52 weeks of dates
+  const today = new Date();
+  const weeks = [];
+  const startDate = new Date(today);
+  startDate.setDate(startDate.getDate() - 364);
+  // Align to Sunday
+  startDate.setDate(startDate.getDate() - startDate.getDay());
+
+  for (let w = 0; w < 53; w++) {
+    const week = [];
+    for (let d = 0; d < 7; d++) {
+      const date = new Date(startDate);
+      date.setDate(date.getDate() + w * 7 + d);
+      if (date <= today) {
+        const dateStr = date.toISOString().split('T')[0];
+        week.push({ date: dateStr, count: activity[dateStr] || 0 });
+      } else {
+        week.push(null);
+      }
+    }
+    weeks.push(week);
+  }
+
+  const getColor = (count) => {
+    if (count === 0) return 'bg-[var(--bg-tertiary)]';
+    if (count === 1) return 'bg-blue-200 dark:bg-blue-900';
+    if (count === 2) return 'bg-blue-300 dark:bg-blue-700';
+    if (count <= 4) return 'bg-blue-400 dark:bg-blue-600';
+    return 'bg-blue-600 dark:bg-blue-400';
+  };
+
+  const totalContributions = Object.values(activity).reduce((a, b) => a + b, 0);
+
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-3">
+        <h3 className="text-sm font-semibold text-[var(--text-primary)]">Activity</h3>
+        <span className="text-xs text-[var(--text-secondary)]">{totalContributions} contributions in the last year</span>
+      </div>
+      <div className="overflow-x-auto">
+        <div className="flex gap-[2px] min-w-[680px]">
+          {weeks.map((week, wi) => (
+            <div key={wi} className="flex flex-col gap-[2px]">
+              {week.map((day, di) => (
+                day ? (
+                  <div
+                    key={di}
+                    className={`w-[10px] h-[10px] rounded-[2px] ${getColor(day.count)} transition-colors`}
+                    title={`${day.date}: ${day.count} contribution${day.count !== 1 ? 's' : ''}`}
+                  />
+                ) : (
+                  <div key={di} className="w-[10px] h-[10px]" />
+                )
+              ))}
+            </div>
+          ))}
+        </div>
+      </div>
+      <div className="flex items-center gap-1 mt-2 justify-end">
+        <span className="text-[10px] text-[var(--text-tertiary)]">Less</span>
+        <div className="w-[10px] h-[10px] rounded-[2px] bg-[var(--bg-tertiary)]" />
+        <div className="w-[10px] h-[10px] rounded-[2px] bg-blue-200 dark:bg-blue-900" />
+        <div className="w-[10px] h-[10px] rounded-[2px] bg-blue-300 dark:bg-blue-700" />
+        <div className="w-[10px] h-[10px] rounded-[2px] bg-blue-400 dark:bg-blue-600" />
+        <div className="w-[10px] h-[10px] rounded-[2px] bg-blue-600 dark:bg-blue-400" />
+        <span className="text-[10px] text-[var(--text-tertiary)]">More</span>
+      </div>
+    </div>
+  );
+};
 
 const Profile = () => {
   const { id } = useParams();
@@ -161,6 +252,16 @@ const Profile = () => {
           className="card mb-6"
         >
           <UserBadges userId={id} />
+        </motion.div>
+
+        {/* Activity Heatmap */}
+        <motion.div
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ delay: 0.18 }}
+          className="card mb-6"
+        >
+          <ActivityHeatmap userId={id} />
         </motion.div>
 
         {/* Activity Tabs */}

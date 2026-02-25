@@ -40,6 +40,11 @@ const questionSchema = new mongoose.Schema({
     ref: 'Answer',
     default: null
   },
+  status: {
+    type: String,
+    enum: ['open', 'answered', 'closed'],
+    default: 'open'
+  },
   createdAt: {
     type: Date,
     default: Date.now

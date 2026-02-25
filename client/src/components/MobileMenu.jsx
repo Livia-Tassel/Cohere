@@ -16,7 +16,7 @@ const MobileMenu = ({ isOpen, onClose }) => {
       { path: '/friends', icon: '👥', label: 'Friends' },
       { path: '/bookmarks', icon: '🔖', label: 'Bookmarks' },
       { path: '/progress', icon: '🎮', label: 'Progress' },
-      { path: `/profile/${user.id}`, icon: '👤', label: 'Profile' },
+      { path: `/profile/${user._id}`, icon: '👤', label: 'Profile' },
     ] : []),
   ];
 

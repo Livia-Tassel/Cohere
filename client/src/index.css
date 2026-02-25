@@ -1,4 +1,4 @@
-@import url('https://fonts.googleapis.com/css2?family=IBM+Plex+Sans:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500;600&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap');
 
 @tailwind base;
 @tailwind components;
@@ -6,17 +6,17 @@
 
 :root {
   /* Brand colors - Refined palette */
-  --color-primary: #6366F1;
-  --color-primary-light: #818CF8;
-  --color-primary-dark: #4F46E5;
-  --color-secondary: #EC4899;
-  --color-accent: #F59E0B;
-  --color-success: #10B981;
+  --color-primary: #2563EB;
+  --color-primary-light: #3B82F6;
+  --color-primary-dark: #1D4ED8;
+  --color-secondary: #0EA5E9;
+  --color-accent: #F97316;
+  --color-success: #22C55E;
   --color-warning: #F59E0B;
   --color-error: #EF4444;
 
   /* Light theme */
-  --bg-primary: #FFFFFF;
+  --bg-primary: #F8FAFC;
   --bg-secondary: #F8FAFC;
   --bg-tertiary: #F1F5F9;
   --bg-elevated: #FFFFFF;
@@ -26,18 +26,18 @@
   --text-inverse: #FFFFFF;
   --border-primary: #E2E8F0;
   --border-secondary: #CBD5E1;
-  --border-focus: #6366F1;
+  --border-focus: #2563EB;
   --shadow-sm: rgba(15, 23, 42, 0.04);
   --shadow-md: rgba(15, 23, 42, 0.08);
   --shadow-lg: rgba(15, 23, 42, 0.12);
   --shadow-xl: rgba(15, 23, 42, 0.16);
-  --glow-primary: rgba(99, 102, 241, 0.15);
-  --glow-secondary: rgba(236, 72, 153, 0.15);
+  --glow-primary: rgba(37, 99, 235, 0.15);
+  --glow-secondary: rgba(14, 165, 233, 0.15);
 
   /* Typography */
-  --font-display: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'IBM Plex Sans', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-mono: 'IBM Plex Mono', 'Courier New', monospace;
+  --font-display: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: 'JetBrains Mono', 'Courier New', monospace;
 
   /* Spacing scale (8px base) */
   --space-1: 0.5rem;
@@ -82,29 +82,29 @@
 
 .dark {
   /* Dark theme - Sophisticated slate palette */
-  --bg-primary: #0A0E1A;
-  --bg-secondary: #111827;
-  --bg-tertiary: #1F2937;
-  --bg-elevated: #1F2937;
+  --bg-primary: #0D1117;
+  --bg-secondary: #161B22;
+  --bg-tertiary: #21262D;
+  --bg-elevated: #161B22;
   --text-primary: #F8FAFC;
   --text-secondary: #CBD5E1;
   --text-tertiary: #64748B;
   --text-inverse: #0F172A;
-  --border-primary: #1F2937;
-  --border-secondary: #374151;
-  --border-focus: #818CF8;
+  --border-primary: #30363D;
+  --border-secondary: #484F58;
+  --border-focus: #3B82F6;
   --shadow-sm: rgba(0, 0, 0, 0.2);
   --shadow-md: rgba(0, 0, 0, 0.3);
   --shadow-lg: rgba(0, 0, 0, 0.4);
   --shadow-xl: rgba(0, 0, 0, 0.5);
-  --glow-primary: rgba(129, 140, 248, 0.2);
-  --glow-secondary: rgba(236, 72, 153, 0.2);
+  --glow-primary: rgba(59, 130, 246, 0.2);
+  --glow-secondary: rgba(14, 165, 233, 0.2);
 
   /* Slightly brighter brand colors for dark mode */
-  --color-primary: #818CF8;
-  --color-primary-light: #A5B4FC;
-  --color-primary-dark: #6366F1;
-  --color-secondary: #F472B6;
+  --color-primary: #3B82F6;
+  --color-primary-light: #60A5FA;
+  --color-primary-dark: #2563EB;
+  --color-secondary: #38BDF8;
 }
 
 /* Smooth theme transition */
@@ -321,7 +321,7 @@ a:hover {
 
 /* Custom Button Styles - Refined */
 .btn-primary {
-  background: linear-gradient(135deg, var(--color-primary), var(--color-primary-dark));
+  background: var(--color-primary);
   color: var(--text-inverse);
   padding: 0.625rem 1.5rem;
   border-radius: var(--radius-lg);
@@ -344,7 +344,7 @@ a:hover {
   left: 0;
   right: 0;
   bottom: 0;
-  background: linear-gradient(135deg, var(--color-primary-light), var(--color-primary));
+  background: var(--color-primary-dark);
   opacity: 0;
   transition: opacity var(--transition-base);
 }

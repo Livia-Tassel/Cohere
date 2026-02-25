@@ -36,12 +36,18 @@ router.post('/', [
       targetId
     });
 
+    const getRepValue = (v) => v === 1 ? 5 : v === -1 ? -2 : 0;
+
     let voteChange = value;
+    let oldRepValue = 0;
+    let newRepValue = getRepValue(value);
 
     if (existingVote) {
+      oldRepValue = getRepValue(existingVote.value);
       if (existingVote.value === value) {
         await existingVote.deleteOne();
         voteChange = -value;
+        newRepValue = 0;
       } else {
         existingVote.value = value;
         await existingVote.save();
@@ -59,7 +65,7 @@ router.post('/', [
 
     await Model.findByIdAndUpdate(targetId, { $inc: { votes: voteChange } });
 
-    const reputationChange = voteChange * (value > 0 ? 5 : -2);
+    const reputationChange = newRepValue - oldRepValue;
     await User.findByIdAndUpdate(target.author, { $inc: { reputation: reputationChange } });
 
     res.json({ message: 'Vote recorded', voteChange });

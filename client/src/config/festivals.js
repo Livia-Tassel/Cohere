@@ -9,15 +9,6 @@ export const festivals = [
     endDate: '2026-02-14',
   },
   {
-    id: 'valentines-day-2026',
-    emoji: '💝',
-    title: 'Happy Valentine\'s Day!',
-    message: 'Spread the love and share knowledge with the community!',
-    bgGradient: 'from-pink-500 via-rose-500 to-red-500',
-    startDate: '2026-02-14',
-    endDate: '2026-02-15',
-  },
-  {
     id: 'halloween-2026',
     emoji: '🎃',
     title: 'Happy Halloween!',

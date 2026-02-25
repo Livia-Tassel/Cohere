@@ -96,29 +96,32 @@ router.get('/:id/answers', async (req, res) => {
   }
 });
 
-// @route   GET /api/users/leaderboard
-// @desc    Get top users by reputation
-// @access  Public
-router.get('/leaderboard', async (req, res) => {
+// Get user activity for heatmap (last 12 months)
+router.get('/:id/activity', async (req, res) => {
   try {
-    const { limit = 50, period = 'all' } = req.query;
+    const twelveMonthsAgo = new Date();
+    twelveMonthsAgo.setFullYear(twelveMonthsAgo.getFullYear() - 1);
 
-    let dateFilter = {};
-    if (period === 'week') {
-      dateFilter = { createdAt: { $gte: new Date(Date.now() - 7 * 24 * 60 * 60 * 1000) } };
-    } else if (period === 'month') {
-      dateFilter = { createdAt: { $gte: new Date(Date.now() - 30 * 24 * 60 * 60 * 1000) } };
-    }
+    const [questions, answers] = await Promise.all([
+      Question.find({
+        author: req.params.id,
+        createdAt: { $gte: twelveMonthsAgo }
+      }).select('createdAt').lean(),
+      Answer.find({
+        author: req.params.id,
+        createdAt: { $gte: twelveMonthsAgo }
+      }).select('createdAt').lean()
+    ]);
 
-    const users = await User.find(dateFilter)
-      .sort({ reputation: -1 })
-      .limit(parseInt(limit))
-      .select('username avatar reputation createdAt');
+    const activityMap = {};
+    [...questions, ...answers].forEach(item => {
+      const date = new Date(item.createdAt).toISOString().split('T')[0];
+      activityMap[date] = (activityMap[date] || 0) + 1;
+    });
 
-    res.json(users);
+    res.json(activityMap);
   } catch (error) {
-    console.error('Error fetching leaderboard:', error);
-    res.status(500).json({ message: 'Server error' });
+    res.status(500).json({ message: 'Server error', error: error.message });
   }
 });
 

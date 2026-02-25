@@ -1,7 +1,7 @@
 import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { Link, useSearchParams } from 'react-router-dom';
-import { getQuestions, getTags } from '../services/api';
+import { getQuestions, getTags, getTrendingQuestions } from '../services/api';
 import QuestionCard from '../components/QuestionCard';
 import TagList from '../components/TagList';
 import toast, { Toaster } from 'react-hot-toast';
@@ -10,6 +10,7 @@ const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
   const [questions, setQuestions] = useState([]);
   const [tags, setTags] = useState([]);
+  const [trending, setTrending] = useState([]);
   const [loading, setLoading] = useState(true);
   const [pagination, setPagination] = useState({});
 
@@ -20,6 +21,7 @@ const Home = () => {
   useEffect(() => {
     loadQuestions();
     loadTags();
+    loadTrending();
   }, [sort, search, page]);
 
   const loadQuestions = async () => {
@@ -46,6 +48,15 @@ const Home = () => {
       setTags(response.data.slice(0, 20));
     } catch (error) {
       console.error('Failed to load tags', error);
+    }
+  };
+
+  const loadTrending = async () => {
+    try {
+      const response = await getTrendingQuestions({ period: 'week' });
+      setTrending(response.data.slice(0, 5));
+    } catch (error) {
+      console.error('Failed to load trending questions', error);
     }
   };
 
@@ -178,6 +189,33 @@ const Home = () => {
 
           {/* Sidebar */}
           <div className="lg:col-span-1 space-y-[var(--space-3)]">
+            {/* Trending Questions */}
+            {trending.length > 0 && (
+              <div className="card">
+                <h3 className="text-sm font-semibold mb-[var(--space-2)] text-[var(--text-primary)]">Trending This Week</h3>
+                <div className="space-y-2">
+                  {trending.map((q, i) => (
+                    <Link
+                      key={q._id}
+                      to={`/questions/${q._id}`}
+                      className="flex gap-2 group/trend"
+                    >
+                      <span className="text-xs font-bold text-[var(--text-tertiary)] mt-0.5 min-w-[16px]">{i + 1}.</span>
+                      <div className="flex-1 min-w-0">
+                        <p className="text-xs font-medium text-[var(--text-primary)] group-hover/trend:text-[var(--color-primary)] transition-colors line-clamp-2 leading-snug">
+                          {q.title}
+                        </p>
+                        <div className="flex items-center gap-2 mt-1 text-[10px] text-[var(--text-tertiary)]">
+                          <span>{q.votes} votes</span>
+                          <span>{q.views} views</span>
+                        </div>
+                      </div>
+                    </Link>
+                  ))}
+                </div>
+              </div>
+            )}
+
             {/* Stats Card */}
             <div className="card">
               <h3 className="text-sm font-semibold mb-[var(--space-2)] text-[var(--text-primary)]">Community Stats</h3>

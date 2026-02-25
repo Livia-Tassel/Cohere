@@ -130,12 +130,17 @@ router.post('/:taskId/complete', auth, async (req, res) => {
       return res.status(400).json({ message: 'Task already completed today' });
     }
 
-    // Award XP
-    await User.findByIdAndUpdate(req.userId, {
-      $inc: { xp: task.xpReward }
-    });
+    // Award XP only if task was just completed now (not previously completed)
+    const todayStart = new Date();
+    todayStart.setHours(0, 0, 0, 0);
+    const completedToday = progress.completedAt && new Date(progress.completedAt) >= todayStart;
+    if (completedToday) {
+      await User.findByIdAndUpdate(req.userId, {
+        $inc: { xp: task.xpReward }
+      });
+    }
 
-    res.json({ message: 'Task completed', progress, xpAwarded: task.xpReward });
+    res.json({ message: 'Task completed', progress, xpAwarded: completedToday ? task.xpReward : 0 });
   } catch (error) {
     res.status(500).json({ message: 'Server error', error: error.message });
   }

@@ -8,8 +8,9 @@ export default {
   theme: {
     extend: {
       colors: {
-        primary: '#3B82F6',
-        accent: '#F59E0B',
+        primary: '#2563EB',
+        secondary: '#0EA5E9',
+        accent: '#F97316',
       },
       spacing: {
         'sidebar': '16rem',

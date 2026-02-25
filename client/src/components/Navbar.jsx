@@ -46,7 +46,7 @@ const Navbar = () => {
                   </button>
                 </Link>
 
-                <Link to={`/profile/${user.id}`} className="flex items-center gap-[var(--space-2)] hover:opacity-80 transition-opacity duration-[var(--transition-fast)]">
+                <Link to={`/profile/${user._id}`} className="flex items-center gap-[var(--space-2)] hover:opacity-80 transition-opacity duration-[var(--transition-fast)]">
                   {user.avatar ? (
                     <img src={user.avatar} alt={user.username} className="w-8 h-8 rounded-full border-2 border-[var(--color-primary)] transition-all duration-[var(--transition-fast)] hover:shadow-[0_0_0_3px_var(--glow-primary)]" />
                   ) : (

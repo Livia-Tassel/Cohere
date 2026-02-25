@@ -210,6 +210,7 @@ router.post('/:id/accept/:answerId', auth, async (req, res) => {
     }
 
     question.acceptedAnswer = req.params.answerId;
+    question.status = 'answered';
     answer.isAccepted = true;
 
     await question.save();

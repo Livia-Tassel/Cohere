@@ -161,12 +161,21 @@ router.post('/:id/vote', auth, async (req, res) => {
       return res.status(404).json({ message: 'Comment not found' });
     }
 
-    // Simple upvote system for comments (no downvotes)
-    // In a real app, you'd track who voted to prevent duplicates
-    comment.votes += 1;
+    const userId = req.userId;
+    const alreadyVoted = comment.votedBy.some(id => id.toString() === userId);
+
+    if (alreadyVoted) {
+      // Toggle off - remove vote
+      comment.votes = Math.max(0, comment.votes - 1);
+      comment.votedBy = comment.votedBy.filter(id => id.toString() !== userId);
+    } else {
+      comment.votes += 1;
+      comment.votedBy.push(userId);
+    }
+
     await comment.save();
 
-    res.json({ votes: comment.votes });
+    res.json({ votes: comment.votes, voted: !alreadyVoted });
   } catch (error) {
     console.error('Error voting on comment:', error);
     res.status(500).json({ message: 'Server error' });

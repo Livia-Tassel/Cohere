@@ -44,7 +44,7 @@ const Chat = () => {
       // Get friend info from first message
       if (response.data.messages.length > 0) {
         const firstMessage = response.data.messages[0];
-        const friendInfo = firstMessage.sender._id === user.id
+        const friendInfo = firstMessage.sender._id === user._id
           ? firstMessage.recipient
           : firstMessage.sender;
         setFriend(friendInfo);
@@ -170,7 +170,7 @@ const Chat = () => {
             </div>
           ) : (
             messages.map((message, index) => {
-              const isOwn = message.sender._id === user.id;
+              const isOwn = message.sender._id === user._id;
               const showAvatar = index === 0 || messages[index - 1].sender._id !== message.sender._id;
 
               return (

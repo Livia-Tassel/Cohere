@@ -176,7 +176,7 @@ const QuestionDetail = () => {
     );
   }
 
-  const isQuestionAuthor = user && user.id === question.author._id;
+  const isQuestionAuthor = user && user._id === question.author._id;
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] py-[var(--space-3)]">
@@ -199,6 +199,16 @@ const QuestionDetail = () => {
                   <div className="flex items-start justify-between gap-[var(--space-2)] mb-[var(--space-2)]">
                     <h1 className="text-2xl font-semibold text-[var(--text-primary)] flex-1">{question.title}</h1>
                     <BookmarkButton questionId={question._id} size="md" />
+                    <button
+                      onClick={() => {
+                        navigator.clipboard.writeText(`${window.location.origin}/questions/${question._id}`);
+                        toast.success('Link copied!');
+                      }}
+                      className="text-xs text-[var(--text-secondary)] hover:text-[var(--color-primary)] transition-colors flex items-center gap-1 px-2 py-1 rounded border border-[var(--border-primary)] hover:border-[var(--color-primary)]"
+                      title="Copy link"
+                    >
+                      🔗 Copy Link
+                    </button>
                   </div>
 
               <div className="flex flex-wrap gap-[var(--space-2)] text-xs text-[var(--text-tertiary)] mb-[var(--space-3)]">

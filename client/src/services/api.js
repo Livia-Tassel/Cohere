@@ -48,10 +48,12 @@ export const getUser = (id) => api.get(`/users/${id}`);
 export const getUserQuestions = (id, params) => api.get(`/users/${id}/questions`, { params });
 export const getUserAnswers = (id, params) => api.get(`/users/${id}/answers`, { params });
 export const getLeaderboard = (params) => api.get('/users/leaderboard', { params });
+export const getUserActivity = (id) => api.get(`/users/${id}/activity`);
 
 // Tags
 export const getTags = () => api.get('/tags');
 export const getTagQuestions = (name, params) => api.get(`/tags/${name}`, { params });
+export const getRelatedTags = (name) => api.get(`/tags/${name}/related`);
 
 // Bookmarks
 export const createBookmark = (questionId) => api.post('/bookmarks', { questionId });

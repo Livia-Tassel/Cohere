@@ -12,7 +12,7 @@ const AnswerCard = ({ answer, onDelete, onEdit, onAccept, isQuestionAuthor, isAc
   const [editBody, setEditBody] = useState(answer.body);
   const answerBodyRef = useRef(null);
 
-  const isAuthor = user && user.id === answer.author._id;
+  const isAuthor = user && user._id === answer.author._id;
 
   // Apply syntax highlighting after answer loads
   useEffect(() => {

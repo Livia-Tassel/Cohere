@@ -12,7 +12,7 @@ const Comment = ({ comment, onDelete, onUpdate }) => {
   const [localVotes, setLocalVotes] = useState(comment.votes);
   const [hasVoted, setHasVoted] = useState(false);
 
-  const isAuthor = user && user.id === comment.author._id;
+  const isAuthor = user && user._id === comment.author._id;
 
   const formatDate = (date) => {
     const now = new Date();

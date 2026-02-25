@@ -18,6 +18,24 @@ router.get('/', async (req, res) => {
   }
 });
 
+// Get related tags (tags that co-occur with this tag)
+router.get('/:name/related', async (req, res) => {
+  try {
+    const relatedTags = await Question.aggregate([
+      { $match: { tags: req.params.name } },
+      { $unwind: '$tags' },
+      { $match: { tags: { $ne: req.params.name } } },
+      { $group: { _id: '$tags', count: { $sum: 1 } } },
+      { $sort: { count: -1 } },
+      { $limit: 10 }
+    ]);
+
+    res.json(relatedTags.map(tag => ({ name: tag._id, count: tag.count })));
+  } catch (error) {
+    res.status(500).json({ message: 'Server error', error: error.message });
+  }
+});
+
 // Get questions by tag
 router.get('/:name', async (req, res) => {
   try {

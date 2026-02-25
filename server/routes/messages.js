@@ -269,11 +269,17 @@ router.delete('/conversation/:friendId', auth, async (req, res) => {
   }
 });
 
-// Admin endpoint: Clean up old messages (can be called by cron job)
+// Admin endpoint: Clean up old messages (restricted to own messages)
 router.post('/cleanup', auth, async (req, res) => {
   try {
-    // This should be protected by admin middleware in production
-    const result = await Message.cleanupOldMessages();
+    const thirtyDaysAgo = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+    const result = await Message.deleteMany({
+      $or: [
+        { sender: req.userId },
+        { recipient: req.userId }
+      ],
+      createdAt: { $lt: thirtyDaysAgo }
+    });
     res.json({
       message: 'Cleanup completed',
       deletedCount: result.deletedCount
