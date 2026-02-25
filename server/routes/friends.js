@@ -37,6 +37,24 @@ router.post('/', auth, async (req, res) => {
         return res.status(400).json({ message: 'Friend request already sent' });
       } else if (existingFriendship.status === 'blocked') {
         return res.status(400).json({ message: 'Cannot send friend request' });
+      } else if (existingFriendship.status === 'rejected') {
+        // Allow re-sending after rejection: update existing document
+        existingFriendship.requester = requesterId;
+        existingFriendship.recipient = recipientId;
+        existingFriendship.status = 'pending';
+        await existingFriendship.save();
+
+        createNotification({
+          recipient: recipientId,
+          type: 'friend_request',
+          actor: requesterId,
+          message: 'sent you a friend request'
+        });
+
+        await existingFriendship.populate('requester', 'username avatar reputation');
+        await existingFriendship.populate('recipient', 'username avatar reputation');
+
+        return res.status(201).json(existingFriendship);
       }
     }
 
@@ -49,8 +67,8 @@ router.post('/', auth, async (req, res) => {
 
     await friendship.save();
 
-    // Create notification for recipient
-    await createNotification({
+    // Create notification for recipient (fire-and-forget)
+    createNotification({
       recipient: recipientId,
       type: 'friend_request',
       actor: requesterId,
@@ -183,8 +201,8 @@ router.put('/:friendshipId/accept', auth, async (req, res) => {
     friendship.status = 'accepted';
     await friendship.save();
 
-    // Create notification for requester
-    await createNotification({
+    // Create notification for requester (fire-and-forget)
+    createNotification({
       recipient: friendship.requester,
       type: 'friend_accepted',
       actor: userId,

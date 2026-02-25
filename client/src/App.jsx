@@ -70,6 +70,7 @@ function App() {
                 <Route path="/leaderboard" element={<Leaderboard />} />
                 <Route path="/notifications" element={<Notifications />} />
                 <Route path="/friends" element={<Friends />} />
+                <Route path="/messages" element={<Chat />} />
                 <Route path="/messages/:friendId" element={<Chat />} />
                 <Route path="/progress" element={<GamificationDashboard />} />
                 <Route path="/for-you" element={<ForYou />} />
