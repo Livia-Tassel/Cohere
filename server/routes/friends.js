@@ -1,5 +1,6 @@
 const express = require('express');
 const router = express.Router();
+const mongoose = require('mongoose');
 const auth = require('../middleware/auth');
 const Friendship = require('../models/Friendship');
 const User = require('../models/User');
@@ -10,6 +11,11 @@ router.post('/', auth, async (req, res) => {
   try {
     const { recipientId } = req.body;
     const requesterId = req.userId;
+
+    // Validate recipientId
+    if (!recipientId || !mongoose.Types.ObjectId.isValid(recipientId)) {
+      return res.status(400).json({ message: 'Invalid recipient ID' });
+    }
 
     // Check if trying to add self
     if (requesterId === recipientId) {
@@ -281,6 +287,10 @@ router.get('/status/:userId', auth, async (req, res) => {
   try {
     const currentUserId = req.userId;
     const { userId } = req.params;
+
+    if (!mongoose.Types.ObjectId.isValid(userId)) {
+      return res.json({ status: 'none' });
+    }
 
     if (currentUserId === userId) {
       return res.json({ status: 'self' });

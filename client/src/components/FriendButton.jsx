@@ -100,8 +100,8 @@ const FriendButton = ({ userId }) => {
     return null;
   }
 
-  // No friendship - show add friend button
-  if (status === 'none') {
+  // No friendship or previously rejected - show add friend button
+  if (status === 'none' || status === 'rejected') {
     return (
       <motion.button
         whileHover={{ scale: 1.05 }}

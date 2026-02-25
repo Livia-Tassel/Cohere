@@ -112,14 +112,10 @@ const createAcceptedAnswerNotification = async (answer, question) => {
 // Generic create notification function
 const createNotification = async ({ recipient, type, actor, targetType, targetId, message }) => {
   try {
-    await Notification.create({
-      recipient,
-      type,
-      actor,
-      targetType,
-      targetId,
-      message
-    });
+    const doc = { recipient, type, actor, message };
+    if (targetType) doc.targetType = targetType;
+    if (targetId) doc.targetId = targetId;
+    await Notification.create(doc);
   } catch (error) {
     console.error('Error creating notification:', error);
   }
