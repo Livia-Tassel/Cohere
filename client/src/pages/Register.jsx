@@ -3,7 +3,7 @@ import { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { register } from '../services/api';
 import { useAuth } from '../context/AuthContext';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const Register = () => {
   const navigate = useNavigate();
@@ -51,7 +51,6 @@ const Register = () => {
 
   return (
     <div className="min-h-screen bg-pattern flex items-center justify-center px-4 py-[var(--space-6)]">
-      <Toaster position="top-right" />
 
       <motion.div
         initial={{ opacity: 0, y: 20 }}

@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { createQuestion } from '../services/api';
 import { useAuth } from '../context/AuthContext';
 import RichTextEditor from '../components/RichTextEditor';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const AVAILABLE_TAGS = [
   'javascript', 'python', 'react', 'nodejs', 'java', 'typescript',
@@ -93,7 +93,6 @@ const AskQuestion = () => {
 
   return (
     <div className="min-h-screen bg-pattern py-[var(--space-6)]">
-      <Toaster position="top-right" />
 
       <div className="max-w-4xl mx-auto px-4">
         <motion.div

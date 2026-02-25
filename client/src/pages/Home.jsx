@@ -4,7 +4,7 @@ import { Link, useSearchParams } from 'react-router-dom';
 import { getQuestions, getTags, getTrendingQuestions } from '../services/api';
 import QuestionCard from '../components/QuestionCard';
 import TagList from '../components/TagList';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const Home = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -72,7 +72,6 @@ const Home = () => {
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)]">
-      <Toaster position="top-right" />
 
       <div className="max-w-7xl mx-auto px-4 py-[var(--space-4)] sm:px-6 lg:px-8">
         <div className="grid grid-cols-1 lg:grid-cols-4 gap-[var(--space-4)]">

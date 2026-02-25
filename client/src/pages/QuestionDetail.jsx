@@ -16,7 +16,7 @@ import PopularTags from '../components/PopularTags';
 import HelpfulTips from '../components/HelpfulTips';
 import CommunityStats from '../components/CommunityStats';
 import TagList from '../components/TagList';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 import { highlightAllCode } from '../utils/highlightCode';
 
 const QuestionDetail = () => {
@@ -180,7 +180,6 @@ const QuestionDetail = () => {
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] py-[var(--space-3)]">
-      <Toaster position="top-right" />
 
       <div className="max-w-7xl mx-auto px-4">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-[var(--space-3)]">

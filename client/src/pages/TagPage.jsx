@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import { useParams, Link } from 'react-router-dom';
 import { getTagQuestions, getRelatedTags } from '../services/api';
 import QuestionCard from '../components/QuestionCard';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const TagPage = () => {
   const { name } = useParams();
@@ -54,7 +54,6 @@ const TagPage = () => {
 
   return (
     <div className="min-h-screen bg-pattern py-8">
-      <Toaster position="top-right" />
 
       <div className="max-w-7xl mx-auto px-4">
         <motion.div

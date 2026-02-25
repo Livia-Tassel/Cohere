@@ -10,7 +10,7 @@ import {
   rejectFriendRequest,
   removeFriend
 } from '../services/api';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const Friends = () => {
   const { user } = useAuth();
@@ -116,7 +116,6 @@ const Friends = () => {
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] py-8">
-      <Toaster position="top-right" />
 
       <div className="max-w-5xl mx-auto px-4">
         {/* Header */}

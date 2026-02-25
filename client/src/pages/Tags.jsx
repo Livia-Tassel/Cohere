@@ -2,7 +2,7 @@ import { motion } from 'framer-motion';
 import { useState, useEffect } from 'react';
 import { getTags } from '../services/api';
 import { Link } from 'react-router-dom';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const Tags = () => {
   const [tags, setTags] = useState([]);
@@ -34,7 +34,6 @@ const Tags = () => {
 
   return (
     <div className="min-h-screen bg-pattern py-8">
-      <Toaster position="top-right" />
 
       <div className="max-w-6xl mx-auto px-4">
         <motion.div

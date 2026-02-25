@@ -44,23 +44,12 @@ router.post('/', auth, async (req, res) => {
       } else if (existingFriendship.status === 'blocked') {
         return res.status(400).json({ message: 'Cannot send friend request' });
       } else if (existingFriendship.status === 'rejected') {
-        // Allow re-sending after rejection: update existing document
-        existingFriendship.requester = requesterId;
-        existingFriendship.recipient = recipientId;
-        existingFriendship.status = 'pending';
-        await existingFriendship.save();
-
-        createNotification({
-          recipient: recipientId,
-          type: 'friend_request',
-          actor: requesterId,
-          message: 'sent you a friend request'
-        });
-
-        await existingFriendship.populate('requester', 'username avatar reputation');
-        await existingFriendship.populate('recipient', 'username avatar reputation');
-
-        return res.status(201).json(existingFriendship);
+        // Delete the rejected document so we can create a fresh one below
+        await Friendship.findByIdAndDelete(existingFriendship._id);
+        // Fall through to new friendship creation
+      } else {
+        // Unknown status — delete stale document and recreate
+        await Friendship.findByIdAndDelete(existingFriendship._id);
       }
     }
 
@@ -87,6 +76,10 @@ router.post('/', auth, async (req, res) => {
 
     res.status(201).json(friendship);
   } catch (error) {
+    // Handle duplicate key error from unique index race condition
+    if (error.code === 11000) {
+      return res.status(400).json({ message: 'Friend request already exists' });
+    }
     console.error('Error sending friend request:', error);
     res.status(500).json({ message: 'Server error', error: error.message });
   }

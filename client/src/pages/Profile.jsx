@@ -5,7 +5,7 @@ import { getUser, getUserQuestions, getUserAnswers, getUserActivity } from '../s
 import QuestionCard from '../components/QuestionCard';
 import UserBadges from '../components/UserBadges';
 import FriendButton from '../components/FriendButton';
-import toast, { Toaster } from 'react-hot-toast';
+import toast from 'react-hot-toast';
 
 const ActivityHeatmap = ({ userId }) => {
   const [activity, setActivity] = useState({});
@@ -167,8 +167,6 @@ const Profile = () => {
 
   return (
     <div className="min-h-screen bg-pattern py-8">
-      <Toaster position="top-right" />
-
       <div className="max-w-5xl mx-auto px-4">
         {/* Profile Header */}
         <motion.div
